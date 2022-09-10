@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Ficha do Jogador</title>
+</head>
+<body>
+    <div id="container">
+        <div id="topSection">
+            <div id="infosCharacter">
+                <div id="characterInfos">
+                    <ul id="characterName">
+                        <label for="characterName"><img src="images/personagem.png" alt="Personagem"></label>
+                        <input type="text" name="characterName" class="characterName" disabled="true">
+                    </ul>
+                    <ul id="characterPlayer">
+                        <label for="characterPlayer"><img src="images/jogador.png" alt="Jogador"></label>
+                        <input type="text" name="characterPlayer" class="characterPlayer" disabled="true">
+                    </ul>
+                    <ul id="characterClass">
+                        <label for="characterClass"><img src="images/classe.png" alt="Classe"></label>
+                        <input type="text" name="characterClass" class="characterClass" disabled="true">
+                    </ul>
+                    <ul id="characterArchetype">
+                        <label for="characterArchetype"><img src="images/arquetipo.png" alt="Arquétipo"></label>
+                        <input type="text" name="characterArchetype" class="characterArchetype" disabled="true">
+                    </ul>
+                </div>
+                <div id="characterPic"><img src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg" alt=""></div>
+            </div>
+            <div id="logo"><img src="images/logo.png" alt="O CULTO DIVINO"></div>
+        </div>
+        <div id="middleSection">
+            <div id="leftSection">
+                <div id="title"><img src="images/atributos.png" alt="Atributos"></div>
+                <ul id="attributes">
+                    <li id="forca">
+                        <label for="forcaValue">FOR</label>
+                        <input type="number" maxlength="2" name="forcaValue" id="forcaValue" disabled="true">
+                    </li>
+                    <li id="destreza">
+                        <label for="destrezaValue">DES</label>
+                        <input type="number" maxlength="2" name="destrezaValue" id="destrezaValue" disabled="true">
+                    </li>
+                    <li id="inteligencia">
+                        <label for="inteligenciaValue">INT</label>
+                        <input type="number" maxlength="2" name="inteligenciaValue" id="inteligenciaValue" disabled="true">
+                    </li>
+                    <li id="constituicao">
+                        <label for="constituicaoValue">CON</label>
+                        <input type="number" maxlength="2" name="constituicaoValue" id="constituicaoValue" disabled="true">
+                    </li>
+                    <li id="vontade">
+                        <label for="vontadeValue">VON</label>
+                        <input type="number" maxlength="2" name="vontadeValue" id="vontadeValue" disabled="true">
+                    </li>
+                    <li id="percepcao">
+                        <label for="percepcaoValue">PER</label>
+                        <input type="number" maxlength="2" name="percepcaoValue" id="percepcaoValue" disabled="true">
+                    </li>
+                </ul>
+                <ul id="attributesTraining">
+                    <li id="trainingForca">
+                        <label for="trainingForcaValue">FOR</label>
+                        <input type="number" maxlength="2" name="trainingForcaValue" id="trainingForcaValue" disabled="true">
+                    </li>
+                    <li id="trainingDestreza">
+                        <label for="trainingDestrezaValue">DES</label>
+                        <input type="number" maxlength="2" name="trainingDestrezaValue" id="trainingDestrezaValue" disabled="true">
+                    </li>
+                    <li id="trainingInteligencia">
+                        <label for="trainingInteligenciaValue">INT</label>
+                        <input type="number" maxlength="2" name="trainingInteligenciaValue" id="trainingInteligenciaValue" disabled="true">
+                    </li>
+                    <li id="trainingConstituicao">
+                        <label for="trainingConstituicaoValue">CON</label>
+                        <input type="number" maxlength="2" name="trainingConstituicaoValue" id="trainingConstituicaoValue" disabled="true">
+                    </li>
+                    <li id="trainingVontade">
+                        <label for="trainingVontadeValue">VON</label>
+                        <input type="number" maxlength="2" name="trainingVontadeValue" id="trainingVontadeValue" disabled="true">
+                    </li>
+                    <li id="trainingPercepcao">
+                        <label for="trainingPercepcaoValue">PER</label>
+                        <input type="number" maxlength="2" name="trainingPercepcaoValue" id="trainingPercepcaoValue" disabled="true">
+                    </li>
+                </ul>
+                <ul id="vontadeSection">
+                    <li id="title"><img src="images/vontade.png" alt="Força de Vontade"></li>
+                    <li id="vontadeValue"><input type="text" id="vontadePercent" disabled="true"></li>
+                </ul>
+                <div id="pentagrama"></div>
+                <div id="otherData">
+                    <div id="hp"></div>
+                    <div id="sanidade"></div>
+                    <div id="mana"></div>
+                    <div id="movimento"></div>
+                    <div id="vigor"></div>
+                    <div id="esquiva"></div>
+                    <div id="investigacao"></div>
+                    <div id="bloquear"></div>
+                </div>
+            </div>
+            <div id="pericias">
+                <div id="title"><img src="images/pericias.png" alt="Perícias"></div>
+                <div id="periciasTopInfos">
+                    <div>Perícia</div>
+                    <div>Bônus</div>
+                </div>
+                <div id="periciasInfos">
+                    <div id="pericia">
+                        <div><input type="text" id="periciaName" value="Teste Nome"><input type="number" id="periciaValue" value="20"></div>
+                        <input type="text" id="periciaBonus" value="Teste Bonus">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
