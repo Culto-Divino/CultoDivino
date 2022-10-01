@@ -1,5 +1,10 @@
 @import url('http://fonts.cdnfonts.com/css/american-typewriter');
 
+:root{
+    --backgroundColor1: rgb(230, 230, 230);
+    --backgroundColor2: rgb(219, 219, 219);
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -14,7 +19,7 @@ body{
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    background: linear-gradient(175deg, rgb(197, 196, 196), rgb(173, 173, 173));
+    background: linear-gradient(175deg, var(--backgroundColor1), var(--backgroundColor2));
     overflow-x: hidden;
 }
 
@@ -25,7 +30,6 @@ body{
 
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
     align-items: center;
     border-radius: 10px;
     overflow-y: auto;
@@ -48,8 +52,6 @@ body{
     padding-top: 2vh;
     width: 100%;
     display: flex;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     justify-content: space-between;
 }
 
@@ -141,7 +143,7 @@ body{
 #middleSection #leftSection #attributesTraining li input{
     overflow-y: hidden;
     font-size: 3vh;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     border: 1px solid black;
     border-radius: 3px;
     color: black;
@@ -152,6 +154,7 @@ body{
     width: 5vh;
     height: 6vh;
     font-size: 4vh;
+    text-align: center;
 }
 
 #middleSection #leftSection #attributesTraining li input{
@@ -161,6 +164,7 @@ body{
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px dashed black;
+    text-align: center;
 }
 
 input::-webkit-inner-spin-button{
@@ -196,8 +200,9 @@ input::-webkit-inner-spin-button{
     text-align: center;
     border: 1px solid black;
     border-radius: 3px;
-    background: aliceblue;
+    /* background: aliceblue; */
     color: black;
+    font-size: 2.5vh;
 }
 
 #middleSection #pericias{
@@ -237,9 +242,11 @@ input::-webkit-inner-spin-button{
     width: 6vh;
     margin-right: 11vh;
     border-radius: 3px;
+    font-size: 2vh;
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px dashed black;
+    color: black;
 }
 
 #middleSection #pericias #periciasInfos #pericia div{
@@ -250,18 +257,22 @@ input::-webkit-inner-spin-button{
 #middleSection #pericias #periciasInfos #pericia div #periciaName{
     width: 18vh;
     border-radius: 3px;
+    font-size: 2vh;
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px dashed black;
+    color: black;
 }
 
 #middleSection #pericias #periciasInfos #pericia div #periciaValue{
     width: 6vh;
     margin-left: 2vh;
     border-radius: 3px;
+    font-size: 2vh;
     border-left: 1px solid black;
     border-right: 1px solid black;
     border-bottom: 1px dashed black;
+    color: black;
 }
 
 #middleSection #pericias #periciasInfos #pericia input{
@@ -274,4 +285,35 @@ input::-webkit-inner-spin-button{
 
 #vontadeSection{
     margin-top: 2vh;
+}
+
+@media (max-width: 500px){
+    #container{
+        align-items: center;
+        width: 90vw;
+    }
+
+    #topSection{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-top: 55vh;
+    }
+
+    #topSection #logo{
+        margin: 0;
+    }
+
+    #topSection #infosCharacter{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    #middleSection{
+        flex-direction: column;
+    }
+
+
 }
