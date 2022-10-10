@@ -225,7 +225,10 @@ input::-webkit-inner-spin-button{
     height: 3vh;
     outline: none;
     text-align: center;
-    border: 1px solid black;
+    border: none;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px dashed black;
     border-radius: 3px;
     /* background: aliceblue; */
     color: black;
