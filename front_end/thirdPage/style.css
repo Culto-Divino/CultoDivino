@@ -1,0 +1,256 @@
+@import url('http://fonts.cdnfonts.com/css/american-typewriter');
+
+:root{
+    --backgroundColor1: rgb(230, 230, 230);
+    --backgroundColor2: rgb(219, 219, 219);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+    font-family: 'American Typewriter', sans-serif;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(175deg, var(--backgroundColor1), var(--backgroundColor2));
+    overflow-x: hidden;
+}
+
+#buttons{
+    margin-top: 3vh;
+    display: flex;
+    width: 18vh;
+    justify-content: space-evenly;
+}
+
+#buttons a{
+    width: 5vh;
+    height: 5vh;
+    border: 1px solid black;
+    color: black;
+    font-size: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+#buttons a:hover{
+    transition: all .5s;
+    /* color: aliceblue; */
+    border-radius: 5px;
+    background-color: rgb(0, 204, 255);
+}
+
+#buttons .selected{
+    background-color: rgb(0, 204, 255);
+}
+
+#container{
+    height: 90vh;
+    width: 60vw;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#container::-webkit-scrollbar,
+textarea::-webkit-scrollbar{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgba(107, 107, 107, 0.356);
+}
+
+#container::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: rgba(48, 51, 50, 0.205);
+}
+
+#container #div1{
+    /* background-color: aqua; */
+    height: 20vh;
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#container #div1 #div1Title img{
+    height: 5vh;
+}
+
+#container #div1 #items{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2vh;
+    width: 100%;
+}
+
+#container #div1 #items li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#container #div1 #items li.type1 input{
+    width: 5vh;
+    height: 6vh;
+    background: transparent;
+    border: 1px solid black;
+    outline: none;
+    color: black;
+    font-size: 4vh;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#container #div1 #items li.type2 textarea{
+    height: 6vh;
+    background: transparent;
+    resize: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: .8vh;
+    font-size: 1.5vh;
+}
+
+#container #div2{
+    margin-top: 2vh;
+    height: 30vh;
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#container #div2 #div2Title img{
+    height: 5vh;
+}
+
+#container #div2 #spaceArea{
+    height: 4vh;
+    font-size: 2.5vh;
+}
+
+#container #div2 #spaceArea label{
+    letter-spacing: .1vh;
+    text-shadow: .5px .5px black;
+}
+
+#container #div2 #spaceArea input{
+    width: 10vh;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px dashed black;
+    border-radius: 3px;
+    color: black;
+    letter-spacing: .1vh;
+    text-shadow: .5px .5px black;
+}
+
+#container #div2 #inventories{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 20vh;
+}
+
+#container #div2 #inventories #leftInventory{
+    width: 45vh;
+    height: 100%;
+}
+
+#container #div2 #inventories #rightInventory{
+    width: 45vh;
+    height: 100%;
+}
+
+#container #div2 #inventories #leftInventory #inventoryTitles{
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+#container #div2 #inventories #leftInventory #inventoryTitles li{
+    text-align: center;
+    padding-left: 2vh;
+}
+
+#container #div2 #inventories #leftInventory #inventoryTitles li:nth-child(1){
+    width: 30vh;
+}
+
+#container #div2 #inventories #leftInventory #inventoryTitles li:nth-child(2){
+    width: 10vh;
+}
+
+#container #div2 #inventories #leftInventory #inventoryItems{
+    height: 100%;
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+}
+
+#container #div2 #inventories #leftInventory #inventoryItems li{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#container #div2 #inventories #leftInventory #inventoryItems li #titleValue{
+    width: 30vh;
+    margin-left: 2vh;
+    text-align: center;
+}
+
+#container #div2 #inventories #leftInventory #inventoryItems li #spaceValue{
+    width: 10vh;
+    margin-right: 2vh; 
+    text-align: center;
+}
+
+#container #div2 #inventories #rightInventory #weaponsTitles{
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+#container #div2 #inventories #rightInventory #weaponsTitles li{
+    text-align: center;
+    padding-left: 2vh;
+}
+
+#container #div2 #inventories #rightInventory #weaponsItems{
+    height: 100%;
+    margin-top: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+}

@@ -50,6 +50,10 @@ body{
     background-color: rgb(0, 204, 255);
 }
 
+#buttons .selected{
+    background-color: rgb(0, 204, 255);
+}
+
 #container{
     height: 90vh;
     width: 60vw;
