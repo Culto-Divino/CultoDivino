@@ -207,7 +207,7 @@ textarea::-webkit-scrollbar-thumb{
 }
 
 #container #div2 #inventories #leftInventory #inventoryItems{
-    height: 100%;
+    height: 16vh;
     margin-top: 1vh;
     display: flex;
     flex-direction: column;
@@ -243,14 +243,38 @@ textarea::-webkit-scrollbar-thumb{
 #container #div2 #inventories #rightInventory #weaponsTitles li{
     text-align: center;
     padding-left: 2vh;
+    width: 8vh;
 }
 
 #container #div2 #inventories #rightInventory #weaponsItems{
-    height: 100%;
+    height: 16vh;
     margin-top: 1vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     list-style: none;
+    overflow-y: auto;
+    background: red;
+}
+
+#container #div2 #inventories #rightInventory #weaponsItems li{
+    display: flex;
+    width: 100%;
+    height: 3vh;
+    margin-bottom: 2vh;
+}
+
+#container #div2 #inventories #rightInventory #weaponsItems li div{
+    width: 8vh;
+    text-align: center;
+    padding-left: 2vh;
+}
+
+#container #div3{
+    margin-top: 2vh;
+}
+
+#container #div3 #div3Title img{
+    height: 5vh;
 }
