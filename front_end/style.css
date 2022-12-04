@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Blinker&display=swap');
+/* @import url('http://fonts.cdnfonts.com/css/american-typewriter'); */
 
 *{
     padding: 0;
@@ -13,102 +14,30 @@ body{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: url("./images/background.jpg");
+    background: linear-gradient(90deg, rgb(46, 46, 46), rgb(61, 61, 61));
     background-size: 100%;
     opacity: .65;
+    width: 100vw;
+    height: 100vh;
 }
 
 #container{
+    background: linear-gradient(90deg, rgb(2, 159, 199), rgb(7, 146, 189));
+    width:35vh;
+    height: 7vh;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    flex-direction: column;
-    width: 80vh;
-    height: 50vh;
-    margin-top: 20vh;
-    border-radius: 10px;
-    background: linear-gradient(75deg, rgba(5, 5, 5, 0.664),rgba(5, 5, 5, 0.61));
+    text-decoration: none;
+    color: aliceblue;
+}
+
+#container img{
+    width: 5vh;
+    height: 5vh;
 }
 
 #container div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-#container #title{
-    font-size: 10vh;
-    background: linear-gradient(120deg, rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%) 0 0/100% 200%;
-    /* background-size: 1800% 1800%; */
-    animation: rainbow 5s linear infinite;
-    background-size: 400% 400%;
-    background-position: 0% 10%;
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
-}
-
-#container div form{
-    margin-top: 2vh;
-    display: flex;
-    flex-direction: column;
-}
-
-#container div form label{
-    color: aliceblue;
-    margin-bottom: 1vh;
-    font-size: 2vh;
-}
-
-#container div form input{
-    width: 35vh;
-    height: 4vh;
-    background: linear-gradient(90deg,rgba(255, 255, 255, 0.438), rgba(255, 255, 255, 0.377));
-    border-radius: 8px;
-    border: 1px solid grey;
-    color: black;
-    outline: none;
-    padding-left: 1vh;
-}
-
-#container div form input:focus{
-    border-radius: 5px;
-    background: linear-gradient(90deg,rgba(255, 255, 255, 0.822), rgba(255, 255, 255, 0.582));
-}
-
-#container div form input::placeholder{
-    color: rgba(0, 0, 0, 0.596);
-}
-
-#container div a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 15vh;
-    height: 5vh;
-    margin-top: 2vh;
-    color: aliceblue;
-    border-radius: 10px;
-    background: linear-gradient(90deg, rgb(13, 96, 129) 0%, rgb(17, 146, 146) 50%);
-    text-decoration: none;
-    transition: all .2s ease-in-out;
-}
-
-#container div a:hover{
-    /* opacity: .8; */
-    border-radius: 3px;
-    cursor: pointer;
-    box-shadow: 0px 0px 20px rgb(17, 146, 146);
-}
-
-@keyframes rainbow { 
-    0%{
-        background-position: 0% 10%;
-    }
-    50%{
-        background-position: 100% 50%;
-    }
-    100%{
-        background-position: 0% 50%;
-    }
+    font-size: 3vh;
 }

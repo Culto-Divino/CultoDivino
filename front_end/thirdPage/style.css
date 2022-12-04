@@ -255,7 +255,6 @@ textarea::-webkit-scrollbar-thumb{
     /* justify-content: space-evenly; */
     list-style: none;
     overflow-y: auto;
-    background: red;
 }
 
 #container #div2 #inventories #rightInventory #weaponsItems li{
@@ -273,8 +272,160 @@ textarea::-webkit-scrollbar-thumb{
 
 #container #div3{
     margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #container #div3 #div3Title img{
     height: 5vh;
+}
+
+#container #div3 #div3TopInfos{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100vh;
+    list-style: none;
+}
+
+#container #div3 #div3TopInfos li{
+    width: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4vh;
+    font-size: 3vh;
+}
+
+#container #div3 #div3TopInfos li div input{
+    width: 5vh;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px dashed black;
+    border-radius: 3px;
+    color: black;
+    letter-spacing: .1vh;
+    text-shadow: .5px .5px black;
+}
+
+#container #div3 #div3Infos{
+    width: 80vh;
+    height: 23vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#container #div3 #div3Infos #amuletosLeft{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 40vh;
+    margin-right: 5vh;
+}
+
+#container #div3 #div3Infos #amuletosLeft #powerTitles{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+    margin-top: 2vh;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(90deg, transparent 10%, black 45%, transparent) 30;
+}
+
+#container #div3 #div3Infos #amuletosLeft #powerTitles li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 13vh;
+    font-size: larger;
+}
+
+#container #div3 #div3Infos #amuletosLeft #powerValues{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+#container #div3 #div3Infos #amuletosLeft #powerValues li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+#container #div3 #div3Infos #amuletosLeft #powerValues li:nth-child(1){
+    margin-top: 1vh;
+}
+
+#container #div3 #div3Infos #amuletosLeft #powerValues li div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 13vh;
+}
+
+#container #div3 #div3Infos #amuletosRight{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 40vh;
+    margin-left: 5vh;
+}
+
+#container #div3 #div3Infos #amuletosRight #eternalTitles{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+    margin-top: 2vh;
+    border-bottom: 1px solid;
+    border-image: linear-gradient(90deg, transparent 10%, black 45%, transparent) 30;
+}
+
+#container #div3 #div3Infos #amuletosRight #eternalTitles li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 13vh;
+    font-size: larger;
+}
+
+#container #div3 #div3Infos #amuletosRight #eternalValues{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    list-style: none;
+}
+
+#container #div3 #div3Infos #amuletosRight #eternalValues li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+}
+
+#container #div3 #div3Infos #amuletosRight #eternalValues li:nth-child(1){
+    margin-top: 1vh;
+}
+
+#container #div3 #div3Infos #amuletosRight #eternalValues li div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 13vh;   
 }
