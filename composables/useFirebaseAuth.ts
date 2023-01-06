@@ -55,7 +55,7 @@ export const initUser = async () => {
        
     }
 
-    firebaseUser.value = user
+    firebaseUser.value; firebaseUser.value = user
 
 
   });
