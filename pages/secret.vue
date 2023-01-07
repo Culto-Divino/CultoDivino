@@ -1,13 +1,9 @@
 <template>
-
-    <NuxtLink to='/'> back </NuxtLink>
-
+  <NuxtLink to="/login"> back </NuxtLink>
 </template>
 
 <script setup>
 definePageMeta({
-    middleware: 'auth'
-})
-
-
+  middleware: "auth",
+});
 </script>
