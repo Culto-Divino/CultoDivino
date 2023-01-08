@@ -11,6 +11,7 @@ export const createUser = async (email, password) => {
   .catch((error) => {
     const errorCode = error.code
     const errorMessage = error.message
+    return { error: errorMessage, errorCode: errorCode}
   });
 
   return credentials
@@ -22,6 +23,8 @@ export const signInUser = async (email, password) => {
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
+
+    return { error: errorMessage, errorCode: errorCode };
   });
 
   return credentials
@@ -36,10 +39,8 @@ export const signOutUser = async () => {
 
 export const initUser = async () => {
   const auth = getAuth()
+  
   const firebaseUser = useFirebaseUser()
-
-
-
   firebaseUser.value = auth.currentUser
 
   onAuthStateChanged(auth, (user) => {
@@ -56,7 +57,5 @@ export const initUser = async () => {
     }
 
     firebaseUser.value = user
-
-
   });
 }
