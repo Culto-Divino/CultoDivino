@@ -1,15 +1,14 @@
 <template>
-  <div>
+  <Header />
+  <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex justify-center items-center truncated">
     <Auth
       title="Log in"
       button-text="Entrar"
       @submit="signin"
       :form="form"
       :message="message"
+      type= "register"
     />
-  </div>
-  <div>
-    <NuxtLink to="/register"> Ainda não tem uma conta? Registre-se aqui.</NuxtLink>
   </div>
 </template>
 
