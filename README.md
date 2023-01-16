@@ -1,42 +1,17 @@
-# Nuxt 3 Minimal Starter
+# Setup básico para desenvolvimento
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Setup
+Instale modulos
 
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
+```npm install
 ```
 
-## Development Server
+Inicie desenvolvimento local: 
 
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
+```npm run dev
 ```
 
-## Production
+Faça uma build:
 
-Build the application for production:
-
-```bash
-npm run build
+```npm run build
 ```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
