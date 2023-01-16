@@ -3,15 +3,12 @@
 
 Instale modulos
 
-```npm install
-```
+```npm install```
 
 Inicie desenvolvimento local: 
 
-```npm run dev
-```
+```npm run dev```
 
 Faça uma build:
 
-```npm run build
-```
+```npm run build```
