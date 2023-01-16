@@ -43,19 +43,22 @@ export const initUser = async () => {
   const firebaseUser = useFirebaseUser()
   firebaseUser.value = auth.currentUser
 
-  onAuthStateChanged(auth, (user) => {
+  const userCookie = useCookie('userCookie');
+
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
-      
-      console.log("user state changed", user)
+      await navigateTo('/')
 
     } else { 
       // User is signed out
-       
+      await navigateTo('/login')
     }
+    firebaseUser.value = user;
 
-    firebaseUser.value = user
+    //@ts-ignore
+    userCookie.value = user;
   });
 }

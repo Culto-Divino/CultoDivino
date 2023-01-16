@@ -13,6 +13,7 @@
 </template>
 
 <script setup>
+
 let form = ref({ email: "", password: "" });
 let message = ref("");
 
@@ -23,8 +24,6 @@ const signin = async () => {
   }
 
   const result = await signInUser(form.value.email, form.value.password);
-
-  console.log(result.errorCode);
 
   if (result.errorCode) {
     switch (result.errorCode) {

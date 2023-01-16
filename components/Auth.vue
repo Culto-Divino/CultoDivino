@@ -24,15 +24,15 @@
         autocapitalize="false"
       />
     </div>
+    
+    <div v-if="message" class="message">
+      {{ message }}
+    </div>
 
     <button class="button w-6/12 h-12 rounded-md ease-in-out duration-500 bg-blue-900 hover:drop-shadow-md hover:-translate-y-0.5" @click="$emit('submit')">{{ buttonText }}</button>
 
     <NuxtLink class="text-center" v-if="type == 'register'" to="/register"> Ainda não tem uma conta?<br>Registre-se aqui. </NuxtLink>
     <NuxtLink class="text-center" v-if="type == 'login'" to="/login"> Já tem uma conta?<br>Entre aqui. </NuxtLink>
-
-    <div v-if="message" class="message">
-      {{ message }}
-    </div>
   </div>
 </template>
 
@@ -42,7 +42,7 @@ const props = defineProps({
   title: String,
   message: String,
   buttonText: String,
-  type: Object
+  type: String
 });
 </script>
 
