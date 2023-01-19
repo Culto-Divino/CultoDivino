@@ -8,6 +8,7 @@ export default defineEventHandler((event) => {
         }
     } catch (error) {
         console.error(error);
+        return;
     }
 
     // Fazer o usuário disponível para qualquer chamada do servidor.
