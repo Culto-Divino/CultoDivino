@@ -63,8 +63,7 @@ export async function signInUser (email, password) {
 
 export async function signOutUser (){
   const auth = getAuth()
-  updateAuthState(auth.currentUser)
-
+  await $fetch('/api/userStateChanged', { method: 'post', body: { user: auth.currentUser }})
 
   const result = await auth.signOut()
   await navigateTo('/login')
@@ -93,9 +92,25 @@ export async function initUser () {
 async function updateAuthState(user){
 
   const firebaseUser = await useFirebaseUser()
-  firebaseUser.value = { uid: user.uid };
+  const userCookie = await useUserCookie()
 
-  if (!user) {
-    await navigateTo('/login')
-  }
+  onAuthStateChanged(auth, async (user) => {
+    firebaseUser.value = user;
+    //@ts-ignore
+    userCookie.value = user;
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      await $fetch('/api/userStateChanged', { method: 'post', body: { user: auth.currentUser }})
+      await navigateTo('/')
+
+      console.log(firebaseUser.value)
+    } else { 
+      // User is signed out
+      //@ts-ignore
+      await navigateTo('/login')
+    }
+    firebaseUser.value = user;
+  });
 }

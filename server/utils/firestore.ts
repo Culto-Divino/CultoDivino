@@ -7,7 +7,8 @@ import {
   addDoc, 
   deleteDoc,
   getDoc,
-  updateDoc, 
+  updateDoc,
+  setDoc, 
 } from 'firebase/firestore'
 
 const db = getFirestore(app);
@@ -119,6 +120,24 @@ export const updateDocFromCollection = async (updatedData, id, collectionPath) =
   let result;
 
   await updateDoc(docRef, updatedData)
+    .then((doc) => {
+      result = { success: true } 
+    })
+    .catch((e) => {
+      console.error(e.message)
+      result = { success: false, error: e.message }
+    })
+    
+    return result
+}
+
+export const setDocFromCollection = async (updatedData, id, collectionPath, merge) => {
+
+  
+  const docRef = doc(db, `${collectionPath}/${id}`);
+  let result;
+
+  await setDoc(docRef, updatedData, {merge: merge})
     .then((doc) => {
       result = { success: true } 
     })
