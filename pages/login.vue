@@ -51,6 +51,6 @@ const signin = async () => {
     return;
   }
 
-  navigateTo("/");
+  navigateTo("/VisaoGeral");
 };
 </script>

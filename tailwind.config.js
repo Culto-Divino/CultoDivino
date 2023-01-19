@@ -8,7 +8,8 @@ module.exports = {
         'bgColor2': '#033444',
       },
       screens: {
-        'cel': {'max': '640px'}
+        'cel': {'max': '640px'},
+        'pc': {'min': '641px'}
       },
       fontFamily: {
         'american-typewriter': ['American Typewriter','sans-serif']

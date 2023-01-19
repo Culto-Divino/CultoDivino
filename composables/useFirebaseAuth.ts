@@ -50,7 +50,7 @@ export const initUser = async () => {
       // User is signed in, see docs for a list of available properties
       // https://firebase.google.com/docs/reference/js/firebase.User
       const uid = user.uid;
-      await navigateTo('/')
+      await navigateTo('/VisaoGeral')
 
     } else { 
       // User is signed out
