@@ -1,6 +1,8 @@
 <template>
-  <NuxtLink to="/login"> back </NuxtLink>
-  <button @click="signOut"> sair </button>
+  <NuxtLayout name="default">
+    <NuxtLink to="/login"> back </NuxtLink>
+    <button @click="signOut"> sair </button>
+  </NuxtLayout>
 </template>
 
 <script setup>

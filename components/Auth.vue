@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper cel:w-10/12 w-6/12 h-4/6 bg-gradient-to-r from-gray-800/75 to-gray-900/75 overflow-hidden rounded-lg text-white flex flex-col items-center justify-evenly font-american-typewriter">
+  <div class="wrapper cel:w-10/12 w-6/12 h-4/6 bg-gradient-to-r from-gray-800/75 to-gray-900/75 overflow-hidden rounded-lg text-white flex flex-col items-center justify-evenly">
     <h2 class="title text-4xl">{{ title }}</h2>
     <div class="field flex flex-col w-8/12 h-20">
       <label class="label pl-1">Email</label>
@@ -45,7 +45,3 @@ const props = defineProps({
   type: String
 });
 </script>
-
-<style>
-@import url('https://fonts.cdnfonts.com/css/american-typewriter');
-</style>
