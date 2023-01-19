@@ -33,6 +33,6 @@ export default defineNuxtConfig({
     FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
   },
   css: [
-      '@fortawesome/fontawesome-svg-core/styles.css'
+    '@fortawesome/fontawesome-svg-core/styles.css'
   ]
 })
