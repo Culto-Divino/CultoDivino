@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex justify-center items-center truncated">
+  <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex justify-center items-center truncate">
     <Auth
       title="Cadastro"
       button-text="Registrar"
