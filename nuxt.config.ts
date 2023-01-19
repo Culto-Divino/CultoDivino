@@ -32,14 +32,7 @@ export default defineNuxtConfig({
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
     FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
   },
-    runtimeConfig: {
-        public:{
-            FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
-        },
-        FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
-    },
-
-    css: [
-        '@fortawesome/fontawesome-svg-core/styles.css'
-    ]
+  css: [
+      '@fortawesome/fontawesome-svg-core/styles.css'
+  ]
 })
