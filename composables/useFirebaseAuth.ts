@@ -35,7 +35,7 @@ export async function signInUser (email, password) {
 
 export async function signOutUser (){
   const auth = getAuth()
-  await $fetch('/api/userStateChanged', { method: 'post', body: { user: auth.currentUser }})
+  await $fetch('/api/userStateChanged', { method: 'post', body: { user: auth.currentUser.uid }})
 
   const result = await auth.signOut()
 
