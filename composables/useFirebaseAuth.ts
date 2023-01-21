@@ -17,6 +17,9 @@ export async function createUser (email, password){
     return { error: errorMessage, errorCode: errorCode}
   });
 
+  console.log("User logged in: ", await $fetch('/api/userStateChanged', { method: 'post', body: { userId: uid }}))
+  await navigateTo('/escolha-de-personagem')
+
   return credentials
 }
 
@@ -30,6 +33,9 @@ export async function signInUser (email, password) {
     return { error: errorMessage, errorCode: errorCode };
   });
 
+  console.log("User logged in: ", await $fetch('/api/userStateChanged', { method: 'post', body: { userId: uid }}))
+  await navigateTo('/escolha-de-personagem')
+
   return credentials
 }
 
@@ -38,6 +44,8 @@ export async function signOutUser (){
   await $fetch('/api/userStateChanged', { method: 'post', body: { user: auth.currentUser.uid }})
 
   const result = await auth.signOut()
+
+  await navigateTo('/login')
 
   return result
 }
@@ -63,8 +71,6 @@ async function updateAuthState(user){
     // https://firebase.google.com/docs/reference/js/firebase.User
 
     const uid = user.uid;
-    console.log("User logged in: ", await $fetch('/api/userStateChanged', { method: 'post', body: { userId: uid }}))
-    await navigateTo('/escolha-de-personagem')
 
   } else { 
     await navigateTo('/login')
