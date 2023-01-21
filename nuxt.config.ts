@@ -8,10 +8,6 @@ export default defineNuxtConfig({
       '@nuxtjs/tailwindcss',
   ],
   
-  modules: [
-      '@nuxtjs/tailwindcss',
-  ],
-
   typescript: {
       strict: false,
   },
