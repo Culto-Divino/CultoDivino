@@ -2,7 +2,11 @@
     <Header />
     <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex justify-center items-center truncate text-white">
         <div id="default-carousel" class="w-10/12 h-4/6 bg-gray-200/25 flex flex-col items-center justify-center rounded-xl">
-            <h1 class="text-3xl">ESCOLHA DE PERSONAGEM</h1>
+            <h1 class="text-2xl">ESCOLHA DE PERSONAGEM</h1>
+            <div class="flex w-5/12 justify-evenly mt-2">
+                <input type="text" name="characterSearch" class="bg-transparent bg-gradient-to-r from-cyan-900 to-sky-900 outline-none border-b rounded-full hover:rounded transition duration-2000 ease-in-out">
+                <label for="characterSearch"><button @click="search()"><font-awesome-icon icon="fa-solid fa-magnifying-glass" /></button></label>
+            </div>
             <div class="w-10/12 h-4/6 mt-3 flex items-center justify-evenly">
                 <Character 
                 id="carousel-item-1" 
