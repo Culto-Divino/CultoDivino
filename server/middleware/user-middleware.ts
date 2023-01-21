@@ -4,7 +4,7 @@ export default defineEventHandler((event) => {
     
     try {
         if (!userCookie){
-            throw new Error("User is not logged in!")
+            throw new Error("[server/middleware/user-middleware] User is not logged in!")
         }
     } catch (error) {
         console.error(error);

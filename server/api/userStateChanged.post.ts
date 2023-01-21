@@ -4,17 +4,18 @@ import { serverTimestamp } from 'firebase/firestore';
 
 export default defineEventHandler(async (event) => {
 
-    const body = await readBody(event)
-    const user = body.user
+  const body = await readBody(event)
+  const userId = body.userId
 
-    if(!body.user)
-      return { success: false}
+  if(!body.userId)
+    return { success: false }
 
-    
-    const userDoc = {
-      lastSignedIn: serverTimestamp()
-    }
-    const userRef = await setDocFromCollection(userDoc, user.uid, 'users', true)
+  
+  const userDoc = {
+    lastSignedIn: serverTimestamp()
+  }
+  
+  await setDocFromCollection(userDoc, userId, 'users', true)
 
-    return { success: true }
+  return { success: true }
 })

@@ -1,11 +1,14 @@
+import { useUserCookie } from './useCookies';
 import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     onAuthStateChanged
 } from 'firebase/auth'
+ 
 
-export const createUser = async (email, password) => {
+
+export async function createUser (email, password){
   const auth = getAuth();
   const credentials = await createUserWithEmailAndPassword(auth, email, password)
   .catch((error) => {
@@ -17,7 +20,7 @@ export const createUser = async (email, password) => {
   return credentials
 }
 
-export const signInUser = async (email, password) => {
+export async function signInUser (email, password) {
   const auth = getAuth();
   const credentials = await signInWithEmailAndPassword(auth, email, password)
   .catch((error) => {
@@ -30,7 +33,7 @@ export const signInUser = async (email, password) => {
   return credentials
 }
 
-export const signOutUser = async () => {
+export async function signOutUser (){
   const auth = getAuth()
   await $fetch('/api/userStateChanged', { method: 'post', body: { user: auth.currentUser }})
 
@@ -39,33 +42,31 @@ export const signOutUser = async () => {
   return result
 }
 
-export const initUser = async () => {
+export async function initUser () {
   const auth = getAuth()
   
-  const firebaseUser = await useFirebaseUser()
-  firebaseUser.value = auth.currentUser
-
-  const userCookie = useCookie('userCookie');
-  //@ts-ignore
-  userCookie.value = auth.currentUser;
-
   onAuthStateChanged(auth, async (user) => {
-    firebaseUser.value = user;
-    //@ts-ignore
-    userCookie.value = user;
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      await $fetch('/api/userStateChanged', { method: 'post', body: { user: auth.currentUser }})
-      await navigateTo('/escolha-de-personagem')
-
-      console.log(firebaseUser.value)
-    } else { 
-      // User is signed out
-      //@ts-ignore
-      await navigateTo('/login')
-    }
-    firebaseUser.value = user;
+    updateAuthState(user);
+  
   });
+}
+
+
+async function updateAuthState(user){
+  const firebaseUser = await useFirebaseUser()
+  const userCookie = await useUserCookie()
+
+  userCookie.value = user;
+  firebaseUser.value = user;
+
+  if (user) {
+    // https://firebase.google.com/docs/reference/js/firebase.User
+
+    const uid = user.uid;
+    console.log("User logged in: ", await $fetch('/api/userStateChanged', { method: 'post', body: { userId: uid }}))
+    await navigateTo('/escolha-de-personagem')
+
+  } else { 
+    await navigateTo('/login')
+  }
 }
