@@ -18,6 +18,9 @@ export async function createUser (email, password){
     return { error: errorMessage, errorCode: errorCode}
   });
 
+  console.log("User logged in: ", await $fetch('/api/userStateChanged', { method: 'post', body: { userId: uid }}))
+  await navigateTo('/escolha-de-personagem')
+
   updateAuthState(auth.currentUser)
 
   await navigateTo('/escolha-de-personagem')
@@ -75,12 +78,12 @@ export async function initUser () {
 
   let res = await $fetch('/api/check-auth-state', {method: 'GET'}).catch((e) => console.log(e))
   
-  // AUTO REDIRECT IF LOGGED IN!
-  // @ts-expect-error
-  if(res.statusCode === 200){
-     console.log('AUTHORIZED! REDIRECTING')
-     await navigateTo('/escolha-de-personagem')
-  }
+  const firebaseUser = await useFirebaseUser()
+  firebaseUser.value = auth.currentUser
+
+  const userCookie = useCookie('userCookie');
+  //@ts-ignore
+  userCookie.value = auth.currentUser;
 
   onAuthStateChanged(auth, async (user) => {
     // await updateAuthState(user);
@@ -94,16 +97,13 @@ async function updateAuthState(user){
   const firebaseUser = await useFirebaseUser()
   const userCookie = await useUserCookie()
 
-  onAuthStateChanged(auth, async (user) => {
-    firebaseUser.value = user;
-    //@ts-ignore
-    userCookie.value = user;
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      await $fetch('/api/userStateChanged', { method: 'post', body: { user: auth.currentUser }})
-      await navigateTo('/')
+  userCookie.value = user;
+  firebaseUser.value = user;
+
+  if (user) {
+    // https://firebase.google.com/docs/reference/js/firebase.User
+
+    const uid = user.uid;
 
       console.log(firebaseUser.value)
     } else { 
@@ -112,5 +112,4 @@ async function updateAuthState(user){
       await navigateTo('/login')
     }
     firebaseUser.value = user;
-  });
-}
+  };
