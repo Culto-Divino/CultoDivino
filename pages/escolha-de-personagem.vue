@@ -4,13 +4,12 @@
         <div id="default-carousel" class="w-10/12 h-4/6 bg-gray-200/25 flex flex-col items-center justify-center rounded-xl">
             <h1 class="text-2xl">ESCOLHA DE PERSONAGEM</h1>
             <div class="flex w-5/12 justify-evenly mt-2">
-                <input type="text" name="characterSearch" class="bg-transparent bg-gradient-to-r from-cyan-900 to-sky-900 outline-none border-b rounded-full hover:rounded transition duration-2000 ease-in-out">
+                <input type="text" name="characterSearch" class="pl-2 bg-transparent bg-gradient-to-r from-cyan-900 to-sky-900 outline-none border-b rounded-full hover:rounded transition duration-2000 ease-in-out">
                 <label for="characterSearch"><button @click="search()"><font-awesome-icon icon="fa-solid fa-magnifying-glass" /></button></label>
             </div>
-            <div class="w-10/12 h-4/6 mt-3 flex items-center justify-evenly">
+            <div class="w-full h-4/6 mt-3 flex items-center justify-evenly overflow-x-scroll">
                 <Character 
                 id="carousel-item-1" 
-                class="hidden"
                 image="https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2022/09/tse-paulo-bosta-250001621707.jpg?w=161"
                 name="Paulo Bosta"
                 element="Inveja"
@@ -27,7 +26,6 @@
 
                 <Character
                 id="carousel-item-3"
-                class="hidden"
                 image="https://pcdob.org.br/wp-content/uploads/2018/09/foto_1534277122382.jpg"
                 name="João Macarrão"
                 element="Avareza"
@@ -44,26 +42,4 @@
 </template>
 
 <script setup>
-
-    const carouselItems = ["#carousel-item-1","#carousel-item-2","#carousel-item-3",]
-
-    let carouselItem = 1
-
-    function prevCarousel(){
-        let actualItem = document.querySelector(`${carouselItems[carouselItem]}`)
-        carouselItem = carouselItem - 1 < 0 ? carouselItems.length - 1  : carouselItem - 1
-        let newItem = document.querySelector(`${carouselItems[carouselItem]}`)
-
-        actualItem.classList.add('hidden')
-        newItem.classList.remove('hidden')
-    }
-    
-    function nextCarousel(){
-        let actualItem = document.querySelector(`${carouselItems[carouselItem]}`)
-        carouselItem = carouselItem + 1 > carouselItems.length - 1 ? 0  : carouselItem + 1
-        let newItem = document.querySelector(`${carouselItems[carouselItem]}`)
-    
-        actualItem.classList.add('hidden')
-        newItem.classList.remove('hidden')
-    }
 </script>
