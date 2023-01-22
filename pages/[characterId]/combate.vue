@@ -2,10 +2,6 @@
     <div id="combatContainer" class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 overflow-y-scroll overflow-x-hidden z-0">
         <CharacterHeader class="sticky top-0 z-10" />
 
-        <Modal 
-        title="Digite aqui o seu estado:"
-        />
-
         <div class="h-2/4 flex flex-col text-white items-center mt-10">
             <div class="flex w-9/12 h-4/6 flex items-center justify-center text-2xl">
                 <CombatData 
@@ -71,6 +67,23 @@
 
 <script setup>
 
+
+    async function addState(){
+
+        let foo = document.querySelector("#combatContainer")
+
+        let appContext = getCurrentInstance()
+
+        renderComponent({
+            el: foo,
+            component: (await import('~~/components/Modal.vue')).default,
+            props: {
+                title: 'Digite aqui o seu estado:'
+            },
+            appContext
+        })
+        
+    }
 
 </script>
 
