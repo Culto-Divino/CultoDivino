@@ -8,6 +8,8 @@ import {
     getIdToken,
     signOut
 } from 'firebase/auth'
+ 
+
 
 export async function createUser (email, password){
   const auth = getAuth();
@@ -18,7 +20,8 @@ export async function createUser (email, password){
     return { error: errorMessage, errorCode: errorCode}
   });
 
-  console.log("User logged in: ", await $fetch('/api/userStateChanged', { method: 'post', body: { userId: uid }}))
+  updateAuthState(auth.currentUser)
+
   await navigateTo('/escolha-de-personagem')
 
   updateAuthState(auth.currentUser)
@@ -55,18 +58,18 @@ export async function signInUser (email, password) {
       })
       .then(async (res) => {
 
-        await navigateTo('/escolha-de-personagem')
-        if(res.error){
-          console.log(res.error)
-          return res.error
-        }
-      }))
-  return { sucess:true }
+  updateAuthState(auth.currentUser)
+
+  await navigateTo('/escolha-de-personagem')
+
+  return credentials
 }
 
 export async function signOutUser (){
   const auth = getAuth()
-  await $fetch('/api/userStateChanged', { method: 'post', body: { user: auth.currentUser }})
+  // await $fetch('/api/userStateChanged', { method: 'post', body: { user: auth.currentUser.uid }})
+
+  updateAuthState(auth.currentUser)
 
   const result = await auth.signOut()
   await navigateTo('/login')
@@ -78,15 +81,8 @@ export async function initUser () {
 
   let res = await $fetch('/api/check-auth-state', {method: 'GET'}).catch((e) => console.log(e))
   
-  const firebaseUser = await useFirebaseUser()
-  firebaseUser.value = auth.currentUser
-
-  const userCookie = useCookie('userCookie');
-  //@ts-ignore
-  userCookie.value = auth.currentUser;
-
   onAuthStateChanged(auth, async (user) => {
-    // await updateAuthState(user);
+    updateAuthState(user);
   
   });
 }
@@ -94,14 +90,13 @@ export async function initUser () {
 
 async function updateAuthState(user){
 
-  const firebaseUser = await useFirebaseUser()
-  const userCookie = await useUserCookie()
-
   userCookie.value = user;
   firebaseUser.value = user;
 
   if (user) {
     // https://firebase.google.com/docs/reference/js/firebase.User
+
+    console.log("User logged in: ", await $fetch('/api/userStateChanged', { method: 'post', body: { userId: user.uid }}))
 
     const uid = user.uid;
 
