@@ -7,9 +7,11 @@
                 <input type="text" name="characterSearch" class="pl-2 bg-transparent bg-gradient-to-r from-cyan-900 to-sky-900 outline-none border-b rounded-full hover:rounded transition duration-2000 ease-in-out">
                 <label for="characterSearch"><button @click="search()"><font-awesome-icon icon="fa-solid fa-magnifying-glass" /></button></label>
             </div>
-            <div v-for="(character) in characters" :key="character" class="w-full h-4/6 mt-3 flex items-center justify-evenly overflow-x-scroll">
+            <div class="w-full h-4/6 mt-3 flex items-center flex-wrap justify-evenly overflow-x-hidden">
                 <Character 
-                :name="character.nome"
+                v-for="(character) in characters.docs" 
+                :key="character"
+                :data="{ name: character.nome, element: character.element, image: character.image, level: character.level }"
                 />
             </div>
         </div>
@@ -23,5 +25,6 @@ const meta = definePageMeta({
 })
 
 const characters = await $fetch('/api/fetchCharacters', { method: 'get' })
+console.log(characters)
 
 </script>
