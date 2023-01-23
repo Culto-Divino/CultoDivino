@@ -10,5 +10,4 @@
         font-family: 'American Typewriter',sans-serif;
         letter-spacing: 2px;
     }
-    
 </style>
