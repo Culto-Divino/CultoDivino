@@ -1,4 +1,4 @@
-export default function generateUserReponse(errorCode: String, form){
+export function generateUserReponse(errorCode: String, form){
   switch (errorCode) {
     case "auth/wrong-password":
       return { email: form.email, password: "", message: "Senha inválida!"};
