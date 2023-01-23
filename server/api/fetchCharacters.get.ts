@@ -7,5 +7,5 @@ export default defineEventHandler(async (event) => {
     
 
 
-    event.node.res.end(characters)
+    return characters
 })

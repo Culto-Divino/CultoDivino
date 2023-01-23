@@ -13,5 +13,5 @@ export default defineEventHandler((event) => {
 
     // Fazer o usuário disponível para qualquer chamada do servidor.
     // @ts-ignore
-    event.context.user = userCookie;
+    event.context.user = JSON.parse(userCookie);
 })
