@@ -32,7 +32,5 @@ const signin = async () => {
     message.value = userResponse.message;
     return;
   }
-
-  navigateTo("/escolha-de-personagem");
 };
 </script>

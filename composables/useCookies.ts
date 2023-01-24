@@ -1,1 +1,1 @@
-export const useUserCookie = () => useCookie('userCookie');
+export const useSessionCookie = () => useCookie('session')
