@@ -8,9 +8,6 @@ import {
     getIdToken,
     signOut
 } from 'firebase/auth'
- 
-const firebaseUser = await useFirebaseUser()
-const userCookie = await useUserCookie()
 
 export async function createUser (email, password){
   const auth = getAuth();
