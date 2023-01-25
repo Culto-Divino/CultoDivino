@@ -7,6 +7,13 @@ export default defineEventHandler(async (event) => {
 
     const options = { maxAge: expirationTimeSeconds, httpOnly: true, secure: true, sameSite: 'none' }
 
+    
+    const userInfo = {
+        uid: uid
+    }
+    // set user cookie
+    // @ts-expect-error
+    setCookie(event, 'user', JSON.stringify(userInfo), options)
 
     try{
         const sessionCookie = await getAuth().createSessionCookie( idToken, {expiresIn: expirationTimeSeconds})
@@ -16,13 +23,6 @@ export default defineEventHandler(async (event) => {
         console.error("Error: ", e)
         return { statusCode: 401, error: 'UNATHORIZED REQUEST!'}
     }
-
-    const userInfo = {
-        uid: uid
-    }
-    // set user cookie
-    // @ts-expect-error
-    setCookie(event, 'user', JSON.stringify(userInfo), options)
 
     return { statusCode: 200, body: JSON.stringify({ status: 'sucess' })}
 })

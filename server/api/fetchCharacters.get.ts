@@ -3,6 +3,7 @@ import { getDocsFromCollection, deleteDocFromCollection } from '../utils/firesto
 export default defineEventHandler(async (event) => {
 
     const user = event.context.userCookie
+
     const characters = await getDocsFromCollection(`users/${user.uid}/characters`)
 
     event.node.res.statusCode = 200

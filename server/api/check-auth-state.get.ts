@@ -3,15 +3,16 @@ import { getAuth } from 'firebase-admin/auth'
 export default defineEventHandler(async (event) => {
 
     const sessionCookie = event.context.sessionCookie
+    let error = false;
 
-    try{
-        const claim = await getAuth().verifySessionCookie(sessionCookie)
-        return { statusCode: 200, claim: claim }
-    }catch(e){
-        console.error("Error: ", e)
-        return { statusCode: 401, error: 'UNATHORIZED REQUEST!'}
-    }
+    const claim = await getAuth().verifySessionCookie(sessionCookie)
+        .catch((e) => {
+            console.log("Verification error! [server/api/check-auth-state.get]:\n",e)
+            event.node.res.end(JSON.stringify({ statusCode: 401, error: 'UNATHORIZED REQUEST!'}))
+            error = true
+        })
+    if(error)
+        return;
 
-
-
+    event.node.res.end(JSON.stringify({ statusCode: 200, claim: claim }))
 })

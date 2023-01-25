@@ -41,6 +41,7 @@ export default defineNuxtConfig({
     FIREBASE_TOKEN_URI: process.env.FIREBASE_TOKEN_URI,
     FIREBASE_AUTH_PROVIDER_CERT_URL: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
     FIREBASE_CLIENT_CERT_URL: process.env.FIREBASE_CLIENT_CERT_URL,
+    APP_BASE_URL: process.env.APP_BASE_URL, 
   },
   css: [
     '@fortawesome/fontawesome-svg-core/styles.css'

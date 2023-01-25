@@ -3,18 +3,22 @@ export default defineEventHandler((event) => {
   const sessionCookie = cookies['session'];
   const userCookie = cookies['user'];
 
-
   try {
-    if (!sessionCookie || !userCookie){
-       throw new Error("[server/middleware/user-middleware] User is not logged in!")
+    if ((Object.keys(cookies).length === 0)){
+      throw new Error("[server/middleware/user-middleware] User is not logged in!")
     }
   } catch (error) {
     console.error(error);
-    event.node.res.end()
-    return
+    setCookie(event, 'session', undefined )
+    setCookie(event, 'user',undefined)
+    // event.node.res.end(JSON.stringify({ statusCode: 401, error: 'Missing cookies! This could be caused by calling the request on server-side'}))
   }
   
   //Fazer o usuário disponível para qualquer chamada do servidor.
-  event.context.sessionCookie = sessionCookie;
-  event.context.userCookie = JSON.parse(userCookie);
+  try{
+    event.context.sessionCookie = sessionCookie;
+    event.context.userCookie = JSON.parse(userCookie);
+  }catch(error){
+    console.error('Há um valor inválido no parse de userCookie!', error)
+  }
 })

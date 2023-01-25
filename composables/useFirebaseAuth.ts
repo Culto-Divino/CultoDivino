@@ -32,8 +32,7 @@ export async function signInUser (email, password) {
 
   let idToken 
 
-  await setPersistence(auth, inMemoryPersistence)
-    .then(async () => {signInWithEmailAndPassword(auth, email, password)
+    signInWithEmailAndPassword(auth, email, password)
       .then(async (user) => {
         idToken = await getIdToken(user.user)
       })
@@ -42,21 +41,23 @@ export async function signInUser (email, password) {
           const errorMessage = error.message;
           console.log(errorMessage)
           return { error: errorMessage, errorCode: errorCode };
-    }).then (async () => await $fetch('/api/login', {
-      method: 'POST',
-      body: JSON.stringify({ idToken: idToken, uid: auth.currentUser.uid }),
-      headers: { 
-        "Content-Type": "aplication/json"
-      }
-      }).then(async (res) => {
+      })
+      .then (async () => await $fetch('/api/login',
+      {
+        method: 'POST',
+        body: JSON.stringify({ idToken: idToken, uid: auth.currentUser.uid }),
+        headers: { 
+          "Content-Type": "aplication/json"
+        }
+      })
+      .then(async (res) => {
 
         await navigateTo('/escolha-de-personagem')
         if(res.error){
-            console.log(res.error)
-            return
+          console.log(res.error)
+          return res.error
         }
       }))
-  });
   return { sucess:true }
 }
 
@@ -73,11 +74,11 @@ export async function initUser () {
   const auth = getAuth()
   const firebaseUser = useFirebaseUser()
 
-  let res = await $fetch('/api/check-auth-state', {method: 'GET'})
-
-
+  let res = await $fetch('/api/check-auth-state', {method: 'GET'}).catch((e) => console.log(e))
+  
   // AUTO REDIRECT IF LOGGED IN!
-  if(res.statusCode == 200){
+  // @ts-expect-error
+  if(res.statusCode === 200){
      console.log('AUTHORIZED! REDIRECTING')
      await navigateTo('/escolha-de-personagem')
   }
