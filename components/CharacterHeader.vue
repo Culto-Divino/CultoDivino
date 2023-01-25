@@ -65,6 +65,12 @@
       >
         Anotações
       </NuxtLink>
+      <NuxtLink
+        class="text-red-700 h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
+        to="/escolha-de-personagem"
+      >
+        Alterar Personagem
+      </NuxtLink>
     </div>
   </div>
 </template>
