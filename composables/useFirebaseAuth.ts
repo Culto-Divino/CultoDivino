@@ -2,10 +2,14 @@ import {
     getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    onAuthStateChanged
+    onAuthStateChanged,
+    setPersistence,
+    inMemoryPersistence,
+    getIdToken,
+    signOut
 } from 'firebase/auth'
 
-export const createUser = async (email, password) => {
+export async function createUser (email, password){
   const auth = getAuth();
   const credentials = await createUserWithEmailAndPassword(auth, email, password)
   .catch((error) => {
@@ -14,51 +18,84 @@ export const createUser = async (email, password) => {
     return { error: errorMessage, errorCode: errorCode}
   });
 
+  updateAuthState(auth.currentUser)
+
+  await navigateTo('/escolha-de-personagem')
   return credentials
 }
 
-export const signInUser = async (email, password) => {
+
+// const sessionCookie = useSessionCookie()
+
+export async function signInUser (email, password) {
   const auth = getAuth();
-  const credentials = await signInWithEmailAndPassword(auth, email, password)
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
 
-    return { error: errorMessage, errorCode: errorCode };
-  });
+  let idToken 
 
-  return credentials
+    signInWithEmailAndPassword(auth, email, password)
+      .then(async (user) => {
+        idToken = await getIdToken(user.user)
+      })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorMessage)
+          return { error: errorMessage, errorCode: errorCode };
+      })
+      .then (async () => await $fetch('/api/login',
+      {
+        method: 'POST',
+        body: JSON.stringify({ idToken: idToken, uid: auth.currentUser.uid }),
+        headers: { 
+          "Content-Type": "aplication/json"
+        }
+      })
+      .then(async (res) => {
+
+        await navigateTo('/escolha-de-personagem')
+        if(res.error){
+          console.log(res.error)
+          return res.error
+        }
+      }))
+  return { sucess:true }
 }
 
-export const signOutUser = async () => {
+export async function signOutUser (){
   const auth = getAuth()
+  updateAuthState(auth.currentUser)
+
+
   const result = await auth.signOut()
-
-  return result
+  await navigateTo('/login')
 }
 
-export const initUser = async () => {
+export async function initUser () {
   const auth = getAuth()
-  
   const firebaseUser = useFirebaseUser()
-  firebaseUser.value = auth.currentUser
 
-  const userCookie = useCookie('userCookie');
+  let res = await $fetch('/api/check-auth-state', {method: 'GET'}).catch((e) => console.log(e))
+  
+  // AUTO REDIRECT IF LOGGED IN!
+  // @ts-expect-error
+  if(res.statusCode === 200){
+     console.log('AUTHORIZED! REDIRECTING')
+     await navigateTo('/escolha-de-personagem')
+  }
 
   onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      const uid = user.uid;
-      await navigateTo('/VisaoGeral')
-
-    } else { 
-      // User is signed out
-      await navigateTo('/login')
-    }
-    firebaseUser.value = user;
-
-    //@ts-ignore
-    userCookie.value = user;
+    // await updateAuthState(user);
+  
   });
+}
+
+
+async function updateAuthState(user){
+
+  const firebaseUser = await useFirebaseUser()
+  firebaseUser.value = { uid: user.uid };
+
+  if (!user) {
+    await navigateTo('/login')
+  }
 }
