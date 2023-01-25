@@ -18,12 +18,6 @@ export async function createUser (email, password){
     return { error: errorMessage, errorCode: errorCode}
   });
 
-  updateAuthState(auth.currentUser)
-
-  await navigateTo('/escolha-de-personagem')
-
-  updateAuthState(auth.currentUser)
-
   await navigateTo('/escolha-de-personagem')
   return credentials
 }
@@ -59,8 +53,6 @@ export async function signInUser (email, password) {
   updateAuthState(auth.currentUser)
 
   await navigateTo('/escolha-de-personagem')
-
-  return credentials
 }
 
 export async function signOutUser (){
