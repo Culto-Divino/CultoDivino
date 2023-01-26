@@ -2,13 +2,13 @@
     <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 overflow-y-scroll overflow-x-hidden z-0">
         <CharacterHeader class="sticky top-0 z-10" />
         <div class="w-screen h-full flex flex-col items-center justify-evenly pc:flex-row z-0">
-            <img class="w-4/6 h-4/6 mt-1 pc:w-2/6 rounded-xl border border-slate-300 p-1 drop-shadow-lg" src="https://static.wikia.nocookie.net/herois/images/7/76/Skipper03.png/revision/latest?cb=20210907161549&path-prefix=pt-br" alt="">
+            <img class="w-4/6 h-4/6 mt-1 pc:w-2/6 rounded-xl border border-slate-300 p-1 drop-shadow-lg" :src="character.image" alt="">
             <div class="text-xl w-4/6">
-                <div class="flex"><p class="text-slate-300">Nome: </p> <p class="text-white pl-1">Augusto Barcelos</p></div>
-                <div class="flex mt-1"><p class="text-slate-300">Idade: </p> <p class="text-white pl-1">38</p></div>
-                <div class="flex mt-1"><p class="text-slate-300">Sexo: </p> <p class="text-white pl-1">Masculino</p></div>
-                <div class="flex mt-1"><p class="text-slate-300">Classe: </p> <p class="text-white pl-1">Acadêmico</p></div>
-                <div class="flex mt-1"><p class="text-slate-300">Arquétipo: </p> <p class="text-white pl-1">Tecnólogo</p></div>
+                <div class="flex"><p class="text-slate-300">Nome: </p> <p class="text-white pl-1">{{ character.nome }}</p></div>
+                <div class="flex mt-1"><p class="text-slate-300">Idade: </p> <p class="text-white pl-1">{{ character.age }}</p></div>
+                <div class="flex mt-1"><p class="text-slate-300">Sexo: </p> <p class="text-white pl-1">{{ character.sex }}</p></div>
+                <div class="flex mt-1"><p class="text-slate-300">Classe: </p> <p class="text-white pl-1">{{ character.class }}</p></div>
+                <div class="flex mt-1"><p class="text-slate-300">Arquétipo: </p> <p class="text-white pl-1">{{ character.archetype }}</p></div>
             </div>
         </div>
         <div class="flex flex-col w-full items-center justify-center text-white text-3xl mt-8">
@@ -32,6 +32,18 @@
 </style>
 
 <script setup>
+
+    const route = useRoute()
+    const characters = await $fetch('/api/fetchCharacters', { method: 'get' })
+    let character;
+
+    let charId = route.params.characterId
+
+    characters.docs.forEach(i => {
+        if(i.id == charId){
+            return character = i
+        }
+    })
 
     function teste(){
         let el = document.querySelector("#vontadeInput")
@@ -61,4 +73,6 @@
 
         return ret
     }
+
+
 </script>

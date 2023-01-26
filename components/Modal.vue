@@ -1,6 +1,6 @@
 <template>
     <div id="content" class="w-screen h-screen">
-        <div id="modalBackground" v-on:click="hideModal(); $emit('someEvent')" class="absolute t-0 l-0 w-screen h-screen bg-black/50 z-10 flex items-center justify-center"></div>
+        <div id="modalBackground" v-on:click="hideModal();" class="absolute t-0 l-0 w-screen h-screen bg-black/50 z-10 flex items-center justify-center"></div>
         <div id="modal" class="w-screen h-screen flex items-center justify-center">
             <div class="w-10/12 h-2/6 bg-bgInput flex flex-col items-center justify-center text-white rounded-lg border-4 border-gray-600 z-20">
                 <label for="newState" class="text-xl">{{ title }}</label>
@@ -20,16 +20,7 @@
     })
 
     function hideModal(){
-        let modalBackground = document.querySelector('#modalBackground')
-        let modal = document.querySelector('#modal')
-        
-        let content = document.querySelector('#content')
-
-        content.classList.add('hidden')
-        modalBackground.classList.remove('absolute')
-        modalBackground.classList.add('hidden')
-        
-        modal.classList.add('hidden')
+        location.reload()
     }
 
 </script>

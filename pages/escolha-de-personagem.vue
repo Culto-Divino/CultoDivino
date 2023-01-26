@@ -14,7 +14,7 @@
                 <Character 
                 v-for="(character) in characters.docs" 
                 :key="character"
-                :data="{ name: character.nome, element: character.element, image: character.image, level: character.level }"
+                :data="{ name: character.nome, element: character.element, image: character.image, level: character.level, id: character.id }"
                 />
             </div>
         </div>
