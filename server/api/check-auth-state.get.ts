@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
     const claim = await getAuth().verifySessionCookie(sessionCookie)
         .catch((e) => {
-            console.log("Verification error! [server/api/check-auth-state.get]:\n",e)
+            // console.log("Verification error! [server/api/check-auth-state.get]:\n",e)
             event.node.res.end(JSON.stringify({ statusCode: 401, error: 'UNATHORIZED REQUEST!'}))
             error = true
         })

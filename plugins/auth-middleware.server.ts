@@ -7,15 +7,14 @@ export default defineNuxtPlugin(async () => {
 
     addRouteMiddleware('auth',async  (to, from) => {
         const sessionCookie = getCookie(ssrContext.event, 'session')
-        console.log('verificando!')
         try{
             await getAuth().verifySessionCookie(sessionCookie)
             .catch((e) => {
-                console.log('Invalid session!', e)
+                // console.log('Invalid session!', e)
                 return abortNavigation('Ops, parece que sua sessão está inválida!\n Recarregue a página para ser direcionado para o login.')
             })
         }catch(error){
-            console.log(error)
+            // console.log(error)
             return abortNavigation('Ops, parece que sua sessão está inválida!\n Recarregue a página para ser direcionado para o login.')
         }
     })
