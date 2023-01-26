@@ -1,4 +1,5 @@
 import { getAuth } from 'firebase-admin/auth'
+import createUserDataObject from '../utils/user'
 
 export default defineEventHandler(async (event) => {
 
@@ -8,15 +9,13 @@ export default defineEventHandler(async (event) => {
     const options = { maxAge: expirationTimeSeconds, httpOnly: true, secure: true, sameSite: 'none' }
 
     
-    const userInfo = {
-        uid: uid
-    }
+    const userInfo = createUserDataObject(uid)
     // set user cookie
     // @ts-expect-error
     setCookie(event, 'user', JSON.stringify(userInfo), options)
 
     try{
-        const sessionCookie = await getAuth().createSessionCookie( idToken, {expiresIn: expirationTimeSeconds})
+        const sessionCookie = await getAuth().createSessionCookie( idToken, {expiresIn: expirationTimeSeconds * 1000})
         // @ts-expect-error
         setCookie(event, 'session',sessionCookie, options)
     }catch(e){

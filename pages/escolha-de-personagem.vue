@@ -16,6 +16,7 @@
                 v-for="(character) in characters.docs" 
                 :key="character"
                 :data="{ name: character.nome, element: character.element, image: character.image, level: character.level, id: character.id }"
+            :character-id="character.id"
                 />
             </div>
         </div>
@@ -32,5 +33,13 @@ const meta = definePageMeta({
   middleware: "auth",
 });
 
-const characters = await $fetch("/api/fetchCharacters", { method: "get" });
+let { data: characters, pending, error } = await useLazyAsyncData(
+  "characters",
+  () => $fetch("/api/fetchCharacters", { method: "GET" }),
+  { server: false }
+);
+
+if (error) {
+  console.log(error.value);
+}
 </script>
