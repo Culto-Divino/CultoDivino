@@ -28,12 +28,9 @@
 </template>
 
 <script setup>
+const meta = definePageMeta({
+  middleware: "auth",
+});
 
-const meta = definePageMeta({ 
-    middleware: 'auth'
-})
-
-const characters = await $fetch('/api/fetchCharacters', { method: 'get' })
-console.log(characters)
-
+const characters = await $fetch("/api/fetchCharacters", { method: "get" });
 </script>
