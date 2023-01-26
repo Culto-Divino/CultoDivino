@@ -1,6 +1,9 @@
 <template>
   <div class="mt-4 w-5/12 h-full flex flex-col">
-    <NuxtLink to="/{{ uid }}/VisaoGeral" class="mt-4 w-full h-full flex flex-col">
+    <NuxtLink
+      :to="'/' + characterId + '/VisaoGeral'"
+      class="mt-4 w-full h-full flex flex-col"
+    >
       <img :src="data.image" class="w-full h-4/6 rounded-t" />
       <div
         class="w-full h-2/6 bg-slate-900 flex flex-col items-center justify-center text-lg rounded-b"
@@ -25,6 +28,8 @@
 <script setup>
 const props = defineProps({
   data: Object,
-  uid: String,
+  characterId: String,
 });
+
+// console.log(props.characterId);
 </script>
