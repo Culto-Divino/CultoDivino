@@ -16,4 +16,8 @@
         creation: Boolean,
         logged: Boolean
     })
+
+    function logOut() {
+        signOutUser();
+    }
 </script>
