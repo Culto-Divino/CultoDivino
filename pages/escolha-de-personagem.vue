@@ -25,7 +25,7 @@
         </div>
     </div>
   </div>
-  <div v-else>LOADING!!</div>
+  <div v-else><Loading /></div>
 </template>
 
 <script setup>
