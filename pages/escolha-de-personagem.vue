@@ -30,7 +30,7 @@
             v-for="character in characters.docs"
             :key="character"
             :data="{
-              name: character.nome,
+              name: character.name,
               element: character.element,
               image: character.image,
               level: character.level,
@@ -59,11 +59,11 @@ const meta = definePageMeta({
 
 let { data: characters, pending, error } = await useLazyAsyncData(
   "characters",
-  () => $fetch("/api/fetchCharacters", { method: "GET" }),
+  () => $fetch("/api/fetch-characters", { method: "GET" }),
   { server: false }
 );
 
-if (error) {
+if (error.value) {
   console.log(error.value);
 }
 </script>
