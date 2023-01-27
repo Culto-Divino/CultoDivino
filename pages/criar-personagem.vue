@@ -2,6 +2,7 @@
     <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex flex-col justify-center items-center truncate text-white">
         <Header 
         :creation="true"
+        :logged="true"
         />
         <div class="w-10/12 h-5/6 mt-10 bg-gray-200/25 rounded-xl flex flex-col items-center justify-center overflow-y-scroll">
             <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
