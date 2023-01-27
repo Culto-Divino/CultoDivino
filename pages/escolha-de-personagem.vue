@@ -3,6 +3,7 @@
     <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex flex-col justify-center items-center truncate text-white">
         <Header 
         :creation="false"
+        :logged="true"
         />
         <div id="default-carousel" class="w-10/12 h-4/6 bg-gray-200/25 flex flex-col items-center justify-center rounded-xl">
             <h1 class="text-xl">ESCOLHA DE PERSONAGEM</h1>
