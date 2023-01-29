@@ -1,18 +1,16 @@
 <template>
   <NuxtLayout name="default">
     <NuxtLink to="/login"> back </NuxtLink>
-    <button @click="signOut"> sair </button>
+    <button @click="signOut">sair</button>
   </NuxtLayout>
 </template>
 
 <script setup>
-definePageMeta({
-  middleware: "auth",
-});
+  definePageMeta({
+    middleware: 'auth',
+  })
 
-const signOut = async () => {
-  const result = await signOutUser()
-}
-
-
+  const signOut = async () => {
+    await signOutUser()
+  }
 </script>

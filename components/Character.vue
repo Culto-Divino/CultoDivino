@@ -26,10 +26,10 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  data: Object,
-  characterId: String,
-});
+  defineProps({
+    data: Object,
+    characterId: String,
+  })
 
-// console.log(props.characterId);
+  // console.log(props.characterId);
 </script>

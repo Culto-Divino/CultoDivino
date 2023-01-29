@@ -49,52 +49,51 @@
           id="vontadeInput"
           type="text"
           value="50 %"
-          @input="teste()"
           class="ml-3 w-16 h-full bg-transparent outline-none"
+          @input="teste()"
         />
       </div>
     </div>
   </div>
 </template>
+<script async setup>
+  import useCharacter from '@@/composables/useCharacter'
+
+  const characterId = useRoute().params.characterId
+  const character = await useCharacter(characterId)
+
+  function teste() {
+    const el = document.querySelector('#vontadeInput')
+    const vontadeValue = document.querySelector('#vontadeValue')
+
+    const newVontadeValue = `w-[${el.value.replace(' %', '')}%]`
+    const actualWidth = getActualWidth(vontadeValue)
+
+    // console.log(vontadeValue.classList);
+
+    if (!actualWidth) return
+
+    vontadeValue.classList.remove(actualWidth)
+    vontadeValue.classList.add(`${newVontadeValue}`)
+
+    // console.log(vontadeValue.classList);
+  }
+
+  function getActualWidth(el) {
+    let ret
+
+    el.classList.forEach((i) => {
+      if (i.startsWith('w-')) {
+        ret = i
+      }
+    })
+
+    return ret
+  }
+</script>
 
 <style>
-.shadowl {
-  box-shadow: inset -3px 0px 10px #ffffff;
-}
+  .shadowl {
+    box-shadow: inset -3px 0px 10px #ffffff;
+  }
 </style>
-
-<script async setup>
-import useCharacter from "@@/composables/useCharacter";
-
-const characterId = useRoute().params.characterId;
-const character = await useCharacter(characterId);
-
-function teste() {
-  let el = document.querySelector("#vontadeInput");
-  let vontadeValue = document.querySelector("#vontadeValue");
-
-  let newVontadeValue = `w-[${el.value.replace(" %", "")}%]`;
-  let actualWidth = getActualWidth(vontadeValue);
-
-  console.log(vontadeValue.classList);
-
-  if (!actualWidth) return;
-
-  vontadeValue.classList.remove(actualWidth);
-  vontadeValue.classList.add(`${newVontadeValue}`);
-
-  console.log(vontadeValue.classList);
-}
-
-function getActualWidth(el) {
-  let ret;
-
-  el.classList.forEach((i) => {
-    if (i.startsWith("w-")) {
-      ret = i;
-    }
-  });
-
-  return ret;
-}
-</script>
