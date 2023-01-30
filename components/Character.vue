@@ -1,7 +1,7 @@
 <template>
   <div class="mt-4 w-5/12 h-full flex flex-col">
     <NuxtLink
-      :to="'/' + characterId + '/VisaoGeral'"
+      :to="redirectLink"
       class="mt-4 w-full h-full flex flex-col"
     >
       <img 
@@ -30,9 +30,10 @@
 
 <script setup>
 const props = defineProps({
-  data: Object,
-  characterId: String,
+  data: Object
 });
+
+let redirectLink = `/${props.data.id}/VisaoGeral`
 
 // console.log(props.characterId);
 </script>
