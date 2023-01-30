@@ -1,36 +1,52 @@
 <template>
-  <Header />
-  <div
-    class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex justify-center items-center truncated"
-  >
-    <Auth
-      title="Log in"
-      button-text="Entrar"
-      @submit="signin"
-      :form="form"
-      :message="message"
-      type="register"
-    />
+  <div>
+    <Header />
+    <div
+      class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex justify-center items-center truncated"
+    >
+      <Auth
+        title="Log in"
+        button-text="Entrar"
+        :form="form"
+        :message="message"
+        type="register"
+        @submit="signin"
+        @update:email="updateEmail"
+        @update:password="updatePassword"
+      />
+    </div>
   </div>
 </template>
 
 <script setup>
-let form = ref({ email: "", password: "" });
-let message = ref("");
+  import { generateUserResponse } from '@@/composables/useAuthErrorHandler'
 
-const signin = async () => {
-  if (!form.value.password || !form.value.email) {
-    message.value = "Ainda há campos a serem preenchidos!";
-    return;
+  const form = ref({ email: '', password: '' })
+  const message = ref('')
+
+  const updatePassword = (password) => {
+    form.value.password = password
+  }
+  const updateEmail = (email) => {
+    form.value.email = email
   }
 
-  const result = await signInUser(form.value.email, form.value.password);
+  const signin = async () => {
+    if (!form.value.password || !form.value.email) {
+      message.value = 'Ainda há campos a serem preenchidos!'
+      return
+    }
 
-  if (result.errorCode) {
-    const userResponse = generateUserReponse(result.errorCode, form.value);
-    form.value = { email: userResponse.email, password: userResponse.password };
-    message.value = userResponse.message;
-    return;
+    const result = await signInUser(form.value.email, form.value.password)
+
+    if (result.error) {
+      const userResponse = generateUserResponse(result.error, form.value)
+      form.value = {
+        email: userResponse.email,
+        password: userResponse.password,
+      }
+
+      message.value = userResponse.message
+    }
   }
-};
 </script>

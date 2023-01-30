@@ -35,5 +35,5 @@ const props = defineProps({
 
 let redirectLink = `/${props.data.id}/VisaoGeral`
 
-// console.log(props.characterId);
+  // console.log(props.characterId);
 </script>

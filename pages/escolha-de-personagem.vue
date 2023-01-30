@@ -29,20 +29,25 @@
 </template>
 
 <script setup>
-const meta = definePageMeta({
-  middleware: "auth",
-});
+  definePageMeta({
+    middleware: 'auth',
+  })
 
-let { data: characters, pending, error } = await useLazyAsyncData(
-  "characters",
-  () => $fetch("/api/fetch-characters", { method: "GET" }),
-  { server: false }
-);
-
-if (error.value) {
-  console.log(error.value);
-}
-if (error.value) {
-  console.log(error.value);
-}
+  // É preciso desabilitar prefer const, porque os valores mudarão
+  let {
+    // eslint-disable-next-line prefer-const
+    data: characters,
+    // eslint-disable-next-line prefer-const
+    pending,
+    // eslint-disable-next-line prefer-const
+    error,
+  } = await useLazyAsyncData(
+    'characters',
+    () => $fetch('/api/fetch-characters', { method: 'GET' }),
+    { server: false }
+  )
+  if (error.value) {
+    // eslint-disable-next-line no-console
+    console.log(error.value)
+  }
 </script>

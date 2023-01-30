@@ -1,9 +1,7 @@
-export default function createUserDataObject (uid){
+export default function createUserDataObject(uid) {
+  const data = {
+    uid,
+  }
 
-    const data = {
-        uid: uid,
-
-    }
-
-    return data
+  return data
 }

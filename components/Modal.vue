@@ -14,10 +14,10 @@
 </template>
 
 <script setup>
-
-    const props = defineProps({
-        title: String
-    })
+  defineProps({
+    title: String,
+  })
+  defineEmits(['someEvent'])
 
     function hideModal(){
         location.reload()
