@@ -42,4 +42,7 @@ let { data: characters, pending, error } = await useLazyAsyncData(
 if (error.value) {
   console.log(error.value);
 }
+if (error.value) {
+  console.log(error.value);
+}
 </script>
