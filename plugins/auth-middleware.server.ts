@@ -1,22 +1,19 @@
 import { getCookie } from 'h3'
 import { getAuth } from 'firebase-admin/auth'
 
-export default defineNuxtPlugin(async () => {
+export default defineNuxtPlugin(() => {
+  const { ssrContext } = useNuxtApp()
 
-    const {ssrContext} = useNuxtApp()
-
-    addRouteMiddleware('auth',async  (to, from) => {
-        const sessionCookie = getCookie(ssrContext.event, 'session')
-        console.log('verificando!')
-        try{
-            await getAuth().verifySessionCookie(sessionCookie)
-            .catch((e) => {
-                console.log('Invalid session!', e)
-                return abortNavigation('Ops, parece que sua sessão está inválida!\n Recarregue a página para ser direcionado para o login.')
-            })
-        }catch(error){
-            console.log(error)
-            return abortNavigation('Ops, parece que sua sessão está inválida!\n Recarregue a página para ser direcionado para o login.')
-        }
-    })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  addRouteMiddleware('auth', async (to, from) => {
+    const sessionCookie = getCookie(ssrContext.event, 'session')
+    try {
+      await getAuth().verifySessionCookie(sessionCookie)
+    } catch (error) {
+      // console.log(error)
+      return abortNavigation(
+        'Ops, parece que sua sessão está inválida!\n Recarregue a página para ser direcionado para o login.'
+      )
+    }
+  })
 })

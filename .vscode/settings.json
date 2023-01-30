@@ -1,3 +1,28 @@
 {
-    "vue3snippets.enable-compile-vue-file-on-did-save-code": true
+    "[typescript][javascript][json][jsonc][html][markdown][css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint":true,
+            "source.fixAll.stylelint":true
+        }
+    },
+
+
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint":true,
+            "source.fixAll.stylelint":true,
+        }
+    },
+    "eslint.alwaysShowStatus": true, 
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint":true,
+        "source.fixAll.stylelint":true,
+    },
+    "eslint.validate": ["javascript", "typescript", "html", "mardown", "vue", "json", "jsonc"]
+
+
 }
