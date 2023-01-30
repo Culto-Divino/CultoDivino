@@ -6,70 +6,45 @@ import {
   getIdToken,
 } from 'firebase/auth'
 
-export function createUser(email, password) {
+export async function createUser(email, password) {
   const auth = getAuth()
-  let idToken
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(async (user) => {
-      idToken = await getIdToken(user.user)
+  try {
+    const user = await createUserWithEmailAndPassword(auth, email, password)
+    const idToken = await getIdToken(user.user)
+    await $fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ idToken, uid: auth.currentUser.uid }),
+      headers: {
+        'Content-Type': 'aplication/json',
+      },
     })
-    .catch((error) => {
-      const errorCode = error.code
-      const errorMessage = error.message
-      // console.log(errorMessage)
-      return { error: errorMessage, errorCode }
-    })
-    .then(
-      async () =>
-        await $fetch('/api/login', {
-          method: 'POST',
-          body: JSON.stringify({ idToken, uid: auth.currentUser.uid }),
-          headers: {
-            'Content-Type': 'aplication/json',
-          },
-        }).then(async (res) => {
-          if (res.error) {
-            // console.log(res.error)
-            return res.error
-          }
-          await navigateTo('/escolha-de-personagem')
-        })
-    )
+  } catch (e) {
+    return { error: e.code }
+  }
+
+  await navigateTo('/escolha-de-personagem')
   return { sucess: true }
 }
 
-export function signInUser(email, password) {
+export async function signInUser(email, password) {
   const auth = getAuth()
 
-  let idToken
+  try {
+    const user = await signInWithEmailAndPassword(auth, email, password)
+    const idToken = await getIdToken(user.user)
+    await $fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ idToken, uid: auth.currentUser.uid }),
+      headers: {
+        'Content-Type': 'aplication/json',
+      },
+    })
+  } catch (e) {
+    return { error: e.code }
+  }
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(async (user) => {
-      idToken = await getIdToken(user.user)
-    })
-    .catch((error) => {
-      const errorCode = error.code
-      const errorMessage = error.message
-      // console.log(errorMessage)
-      return { error: errorMessage, errorCode }
-    })
-    .then(
-      async () =>
-        await $fetch('/api/login', {
-          method: 'POST',
-          body: JSON.stringify({ idToken, uid: auth.currentUser.uid }),
-          headers: {
-            'Content-Type': 'aplication/json',
-          },
-        }).then(async (res) => {
-          if (res.error) {
-            // console.log(res.error)
-            return res.error
-          }
-          await navigateTo('/escolha-de-personagem')
-        })
-    )
+  await navigateTo('/escolha-de-personagem')
   return { sucess: true }
 }
 

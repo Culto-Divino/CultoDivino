@@ -11,14 +11,25 @@
         :message="message"
         type="register"
         @submit="signin"
+        @update:email="updateEmail"
+        @update:password="updatePassword"
       />
     </div>
   </div>
 </template>
 
 <script setup>
+  import { generateUserResponse } from '@@/composables/useAuthErrorHandler'
+
   const form = ref({ email: '', password: '' })
   const message = ref('')
+
+  const updatePassword = (password) => {
+    form.value.password = password
+  }
+  const updateEmail = (email) => {
+    form.value.email = email
+  }
 
   const signin = async () => {
     if (!form.value.password || !form.value.email) {
@@ -28,12 +39,13 @@
 
     const result = await signInUser(form.value.email, form.value.password)
 
-    if (result.errorCode) {
-      const userResponse = generateUserReponse(result.errorCode, form.value)
+    if (result.error) {
+      const userResponse = generateUserResponse(result.error, form.value)
       form.value = {
         email: userResponse.email,
         password: userResponse.password,
       }
+
       message.value = userResponse.message
     }
   }

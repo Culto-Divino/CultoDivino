@@ -11,6 +11,8 @@
         :message="message"
         type="login"
         @submit="signup"
+        @update:password="updatePassword"
+        @update:email="updateEmail"
       />
     </div>
   </div>
@@ -19,6 +21,13 @@
 <script setup>
   const form = ref({ email: '', password: '' })
   const message = ref('')
+
+  const updatePassword = (password) => {
+    form.value.password = password
+  }
+  const updateEmail = (email) => {
+    form.value.email = email
+  }
 
   const signup = async () => {
     if (!form.value.password || !form.value.email) {
@@ -35,9 +44,6 @@
         password: userResponse.password,
       }
       message.value = userResponse.message
-      return
     }
-
-    navigateTo('/')
   }
 </script>

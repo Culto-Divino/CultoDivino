@@ -6,30 +6,30 @@
     <div class="field flex flex-col w-8/12 h-20">
       <label class="label pl-1">Email</label>
       <input
-        :v-model="form.email"
+        :value="form.email"
         class="email bg-gray-500/75 h-3/6 mt-2 pl-1 ease-in-out duration-500 outline-none rounded-md focus:rounded focus:bg-gray-500 focus:placeholder:text-slate-600"
         type="input"
         placeholder="seu.email@aqui.com"
         autocomplete="false"
         autocapitalize="false"
+        @input="$emit('update:email', $event.target.value)"
       />
     </div>
 
     <div class="field flex flex-col w-8/12 h-20">
       <label class="label pl-1">Senha</label>
       <input
-        :v-model="form.password"
+        :value="form.password"
         class="input bg-gray-500/75 h-3/6 mt-2 pl-1 ease-in-out duration-500 outline-none rounded-md focus:rounded focus:bg-gray-500 focus:placeholder:text-slate-600"
         type="password"
         placeholder="*********"
         autocomplete="false"
         autocapitalize="false"
+        @input="$emit('update:password', $event.target.value)"
       />
     </div>
 
-    <div v-if="message" class="message">
-      {{ message }}
-    </div>
+    <div v-if="message" class="message">{{ message }}</div>
 
     <button
       class="button w-6/12 h-12 rounded-md ease-in-out duration-500 bg-blue-900 hover:drop-shadow-md hover:-translate-y-0.5"
@@ -55,5 +55,5 @@
     buttonText: String,
     type: String,
   })
-  defineEmits(['submit'])
+  defineEmits(['submit', 'update:password', 'update:email'])
 </script>
