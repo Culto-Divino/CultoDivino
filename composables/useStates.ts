@@ -1,3 +1,3 @@
-export const useFirebaseUser = () => useState("firebaseUser")
+export const useSelectedCharacter = useState('selectedCharacter', () => { return { id: undefined}})
 
-// export const selectedCharacter = () => useState('selectedCharacter')
+// export const useUserData = useState('userData')

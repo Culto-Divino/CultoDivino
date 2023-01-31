@@ -2,15 +2,15 @@
   <div id="container" class="w-screen h-16 flex flex-col select-none">
     <div class="flex justify-evenly items-center w-screen h-16 bg-white/75">
       <font-awesome-icon
-        @click="teste()"
         icon="fa-solid fa-bars"
         class="text-3xl hover:cursor-pointer"
+        @click="teste()"
       />
       <p class="text-3xl">O Culto Divino</p>
       <font-awesome-icon
-        @click="logOut()"
         icon="fa-solid fa-power-off"
         class="text-3xl hover:cursor-pointer"
+        @click="logOut()"
       />
     </div>
     <div
@@ -76,37 +76,37 @@
 </template>
 
 <script setup>
-let isMenuShown = false;
+  let isMenuShown = false
 
-function teste() {
-  let menu = document.querySelector("#menu");
-  let container = document.querySelector("#container");
-  if (isMenuShown) {
-    menu.classList.add("hidden");
+  function teste() {
+    const menu = document.querySelector('#menu')
+    const container = document.querySelector('#container')
+    if (isMenuShown) {
+      menu.classList.add('hidden')
 
-    if (container.classList.contains("h-screen")) {
-      container.classList.remove("h-screen");
-      container.classList.add("h-16");
-      container.classList.add("truncate");
+      if (container.classList.contains('h-screen')) {
+        container.classList.remove('h-screen')
+        container.classList.add('h-16')
+        container.classList.add('truncate')
+      } else {
+        container.classList.add('h-16')
+      }
     } else {
-      container.classList.add("h-16");
-    }
-  } else {
-    menu.classList.remove("hidden");
+      menu.classList.remove('hidden')
 
-    if (container.classList.contains("h-16")) {
-      container.classList.remove("h-16");
-      container.classList.add("h-screen");
-      container.classList.remove("truncate");
-    } else {
-      container.classList.add("h-screen");
+      if (container.classList.contains('h-16')) {
+        container.classList.remove('h-16')
+        container.classList.add('h-screen')
+        container.classList.remove('truncate')
+      } else {
+        container.classList.add('h-screen')
+      }
     }
+
+    isMenuShown = !isMenuShown
   }
 
-  isMenuShown = !isMenuShown;
-}
-
-function logOut() {
-  signOutUser();
-}
+  function logOut() {
+    signOutUser()
+  }
 </script>
