@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     secure: true,
     sameSite: 'none',
   }
-
+  console.log(idToken, uid)
   const userInfo = createUserDataObject(uid)
   // set user cookie
   // @ts-expect-error, objeto options sendo passado é considerado inválido, quando na verdade é.
@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
       expiresIn: expirationTimeSeconds * 1000,
     })
     // @ts-expect-error, objeto options sendo passado é considerado inválido, quando na verdade é.
-    setCookie(event, 'session', sessionCookie, options)
+    setCookie(event, 'session', JSON.stringify(sessionCookie), options)
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error('Error: ', e)
