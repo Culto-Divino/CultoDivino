@@ -1,11 +1,11 @@
-import { getDocFromCollection } from '../utils/firestore'
-import createCharacterData from '../utils/character'
+// import { getDocFromCollection } from '../utils/firestore'
+// import createCharacterData from '../utils/character'
 
-export default defineEventHandler(async (event) => {
-  const uid = event.context.userCookie.uid
+// export default defineEventHandler(async (event) => {
+//   const uid = event.context.userCookie.uid
 
-  createCharacterData()
+//   createCharacterData()
 
-  event.node.res.statusCode = 200
-  event.node.res.end(JSON.stringify(character))
-})
+//   event.node.res.statusCode = 200
+//   event.node.res.end(JSON.stringify(character))
+// })
