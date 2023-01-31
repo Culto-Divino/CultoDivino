@@ -30,12 +30,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     appId: config.FIREBASE_APP_ID,
     measurementId: config.FIREBASE_MEASUREMENT_ID,
   }
-
-  console.log(getApps().length)
-
   // Inicializando firebase
   if (getApps().length === 0) {
-    console.log('aqui')
     const app = initializeApp(firebaseConfig)
     const adminService = admin.initializeApp({
       // @ts-expect-error, argumento é considerado inválido quando, na verdade, é
