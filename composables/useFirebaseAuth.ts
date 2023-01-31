@@ -33,6 +33,8 @@ export async function signInUser(email, password) {
   try {
     const user = await signInWithEmailAndPassword(auth, email, password)
     const idToken = await getIdToken(user.user)
+    console.log(JSON.stringify({ idToken, uid: auth.currentUser.uid }))
+
     await $fetch('/api/login', {
       method: 'POST',
       body: JSON.stringify({ idToken, uid: auth.currentUser.uid }),
