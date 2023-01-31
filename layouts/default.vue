@@ -11,3 +11,10 @@
         letter-spacing: 2px;
     }
 </style>
+
+<!-- eslint-disable-next-line vue/component-tags-order -->
+<script setup>
+    useHead({
+        link: [{ rel: 'website icon', href: '@@/images/logo.png'}]
+    })
+</script>

@@ -11,11 +11,22 @@
         class="text-3xl hover:cursor-pointer"
     /></NuxtLink>
     <h1 class="text-3xl w-6/12">O Culto Divino</h1>
+    <font-awesome-icon
+        v-if="logged"
+        icon="fa-solid fa-power-off"
+        class="text-3xl hover:cursor-pointer"
+        @click="logOut()"
+    />
   </div>
 </template>
 
 <script setup>
-  defineProps({
-    creation: Boolean,
-  })
+    defineProps({
+        creation: Boolean,
+        logged: Boolean
+    })
+
+    function logOut() {
+        signOutUser();
+    }
 </script>

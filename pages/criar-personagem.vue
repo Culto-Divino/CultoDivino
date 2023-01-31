@@ -2,7 +2,7 @@
   <div
     class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex flex-col justify-center items-center truncate text-white"
   >
-    <Header :creation="true" />
+    <Header :creation="true" :logged="true"/>
     <div
       class="w-10/12 h-5/6 mt-10 bg-gray-200/25 rounded-xl flex flex-col items-center justify-center overflow-y-scroll"
     >
@@ -16,19 +16,27 @@
       </div>
       <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
         <p>Sexo:</p>
-        <input type="text" class="bg-transparent border-b px-2 outline-none" />
+        <select type="text" class="bg-transparent border-b px-2 outline-none">
+          <option key="masculino" class="text-black" value="masculino">
+            Masculino
+          </option>
+          <option key="feminino" class="text-black" value="feminino">
+            Feminino
+          </option>
+        </select>
       </div>
       <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
         <p>Elemento:</p>
         <input type="text" class="bg-transparent border-b px-2 outline-none" />
       </div>
       <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
-        <p>Classe:</p>
-        <input type="text" class="bg-transparent border-b px-2 outline-none" />
-      </div>
-      <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
-        <p>Arquétipo:</p>
-        <input type="text" class="bg-transparent border-b px-2 outline-none" />
+        <DropDownSearch
+          title="Arquétipos"
+          loading-text="Carregando!"
+          select-text="Selecione um"
+          :elements="archetypeNames"
+          @update:selected="updateSelected"
+        />
       </div>
       <div class="flex flex-col w-10/12 h-32">
         <label for="image" class="block mb-2 text-lg text-white"
@@ -58,7 +66,30 @@
     middleware: 'auth',
   })
 
-  function createCharacter() {
-    navigateTo('/escolha-de-personagem')
+  const selectedArchetype = ref()
+  const archetypeNames = ref()
+  let archetypes = []
+
+  try {
+    useGetArchetypes().then((result) => {
+      archetypes = result.value
+
+      archetypeNames.value = result.value.map((doc) => {
+        return doc.name
+      })
+    })
+  } catch (error) {
+    console.log(error)
+  }
+  const nuxtApp = useNuxtApp()
+
+  const updateSelected = (selected) => {
+    selectedArchetype.value = archetypes.find((archetype) => {
+      return archetype.name === selected
+    })
+  }
+
+  async function createCharacter() {
+    await navigateTo('/escolha-de-personagem')
   }
 </script>

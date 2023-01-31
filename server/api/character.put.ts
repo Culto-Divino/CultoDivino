@@ -1,13 +1,10 @@
 import { getDocFromCollection } from '../utils/firestore'
+import createCharacterData from '../utils/character'
 
 export default defineEventHandler(async (event) => {
-  const characterId = getHeader(event, 'Character-Id')
   const uid = event.context.userCookie.uid
 
-  const character = await getDocFromCollection(
-    characterId,
-    `users/${uid}/characters`
-  )
+  createCharacterData()
 
   event.node.res.statusCode = 200
   event.node.res.end(JSON.stringify(character))

@@ -5,6 +5,8 @@
   >
     <CharacterHeader class="sticky top-0 z-10" />
 
+    
+
     <div class="h-2/4 flex flex-col text-white items-center mt-10">
       <div class="flex w-9/12 h-4/6 flex items-center justify-center text-2xl">
         <CombatData title="Vida" value="99" max-value="99" />
@@ -25,13 +27,14 @@
         >
           Morrendo, Congelado
         </div>
-        <button class="h-12 w-12 mr-2" @click="addState()">
-          <p
-            class="flex items-center justify-center text-6xl rounded-full bg-white h-full"
-          >
-            +
-          </p>
-        </button>
+        <label for="my-modal-4" class="w-12 h-12 mr-2">
+            <p
+              class="flex items-center justify-center text-6xl rounded-full bg-white h-full text-black"
+            >
+              +
+            </p>
+          
+        </label>
       </div>
     </div>
     <div class="h-2/4 flex flex-col text-white items-center mt-10">
@@ -54,24 +57,17 @@
         <img src="../../images/dice.png" class="w-5/12 h-16 mr-5" alt="" />
       </button>
     </div>
+
+    <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+    <label for="my-modal-4" class="modal cursor-pointer">
+        <label class="modal-box relative bg-transparent w-10/12 h-2/6 p-2" for="">
+          <Modal 
+            title="Digite aqui o seu estado:"
+          />
+        </label>
+    </label>
   </div>
 </template>
 
 <script setup>
-  async function addState() {
-    const foo = document.querySelector('#combatContainer')
-
-    const appContext = getCurrentInstance()
-
-    renderComponent({
-      el: foo,
-      component: (await import('~~/components/Modal.vue')).default,
-      props: {
-        title: 'Digite aqui o seu estado:',
-      },
-      appContext,
-    })
-  }
 </script>
-
-<!-- <font-awesome-icon class="w-5/12 h-16 text-6xl text-white" icon="fa-solid fa-dice-five" /> -->

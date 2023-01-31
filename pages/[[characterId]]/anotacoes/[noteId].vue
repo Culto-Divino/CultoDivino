@@ -3,7 +3,7 @@
     class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 truncate z-0"
   >
     <div
-      class="sticky top-0 w-full h-16 bg-white/75 flex justify-evenly items-center"
+      class="sticky top-0 w-full h-16 bg-white/75 flex justify-evenly items-center text-black"
     >
       <NuxtLink :to="backLink" class="text-3xl hover:cursor-pointer"
         ><font-awesome-icon
