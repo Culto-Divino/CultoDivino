@@ -18,7 +18,7 @@ export default defineEventHandler((event) => {
 
   // Fazer o usuário disponível para qualquer chamada do servidor.
   try {
-    event.context.sessionCookie = sessionCookie
+    event.context.sessionCookie = JSON.parse(sessionCookie)
     event.context.userCookie = JSON.parse(userCookie)
   } catch (error) {
     // console.error('Há um valor inválido no parse de userCookie!', error)

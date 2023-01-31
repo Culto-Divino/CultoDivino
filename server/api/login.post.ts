@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
     secure: true,
     sameSite: 'none',
   }
-  console.log(idToken, uid)
+  console.log('Id Token: \n', idToken, '\n Uid: \n', uid)
   const userInfo = createUserDataObject(uid)
   // set user cookie
   // @ts-expect-error, objeto options sendo passado é considerado inválido, quando na verdade é.
