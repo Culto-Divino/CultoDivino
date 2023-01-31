@@ -15,12 +15,12 @@
                 <label for="itemDesc">Descrição do item:</label>
                 <textarea name="itemDesc" id="itemDesc" class="w-full h-80 bg-transparent bg-gray-400/75 outline-none text-black mt-1 p-2 rounded-md focus:bg-slate-300 focus:rounded"></textarea>
             </div>
-            <div class="flex h-20 w-10/12 justify-evenly">
-                <div class="flex flex-col justify-center h-16">
+            <div class="flex h-20 w-10/12 justify-between">
+                <div class="flex flex-col justify-center h-16 w-5/12">
                     <label for="itemWeight" class="pl-1">Peso:</label>
                     <input type="text" id="itemWeight" class="bg-transparent bg-gray-400/75 outline-none text-black h-10 mt-1 px-2 rounded-md focus:bg-slate-300 focus:rounded">
                 </div>
-                <div class="flex flex-col justify-center h-16 ml-2">
+                <div class="flex flex-col justify-center h-16 w-5/12">
                     <label for="itemSpace" class="pl-1">Espaço:</label>
                     <input type="text" id="itemWeight" class="bg-transparent bg-gray-400/75 outline-none text-black h-10 mt-1 px-2 rounded-md focus:bg-slate-300 focus:rounded">
                 </div>

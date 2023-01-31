@@ -13,4 +13,6 @@
   const signOut = async () => {
     await signOutUser()
   }
+
+  navigateTo('/login')
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div id="container" class="w-screen h-16 flex flex-col select-none">
+  <div id="container" class="w-screen h-16 flex flex-col select-none text-black">
     <div class="flex justify-evenly items-center w-screen h-16 bg-white/75">
       <font-awesome-icon
         icon="fa-solid fa-bars"

@@ -37,3 +37,17 @@ const redirectLink = `/${props.data.id}/VisaoGeral`
 
   // console.log(props.characterId);
 </script>
+
+<style>
+
+  p{
+    -webkit-transition: 3.3s;
+    -moz-transition: 3.3s;
+    transition: 3.3s;     
+    
+    -webkit-transition-timing-function: linear;
+    -moz-transition-timing-function: linear;
+    transition-timing-function: linear;
+  }
+
+</style>
