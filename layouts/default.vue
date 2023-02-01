@@ -14,7 +14,7 @@
 
 <!-- eslint-disable-next-line vue/component-tags-order -->
 <script setup>
-    useHead({
-        link: [{ rel: 'website icon', href: '@@/images/logo.png'}]
-    })
+    // useHead({
+    //     link: [{ rel: 'website icon', href: '@@/images/logo.png'}]
+    // })
 </script>

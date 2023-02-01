@@ -55,11 +55,27 @@
       </button>
     </div>
 
-    <input id="my-modal-4" type="checkbox" class="modal-toggle" />
-    <label for="my-modal-4" class="modal cursor-pointer">
-      <label class="modal-box relative bg-transparent w-10/12 h-2/6 p-2" for="">
-        <Modal title="Digite aqui o seu estado:" />
-      </label>
+    <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+    <label for="my-modal-4" class="modal cursor-pointer modal-center cel:modal-bottom">
+        <label class="modal-box relative bg-transparent w-10/12 h-2/6 max-h-4/6 p-2" for="">
+          <Modal 
+            :text-inputs="[
+              {
+                inputId: 'newState',
+                labelText: 'Digite aqui o seu novo estado:',
+                type: 'text',
+                placeholder: 'Novo estado...'
+              }
+            ]"
+            :button-inputs="[
+              {
+                id: 'addState',
+                text: 'ADICIONAR',
+                class: 'success'
+              }
+            ]"
+          />
+        </label>
     </label>
   </div>
 </template>

@@ -18,7 +18,7 @@
       class="hidden w-screen h-full bg-slate-900 flex flex-col justify-start"
     >
       <NuxtLink
-        class="text-white h-20 flex items-center justify-start border-b border-slate-600 pl-3 text-xl hover:bg-slate-500"
+        class="text-white h-20 flex items-center justify-start border-b border-slate-600 pl-3 text-xl bg-slate-800 hover:bg-slate-500"
         :to="'/' + character.id + '/VisaoGeral'"
       >
         <div><img :src="character.image" alt="" class="w-10 h-10 rounded-full border-2"></div>
