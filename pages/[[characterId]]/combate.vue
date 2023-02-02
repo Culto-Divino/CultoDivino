@@ -59,6 +59,7 @@
     <label for="my-modal-4" class="modal cursor-pointer modal-center cel:modal-bottom">
         <label class="modal-box relative bg-transparent w-10/12 h-2/6 max-h-4/6 p-2" for="">
           <Modal 
+            id="4"
             :text-inputs="[
               {
                 inputId: 'newState',
@@ -80,4 +81,5 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+</script>

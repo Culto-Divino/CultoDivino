@@ -12,12 +12,11 @@
         <label for="my-modal-1" class="text-2xl w-1/12" ><font-awesome-icon icon="fa-solid fa-ellipsis-vertical" /></label>
     </div>
 
-    <input type="checkbox" id="my-modal-1" class="modal-toggle" />
+    <input type="checkbox" id="my-modal-1" class="modal-toggle"/>
     <label for="my-modal-1" class="modal cursor-pointer modal-middle cel:modal-bottom">
         <label class="modal-box relative bg-transparent w-10/12 h-3/6 p-2 cel:h-4/6" for="">
-          <ItemModal 
-            title="Digite aqui o seu estado:"
-            :name="name"
+          <ItemModal
+          :itemurl="itemURL"
           />
         </label>
     </label>
@@ -25,10 +24,13 @@
 
 <script setup>
 
-defineProps({
+const props = defineProps({
     image: String,
     name: String,
-    weight: String
+    weight: String,
+    itemid: String
 })
+
+const itemURL = `/items/${props.itemid}`
 
 </script>
