@@ -10,10 +10,13 @@
           <p v-else class="mr-5 text-red-700 text-2xl">{{ actualWeight }}/{{ maxWeight }}</p>
         </div>
 
+        <!-- eslint-disable-next-line vue/valid-v-for -->
         <InventoryItem
-        image="https://a-static.mlcdn.com.br/800x560/caixa-de-som-jbl-charge-5-bluetooth-portatil-40w-com-tweeter/magazineluiza/228567500/9cccadaf1da66ac5328ff5be7666bb93.jpg"
-        name="Vibrador"
-        weight="5"
+        v-for="(item) in userInv"
+        :image="item.image"
+        :name="item.name"
+        :weight="item.weight"
+        :itemid="item.id"
         />
         
       </div>
@@ -36,5 +39,20 @@ const libraryPath = `/${characterId}/biblioteca`
 
 const actualWeight = 9
 const maxWeight = 9
+
+const userInv = [
+  {
+    image: 'https://a-static.mlcdn.com.br/800x560/caixa-de-som-jbl-charge-5-bluetooth-portatil-40w-com-tweeter/magazineluiza/228567500/9cccadaf1da66ac5328ff5be7666bb93.jpg',
+    name: 'Caixa de Som',
+    weight: '5',
+    id: '1'
+  },
+  {
+    image: 'https://static.paodeacucar.com/img/uploads/1/761/11697761.jpg',
+    name: 'Bolinho hmmm',
+    weight: '3',
+    id: '2'
+  }
+]
 
 </script>
