@@ -1,4 +1,5 @@
 import { getAuth } from 'firebase-admin/auth'
+import { getApps } from 'firebase/app'
 import createUserDataObject from '../utils/user'
 
 export default defineEventHandler(async (event) => {
@@ -12,6 +13,7 @@ export default defineEventHandler(async (event) => {
     sameSite: 'none',
     // domain:
   }
+  console.log(getApps().length)
 
   const userInfo = createUserDataObject(uid)
 
