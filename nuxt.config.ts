@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
 
   nitro: {
-    preset: 'netlify',
+    preset: process.env.NITRO_PRESET,
   },
 
   typescript: {
