@@ -1,19 +1,15 @@
-
-// PARA AJUDA VISITE: 
+// PARA AJUDA VISITE:
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-  
-  modules: [
-      '@nuxtjs/tailwindcss',
-  ],
-  
+  modules: ['@nuxtjs/tailwindcss'],
+
   typescript: {
-      strict: false,
+    strict: false,
   },
 
   runtimeConfig: {
-    public:{
+    public: {
       FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
       FIREBASE_AUTH_DOMAIN: process.env.FIREBASE_AUTH_DOMAIN,
       FIREBASE_DATABASE_URL: process.env.FIREBASE_DATABASE_URL,
@@ -38,12 +34,12 @@ export default defineNuxtConfig({
     FIREBASE_CLIENT_ID: process.env.FIREBASE_CLIENT_ID,
     FIREBASE_AUTH_URI: process.env.FIREBASE_AUTH_URI,
     FIREBASE_TOKEN_URI: process.env.FIREBASE_TOKEN_URI,
-    FIREBASE_AUTH_PROVIDER_CERT_URL: process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
+    FIREBASE_AUTH_PROVIDER_CERT_URL:
+      process.env.FIREBASE_AUTH_PROVIDER_CERT_URL,
     FIREBASE_CLIENT_CERT_URL: process.env.FIREBASE_CLIENT_CERT_URL,
-    APP_BASE_URL: process.env.APP_BASE_URL, 
+    APP_BASE_URL: process.env.APP_BASE_URL,
+    CHARACTER_SHEET_VERSION: 1,
   },
 
-  css: [
-    '@fortawesome/fontawesome-svg-core/styles.css'
-  ]
+  css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 })

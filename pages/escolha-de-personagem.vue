@@ -33,6 +33,8 @@
     middleware: 'auth',
   })
 
+  // TODO: implementar função que dê fetch nos characters sem zonear o código assim!
+
   // É preciso desabilitar prefer const, porque os valores mudarão
   let {
     // eslint-disable-next-line prefer-const

@@ -68,7 +68,30 @@
     middleware: 'auth',
   })
 
-  function createCharacter() {
-    navigateTo('/escolha-de-personagem')
+  const selectedArchetype = ref()
+  const archetypeNames = ref()
+  let archetypes = []
+
+  try {
+    useGetArchetypes().then((result) => {
+      archetypes = result.value
+
+      archetypeNames.value = result.value.map((doc) => {
+        return doc.name
+      })
+    })
+  } catch (error) {
+    console.log(error)
+  }
+  const nuxtApp = useNuxtApp()
+
+  const updateSelected = (selected) => {
+    selectedArchetype.value = archetypes.find((archetype) => {
+      return archetype.name === selected
+    })
+  }
+
+  async function createCharacter() {
+    await navigateTo('/escolha-de-personagem')
   }
 </script>

@@ -6,7 +6,7 @@ export default defineNuxtPlugin(() => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   addRouteMiddleware('auth', async (to, from) => {
-    const sessionCookie = getCookie(ssrContext.event, 'session')
+    const sessionCookie = JSON.parse(getCookie(ssrContext.event, 'session'))
     try {
       await getAuth().verifySessionCookie(sessionCookie)
     } catch (error) {

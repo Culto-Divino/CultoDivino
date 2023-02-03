@@ -1,5 +1,5 @@
 export default async function (id) {
-  const selectedCharacter = useSelectedCharacter
+  const selectedCharacter = useSelectedCharacter()
 
   // Salva uma chamada para o servidor!
   if (selectedCharacter.value.id === id) {
@@ -12,7 +12,7 @@ export default async function (id) {
   const { data: res, error } = await useAsyncData(
     'res',
     () =>
-      $fetch('/api/get-character', {
+      $fetch('/api/character', {
         method: 'GET',
         headers: { 'Character-Id': `${id}` },
       }),
