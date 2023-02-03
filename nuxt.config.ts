@@ -4,6 +4,10 @@
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
 
+  nitro: {
+    preset: 'netlify-edge',
+  },
+
   typescript: {
     strict: false,
   },
