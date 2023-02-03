@@ -1,10 +1,10 @@
-import { getApps } from 'firebase-admin/app'
+import { getApps } from 'firebase/app'
 import { getDocsFromCollection } from '../utils/firestore'
 
 export default defineEventHandler(async (event) => {
   const user = event.context.userCookie
 
-  console.log(getApps())
+  console.log(getApps().length)
 
   const characters = await getDocsFromCollection(`users/${user.uid}/characters`)
 
