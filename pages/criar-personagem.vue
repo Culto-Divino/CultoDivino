@@ -51,11 +51,13 @@
         </p>
       </div>
 
-      <button
-        class="h-12 items-center w-8/12 bg-gradient-to-r from-gray-800 to-slate-900 text-3xl rounded border border border-gray-500 drop-shadow-sm"
-        @click="createCharacter()"
+
+      <button 
+      class="mt-52 h-12 items-center w-8/12 bg-gradient-to-r from-gray-800 to-slate-900 text-3xl rounded border border border-gray-500 drop-shadow-sm" 
+      @click="createCharacter()"
       >
-        Confirmar
+
+      Confirmar
       </button>
     </div>
   </div>
