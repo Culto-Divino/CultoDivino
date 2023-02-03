@@ -30,13 +30,13 @@ export default defineNuxtPlugin(() => {
     measurementId: config.FIREBASE_MEASUREMENT_ID,
   }
 
-  if (getApps().length === 0) {
-    // Inicializando firebase
-    // const app = initializeApp(firebaseConfig)
-    const auth = getAuth
-    const adminService = admin.initializeApp({
-      // @ts-expect-error, argumento é considerado inválido quando, na verdade, é
-      credential: admin.credential.cert(serviceAccountConfig),
-    })
-  }
+  //   if (getApps().length === 0) {
+  //     // Inicializando firebase
+  //     // const app = initializeApp(firebaseConfig)
+  //     const auth = getAuth
+  //     const adminService = admin.initializeApp({
+  //       // @ts-expect-error, argumento é considerado inválido quando, na verdade, é
+  //       credential: admin.credential.cert(serviceAccountConfig),
+  //     })
+  //   }
 })
