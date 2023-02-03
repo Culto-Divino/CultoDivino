@@ -9,9 +9,8 @@ import {
   updateDoc,
   setDoc,
 } from 'firebase/firestore'
-import { app } from './firebase'
 
-const db = getFirestore(app)
+const db = getFirestore()
 
 // Filtrar com where, orderby, passando o objeto de query
 export const getDocsFromCollectionQuery = async (collectionPath, query) => {
