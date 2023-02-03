@@ -1,20 +1,36 @@
 <template>
   <div
     id="combatContainer"
-    class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 overflow-y-scroll overflow-x-hidden z-0"
+    class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 overflow-y-auto overflow-x-hidden z-0"
   >
     <CharacterHeader class="sticky top-0 z-10" />
 
-    <div class="h-2/4 flex flex-col text-white items-center mt-10">
-      <div class="flex w-9/12 h-4/6 flex items-center justify-center text-2xl">
-        <CombatData title="Vida" value="99" max-value="99" />
-        <CombatData title="Mana" value="99" max-value="99" />
+    
+
+    <div class="h-2/4 pc:flex w-full justify-evenly items-center">
+      <div class="h-full pc:w-5/12 flex flex-col text-white items-center mt-10">
+        <div class="flex pc:w-11/12 w-9/12 h-4/6 flex items-center justify-center text-2xl">
+          <CombatData title="Vida" value="99" max-value="99" />
+          <CombatData title="Mana" value="99" max-value="99" />
+        </div>
+        <div class="flex pc:w-11/12 w-9/12 h-4/6 flex items-center justify-center text-2xl">
+          <CombatData title="Vigor" value="99" max-value="99" />
+          <CombatData title="Sanidade" value="99" max-value="99" />
+        </div>
       </div>
-      <div class="flex w-9/12 h-4/6 flex items-center justify-center text-2xl">
-        <CombatData title="Vigor" value="99" max-value="99" />
-        <CombatData title="Sanidade" value="99" max-value="99" />
+  
+      <div class="cel:hidden h-full w-5/12 flex flex-col text-white items-center mt-10">
+        <div class="flex w-11/12 h-4/6 flex items-center justify-center text-2xl">
+          <CombatConstData title="Movimento" value="99" />
+          <CombatConstData title="Investigação" value="99" />
+        </div>
+        <div class="flex w-11/12 h-4/6 flex items-center justify-center text-2xl">
+          <CombatConstData title="Bloqueio" value="99" />
+          <CombatConstData title="Esquiva" value="99" />
+        </div>
       </div>
     </div>
+
     <div class="w-full h-32 flex flex-col justify-center items-center">
       <h1 class="text-3xl text-white">Estados</h1>
       <div
@@ -26,15 +42,16 @@
           Morrendo, Congelado
         </div>
         <label for="my-modal-4" class="w-12 h-12 mr-2">
-          <p
-            class="flex items-center justify-center text-6xl rounded-full bg-white h-full text-black"
-          >
-            +
-          </p>
+            <p
+              class="flex items-center justify-center text-6xl rounded-full bg-white h-full text-black cursor-pointer"
+            >
+              +
+            </p>
+          
         </label>
       </div>
     </div>
-    <div class="h-2/4 flex flex-col text-white items-center mt-10">
+    <div class="h-2/4 flex flex-col text-white items-center mt-10 pc:hidden">
       <div class="flex w-10/12 h-4/6 flex items-center justify-center text-2xl">
         <CombatConstData title="Movimento" value="99" />
         <CombatConstData title="Investigação" value="99" />
@@ -44,14 +61,14 @@
         <CombatConstData title="Esquiva" value="99" />
       </div>
     </div>
-    <div class="w-full h-24 mb-2 flex items-center justify-between">
+    <div class="w-full h-24 mb-2 flex items-center justify-between pc:justify-center">
       <button
-        class="h-16 w-5/12 ml-5 rounded-md border text-white bg-gradient-to-r from-cyan-700 to-sky-800 text-2xl"
+        class="h-16 w-5/12 ml-5 rounded-md border text-white bg-gradient-to-r from-cyan-700 to-sky-800 text-2xl hover:from-cyan-700/50 hover:to-sky-800/50"
       >
         Consumíveis
       </button>
       <button class="w-5/12 h-16 flex items-center justify-center">
-        <img src="../../images/dice.png" class="w-5/12 h-16 mr-5" alt="" />
+        <img src="../../images/dice.png" class="w-5/12 pc:w-16 h-16 mr-5" alt="" />
       </button>
     </div>
 

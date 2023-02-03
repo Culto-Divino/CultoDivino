@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4 w-5/12 h-full flex flex-col">
+  <div class="mt-4 w-5/12 h-full flex flex-col pc:w-3/12">
     <NuxtLink
       :to="redirectLink"
       class="mt-4 w-full h-full flex flex-col"

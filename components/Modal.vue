@@ -37,3 +37,25 @@
   const modalName = `my-modal-${props.id}`
 
 </script>
+
+<!-- 
+
+  text-inputs:
+
+    {
+      inputId: 'id',
+      labelText: 'Texto do label',
+      type: 'text',
+      placeholder: 'placeholder'
+    }
+
+  
+  button-inputs:
+
+    {
+      id: 'id',
+      text: 'texto',
+      class: 'success / error' // não obrigatório
+    }
+
+ -->

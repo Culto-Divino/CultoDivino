@@ -8,10 +8,10 @@
         class="w-8/12 h-12 mb-3 text-white text-2xl bg-gradient-to-r from-gray-600 to-slate-600 rounded active:translate-y-1"
         @click="createNote()"
       >
-        Adicionar Nota
+        + Adicionar Nota
       </button>
       <div
-        class="w-11/12 h-5/6 pt-2 overflow-y-scroll overflow-x-hidden bg-gray-400/50 flex flex-col items-center"
+        class="w-11/12 h-5/6 pt-2 rounded-md overflow-y-auto overflow-x-hidden bg-gray-400/50 flex flex-col items-center scrollbar scrollbar-thin scrollbar-thumb-sky-700 scrollbar-track-gray-100/25 scrollbar-thumb-rounded scrollbar-track-rounded"
       >
         <Note
           id="1"

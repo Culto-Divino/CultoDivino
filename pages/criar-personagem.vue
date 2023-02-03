@@ -1,44 +1,70 @@
 <template>
-  <div
-    class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex flex-col justify-center items-center truncate text-white"
-  >
-    <Header :creation="true" :logged="true" />
-    <div
-      class="w-10/12 h-5/6 mt-10 bg-gray-200/25 rounded-xl flex flex-col items-center justify-center overflow-y-scroll"
-    >
-      <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
-        <p>Nome:</p>
-        <input type="text" class="bg-transparent border-b px-2 outline-none" />
+  <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex flex-col justify-center items-center truncate text-white">
+    <Header 
+    :creation="true" 
+    :logged="true" 
+    />
+    <div class="w-10/12 h-5/6 mt-10 bg-gray-200/25 rounded-xl flex flex-col pc:flex-row pc:flex-wrap pc:justify-center items-center overflow-y-scroll">
+
+      <div class="flex flex-col items-center justify-center w-full pc:flex-row pc:justify-evenly">
+          <img src="@@/images/no_item_image.jpg" alt="" class="w-7/12 pc:w-60 h-80 mt-7 rounded-lg border p-1">
+          <div class="flex flex-col">
+            <DropZone class="cel:hidden w-full h-64 w-96" />
+            <label for="input" class="mt-6 pc:hidden">Envie aqui a foto do seu personagem!</label>
+            <input id="input" type="file" class="pc:hidden file-input file-input-sm file-input-bordered file-input-primary w-full max-w-xs bg-transparent bg-gray-400/75" accept="image/*">
+        
+          </div>
       </div>
       <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
         <p>Idade:</p>
         <input type="text" class="bg-transparent border-b px-2 outline-none" />
       </div>
 
-      <div class="w-10/12 h-16 mt-5 flex items-center justify-between">
-        <div class="w-5/12 h-16 flex flex-col">
-          <label for="characterAge" class="text-sm">Idade</label>
-          <input id="characterAge" type="text" class="h-10 bg-transparent bg-gray-400/75 text-black placeholder:text-gray-700 px-2 text-xl rounded focus:bg-slate-300 outline-none text-center" placeholder="20">
-        </div>
+      <div class="w-full pc:w-10/12 h-2/6 flex flex-col items-center pc:flex-row pc:justify-start pc:items-start">
 
-        <div class="w-5/12 h-16 flex flex-col relative ">
-          <label for="characterGender" class="text-sm">Sexo</label>
-          <div class="w-full h-full flex">
-
-            <select id="characterGender" type="text" class="w-full appearance-none h-10 bg-transparent bg-gray-400/75 text-black text-xl border-0 px-2 outline-none rounded">
-              <option value="" class="bg-gray-400 text-white" disabled selected>Escolha</option>
-              <option key="masculino" class="bg-gray-700/75 text-white selected:bg-red-700" value="masculino">
-                Masculino
-              </option>
-              <option key="feminino" class="bg-gray-700/75 text-white" value="feminino">
-                Feminino
-              </option>
-            </select>
-
-            <div>
-              <label for="characterGender" class="absolute right-0 mr-4 mt-2 text-black"><font-awesome-icon icon="fa-solid fa-caret-down" /></label>
+        <div class="w-10/12 pc:w-5/12 h-16 pc:h-full mt-5 flex pc:flex-col items-center justify-between">
+          <div class="w-5/12 h-16 flex flex-col">
+            <label for="characterAge" class="text-sm">Idade</label>
+            <input id="characterAge" type="text" class="h-10 bg-transparent bg-gray-400/75 text-black placeholder:text-gray-700 px-2 text-xl rounded focus:bg-slate-300 outline-none text-center" placeholder="20">
+          </div>
+  
+          <div class="w-5/12 h-16 flex flex-col relative ">
+            <label for="characterGender" class="text-sm">Sexo</label>
+            <div class="w-full h-full flex">
+  
+              <select id="characterGender" type="text" class="w-full appearance-none h-10 bg-transparent bg-gray-400/75 text-black text-xl border-0 px-2 outline-none rounded">
+                <option value="" class="bg-gray-400 text-white" disabled selected>Escolha um</option>
+                <option key="masculino" class="bg-gray-700/75 text-white" value="masculino">
+                  Masculino
+                </option>
+                <option key="feminino" class="bg-gray-700/75 text-white" value="feminino">
+                  Feminino
+                </option>
+              </select>
+  
+              <div>
+                <label for="characterGender" class="absolute right-0 mr-4 mt-2 text-black"><font-awesome-icon icon="fa-solid fa-caret-down" /></label>
+              </div>
+  
             </div>
-
+          </div>
+  
+        </div>
+  
+        <div class="w-full flex items-center flex-col">
+          <div class="w-10/12 h-16 flex flex-col mt-5">
+            <label for="characterElement">Elemento</label>
+            <input id="characterElement" type="text" class="h-10 bg-transparent bg-gray-400/75 text-black placeholder:text-gray-700 px-2 text-xl rounded focus:bg-slate-300 outline-none" placeholder="Elemento">
+          </div>
+    
+          <div class="flex w-10/12 h-12 items-center justify-evenly text-xl mt-10">
+            <DropDownSearch
+              title="Arquétipo"
+              loading-text="Carregando!"
+              select-text="Escolha um"
+              :elements="archetypeNames"
+              @update:selected="updateSelected"
+            />
           </div>
         </div>
 
@@ -67,7 +93,7 @@
       </div>
 
       <button 
-      class="mt-16 mb-3 min-h-12 h-12 items-center w-8/12 bg-gradient-to-r from-gray-800 to-slate-900 text-3xl rounded border border border-gray-500 drop-shadow-sm" 
+      class="mt-36 pc:mt-16 mb-3 min-h-12 h-12 items-center w-8/12 bg-gradient-to-r from-gray-800 to-slate-900 text-3xl rounded border border border-gray-500 drop-shadow-sm" 
       @click="createCharacter()"
       >
 

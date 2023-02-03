@@ -1,17 +1,17 @@
 <template>
   <div
-    class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 overflow-y-scroll overflow-x-hidden z-0"
+    class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 overflow-y-scroll overflow-x-hidden z-0 flex flex-col justify-center items-center"
   >
     <CharacterHeader class="sticky top-0 z-10"/>
     <div
-      class="w-screen h-full flex flex-col items-center justify-evenly pc:flex-row z-0"
+      class="w-11/12 h-full flex flex-col items-center justify-evenly pc:flex-row pc:justify-evenly z-0"
     >
       <img
-        class="w-4/6 h-4/6 mt-1 pc:w-2/6 rounded-xl border border-slate-300 p-1 drop-shadow-lg"
+        class="w-4/6 h-4/6 mt-1 pc:w-2/6 rounded-xl border border-slate-300 p-1 drop-shadow-lg pc:ml-20"
         :src="character.image"
         alt=""
       />
-      <div class="text-xl w-4/6">
+      <div class="text-xl w-4/6 pc:ml-20 pc:min-h-[66%] pc:flex pc:flex-col pc:justify-center ">
         <div class="flex">
           <p class="text-slate-300">Nome:</p>
           <p class="text-white pl-1">{{ character.name }}</p>
@@ -32,10 +32,31 @@
           <p class="text-slate-300">Arquétipo:</p>
           <p class="text-white pl-1">{{ character.archetype }}</p>
         </div>
+
+        <div
+          class="flex flex-col w-10/12 items-center justify-center text-white text-3xl mt-8 mb-8 cel:hidden"
+        >
+          <h1>Força de Vontade</h1>
+          <div class="flex w-full items-center justify-center mt-2 h-12">
+            <div class="w-8/12 h-full bg-gray-200/25 rounded-lg truncate">
+              <div
+                id="vontadeValue"
+                class="h-full bg-gradient-to-r from-cyan-500 to-sky-500 border-r-2 border-r-white shadowl w-[20%]"
+              ></div>
+            </div>
+            <input
+              id="vontadeInput"
+              type="text"
+              value="50 %"
+              class="ml-3 w-16 h-full bg-transparent outline-none"
+              @input="teste()"
+            />
+          </div>
+        </div>
       </div>
     </div>
     <div
-      class="flex flex-col w-full items-center justify-center text-white text-3xl mt-8 mb-8"
+      class="flex flex-col w-full items-center justify-center text-white text-3xl mt-8 mb-8 pc:hidden"
     >
       <h1>Força de Vontade</h1>
       <div class="flex w-full items-center justify-center mt-2 h-12">
