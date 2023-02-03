@@ -1,13 +1,14 @@
-import { getCookie } from 'h3'
+import { getCookie, parseCookies } from 'h3'
 import { getAuth } from 'firebase-admin/auth'
 
 export default defineNuxtPlugin(() => {
   const { ssrContext } = useNuxtApp()
+  console.log(parseCookies(ssrContext.event))
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   addRouteMiddleware('auth', async (to, from) => {
-    const sessionCookie = JSON.parse(getCookie(ssrContext.event, 'session'))
     try {
+      const sessionCookie = JSON.parse(getCookie(ssrContext.event, 'session'))
       await getAuth().verifySessionCookie(sessionCookie)
     } catch (error) {
       // console.log(error)

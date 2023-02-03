@@ -9,3 +9,5 @@ node_modules
 dist
 package-lock.json
 images/gutao_cria.jpg
+# Local Netlify folder
+.netlify
