@@ -14,29 +14,34 @@
         <p>Idade:</p>
         <input type="text" class="bg-transparent border-b px-2 outline-none" />
       </div>
-      <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
-        <p>Sexo:</p>
-        <select type="text" class="bg-transparent border-b px-2 outline-none">
-          <option key="masculino" class="text-black" value="masculino">
-            Masculino
-          </option>
-          <option key="feminino" class="text-black" value="feminino">
-            Feminino
-          </option>
-        </select>
-      </div>
-      <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
-        <p>Elemento:</p>
-        <input type="text" class="bg-transparent border-b px-2 outline-none" />
-      </div>
-      <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
-        <DropDownSearch
-          title="Arquétipos"
-          loading-text="Carregando!"
-          select-text="Selecione um"
-          :elements="archetypeNames"
-          @update:selected="updateSelected"
-        />
+
+      <div class="w-10/12 h-16 mt-5 flex items-center justify-between">
+        <div class="w-5/12 h-16 flex flex-col">
+          <label for="characterAge" class="text-sm">Idade</label>
+          <input id="characterAge" type="text" class="h-10 bg-transparent bg-gray-400/75 text-black placeholder:text-gray-700 px-2 text-xl rounded focus:bg-slate-300 outline-none text-center" placeholder="20">
+        </div>
+
+        <div class="w-5/12 h-16 flex flex-col relative ">
+          <label for="characterGender" class="text-sm">Sexo</label>
+          <div class="w-full h-full flex">
+
+            <select id="characterGender" type="text" class="w-full appearance-none h-10 bg-transparent bg-gray-400/75 text-black text-xl border-0 px-2 outline-none rounded">
+              <option value="" class="bg-gray-400 text-white" disabled selected>Escolha</option>
+              <option key="masculino" class="bg-gray-700/75 text-white selected:bg-red-700" value="masculino">
+                Masculino
+              </option>
+              <option key="feminino" class="bg-gray-700/75 text-white" value="feminino">
+                Feminino
+              </option>
+            </select>
+
+            <div>
+              <label for="characterGender" class="absolute right-0 mr-4 mt-2 text-black"><font-awesome-icon icon="fa-solid fa-caret-down" /></label>
+            </div>
+
+          </div>
+        </div>
+
       </div>
       <div class="flex flex-col w-10/12 h-32">
         <label for="image" class="block mb-2 text-lg text-white"
@@ -51,9 +56,18 @@
         </p>
       </div>
 
+      <div class="flex w-10/12 h-12 items-center justify-evenly text-xl mt-10">
+        <DropDownSearch
+          title="Arquétipo"
+          loading-text="Carregando!"
+          select-text="Escolha um"
+          :elements="archetypeNames"
+          @update:selected="updateSelected"
+        />
+      </div>
 
       <button 
-      class="mt-52 h-12 items-center w-8/12 bg-gradient-to-r from-gray-800 to-slate-900 text-3xl rounded border border border-gray-500 drop-shadow-sm" 
+      class="mt-16 mb-3 min-h-12 h-12 items-center w-8/12 bg-gradient-to-r from-gray-800 to-slate-900 text-3xl rounded border border border-gray-500 drop-shadow-sm" 
       @click="createCharacter()"
       >
 
