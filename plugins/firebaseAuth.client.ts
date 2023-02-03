@@ -9,8 +9,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   }
 
   // Inicializando firebase
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const app = initializeApp(firebaseConfig)
+
+  // const app = initializeApp(firebaseConfig)
 
   const auth = getAuth()
   await setPersistence(auth, inMemoryPersistence)
