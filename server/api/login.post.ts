@@ -3,7 +3,6 @@ import createUserDataObject from '../utils/user'
 
 export default defineEventHandler(async (event) => {
   const { idToken, uid } = await readBody(event)
-  const body = await readBody(event)
   const expirationTimeSeconds = 60 * 60 * 24 * 5
 
   const options = {
@@ -13,9 +12,6 @@ export default defineEventHandler(async (event) => {
     sameSite: 'none',
     // domain:
   }
-
-  console.log('Login request body: ', body)
-  console.log('Id Token: \n', idToken, '\n Uid: \n', uid)
 
   const userInfo = createUserDataObject(uid)
 

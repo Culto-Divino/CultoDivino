@@ -3,10 +3,9 @@ export default defineEventHandler((event) => {
   const sessionCookie = cookies.session
   const userCookie = cookies.user
 
-  console.log('Cookies: ', cookies)
-
   try {
     if (Object.keys(cookies).length === 0) {
+      // eslint-disable-next-line no-console
       console.log('[user-middleware] NO COOKIES FOUND!')
 
       throw new Error(

@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
+import { getAuth } from 'firebase-admin/auth'
 import admin from 'firebase-admin'
 
 const config = useRuntimeConfig()
@@ -31,7 +31,7 @@ const firebaseConfig = {
 
 // Inicializando firebase
 export const app = initializeApp(firebaseConfig)
-export const auth = getAuth(app)
+export const auth = getAuth
 export const adminService = admin.initializeApp({
   // @ts-expect-error, argumento é considerado inválido quando, na verdade, é
   credential: admin.credential.cert(serviceAccountConfig),
