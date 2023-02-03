@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   const sessionCookie = event.context.sessionCookie
   let error = false
 
-  console.log('Check auth state: ', sessionCookie)
+  // console.log('Check auth state: ', sessionCookie)
 
   const claim = await getAuth()
     .verifySessionCookie(sessionCookie)

@@ -28,8 +28,8 @@
           <div class="w-full h-full flex">
 
             <select id="characterGender" type="text" class="w-full appearance-none h-10 bg-transparent bg-gray-400/75 text-black text-xl border-0 px-2 outline-none rounded">
-              <option value="" class="bg-gray-400 text-white" disabled selected>Escolha</option>
-              <option key="masculino" class="bg-gray-700/75 text-white selected:bg-red-700" value="masculino">
+              <option value="" class="bg-gray-400 text-white" disabled selected>Escolha um</option>
+              <option key="masculino" class="bg-gray-700/75 text-white" value="masculino">
                 Masculino
               </option>
               <option key="feminino" class="bg-gray-700/75 text-white" value="feminino">
@@ -51,9 +51,18 @@
         <input id="characterElement" type="text" class="h-10 bg-transparent bg-gray-400/75 text-black placeholder:text-gray-700 px-2 text-xl rounded focus:bg-slate-300 outline-none" placeholder="Elemento">
       </div>
 
+      <div class="flex w-10/12 h-12 items-center justify-evenly text-xl mt-10">
+        <DropDownSearch
+          title="Arquétipo"
+          loading-text="Carregando!"
+          select-text="Escolha um"
+          :elements="archetypeNames"
+          @update:selected="updateSelected"
+        />
+      </div>
 
       <button 
-      class="mt-52 h-12 items-center w-8/12 bg-gradient-to-r from-gray-800 to-slate-900 text-3xl rounded border border border-gray-500 drop-shadow-sm" 
+      class="mt-16 mb-3 min-h-12 h-12 items-center w-8/12 bg-gradient-to-r from-gray-800 to-slate-900 text-3xl rounded border border border-gray-500 drop-shadow-sm" 
       @click="createCharacter()"
       >
 
