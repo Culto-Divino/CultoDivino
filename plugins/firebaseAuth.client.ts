@@ -10,7 +10,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // Inicializando firebase
 
-  // const app = initializeApp(firebaseConfig)
+  const app = initializeApp(firebaseConfig)
 
   const auth = getAuth()
   await setPersistence(auth, inMemoryPersistence)
