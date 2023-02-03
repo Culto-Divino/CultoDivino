@@ -21,12 +21,16 @@ module.exports = {
         '4/3': '4 / 3'
       },
       minHeight: {
-        '2/6': '33.33333%'
+        '2/6': '33.33333%',
+        '4/6': '66.66666%'
       }
     },
   },
-  plugins: [require('daisyui')],
-
+  plugins: [
+    require('daisyui'),
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    require('tailwind-scrollbar')({ nocompatible: true }),
+  ],
   daisyui: {
     themes: [{
       'theme': {

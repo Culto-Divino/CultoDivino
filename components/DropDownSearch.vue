@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col truncate w-full mt-5">
     <div>
-      <p>{{ title }}</p>
+      <p class="text-sm">{{ title }}</p>
       <div class="flex w-full">
         <input id="serchArchetype" v-model="searchQuery" class="text-white bg-transparent outline-none px-2 border-b w-full" />
         <label for="serchArchetype" class="text-white"><font-awesome-icon icon="fa-solid fa-magnifying-glass" /></label>

@@ -1,8 +1,9 @@
+<!-- eslint-disable vue/no-multiple-template-root -->
 <template>
-  <div class="w-screen h-screen bg-gradient-to-r overflow-y-scroll overflow-x-hidden from-bgColor1 to-bgColor2 z-0">
+  <div class="w-screen h-screen bg-gradient-to-r overflow-y-auto overflow-x-hidden from-bgColor1 to-bgColor2 z-0 scrollbar scrollbar-thin scrollbar-thumb-sky-700 scrollbar-track-gray-100/25 scrollbar-thumb-rounded scrollbar-track-rounded">
     <CharacterHeader class="sticky top-0 z-10" />
     <div class="w-full h-full flex items-center flex-col justify-evenly">
-      <div class="w-11/12 h-4/6 bg-gray-200/25 rounded-md flex flex-col items-center overflow-y-scroll">
+      <div class="w-11/12 h-4/6 bg-gray-200/25 rounded-md flex flex-col items-center overflow-y-auto scrollbar scrollbar-thin scrollbar-thumb-sky-700 scrollbar-track-gray-100/25 scrollbar-thumb-rounded scrollbar-track-rounded">
 
         <div class="sticky top-0 w-full min-h-12 h-12 bg-white/75 rounded-t-md text-black flex items-center justify-between">
           <h1 class="ml-3 text-2xl">Espaço:</h1>
@@ -22,12 +23,41 @@
       </div>
       <div class="w-11/12 h-1/6 flex items-center justify-between">
 
-        <button class="w-5/12 h-3/6 border rounded-lg text-xl">ADICIONAR</button>
+        <!-- <label for="my-modal-1" class="w-5/12 h-3/6"><button class="w-full h-full border rounded-lg text-xl">ADICIONAR</button></label> -->
+
+        <label for="my-modal-3" class="w-5/12 h-3/6">
+          <div class="w-full h-full border rounded-lg text-xl flex items-center justify-center cursor-pointer">ADICIONAR</div>
+          
+        </label>
         <NuxtLink :to="libraryPath" class="w-5/12 h-3/6 border rounded-lg text-xl flex items-center justify-center">BIBLIOTECA</NuxtLink>
 
       </div>
     </div>
   </div>
+
+  <input type="checkbox" id="my-modal-3" class="modal-toggle" />
+    <label for="my-modal-3" class="modal cursor-pointer modal-center cel:modal-bottom">
+        <label class="modal-box relative bg-transparent w-10/12 h-2/6 max-h-4/6 p-2 pc:h-2/5" for="">
+          <Modal 
+            id="3"
+            :text-inputs="[
+              {
+                inputId: 'itemName',
+                labelText: 'Adicionar Item:',
+                type: 'text',
+                placeholder: 'Nome...'
+              }
+            ]"
+            :button-inputs="[
+              {
+                id: 'addItem',
+                text: 'ADICIONAR',
+                class: 'success'
+              }
+            ]"
+          />
+        </label>
+    </label>
 </template>
 
 <script setup>
