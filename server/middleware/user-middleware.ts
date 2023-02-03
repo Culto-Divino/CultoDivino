@@ -17,13 +17,13 @@ export default defineEventHandler((event) => {
     // console.error(error)
     setCookie(event, 'session', undefined)
     setCookie(event, 'user', undefined)
-    event.node.res.end(
-      JSON.stringify({
-        statusCode: 401,
-        error:
-          'Missing cookies! This could be caused by calling the request on server-side',
-      })
-    )
+    // event.node.res.end(
+    //   JSON.stringify({
+    //     statusCode: 401,
+    //     error:
+    //       'Missing cookies! This could be caused by calling the request on server-side',
+    //   })
+    // )
   }
 
   // Fazer o usuário disponível para qualquer chamada do servidor.
