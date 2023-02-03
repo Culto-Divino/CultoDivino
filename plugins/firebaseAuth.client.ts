@@ -10,7 +10,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
 
   // Inicializando firebase
   if (getApps().length === 0) {
-    const app = initializeApp(firebaseConfig)
+    initializeApp(firebaseConfig)
   }
 
   const auth = getAuth()

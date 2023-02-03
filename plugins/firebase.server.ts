@@ -1,5 +1,5 @@
 import { initializeApp, getApps } from 'firebase/app'
-import { getAuth } from 'firebase-admin/auth'
+// import { getAuth } from 'firebase-admin/auth'
 import admin from 'firebase-admin'
 
 export default defineNuxtPlugin(() => {
@@ -32,9 +32,8 @@ export default defineNuxtPlugin(() => {
 
   if (getApps().length === 0) {
     // Inicializando firebase
-    const app = initializeApp(firebaseConfig)
-    const auth = getAuth
-    const adminService = admin.initializeApp({
+    initializeApp(firebaseConfig)
+    admin.initializeApp({
       // @ts-expect-error, argumento é considerado inválido quando, na verdade, é
       credential: admin.credential.cert(serviceAccountConfig),
     })
