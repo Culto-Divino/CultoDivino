@@ -32,7 +32,7 @@ export default defineNuxtPlugin(() => {
 
   if (getApps().length === 0) {
     // Inicializando firebase
-    const app = initializeApp(firebaseConfig)
+    // const app = initializeApp(firebaseConfig)
     const auth = getAuth
     const adminService = admin.initializeApp({
       // @ts-expect-error, argumento é considerado inválido quando, na verdade, é
