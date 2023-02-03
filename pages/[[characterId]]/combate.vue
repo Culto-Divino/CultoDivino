@@ -5,8 +5,6 @@
   >
     <CharacterHeader class="sticky top-0 z-10" />
 
-    
-
     <div class="h-2/4 flex flex-col text-white items-center mt-10">
       <div class="flex w-9/12 h-4/6 flex items-center justify-center text-2xl">
         <CombatData title="Vida" value="99" max-value="99" />
@@ -28,12 +26,11 @@
           Morrendo, Congelado
         </div>
         <label for="my-modal-4" class="w-12 h-12 mr-2">
-            <p
-              class="flex items-center justify-center text-6xl rounded-full bg-white h-full text-black"
-            >
-              +
-            </p>
-          
+          <p
+            class="flex items-center justify-center text-6xl rounded-full bg-white h-full text-black"
+          >
+            +
+          </p>
         </label>
       </div>
     </div>
@@ -58,16 +55,13 @@
       </button>
     </div>
 
-    <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+    <input id="my-modal-4" type="checkbox" class="modal-toggle" />
     <label for="my-modal-4" class="modal cursor-pointer">
-        <label class="modal-box relative bg-transparent w-10/12 h-2/6 p-2" for="">
-          <Modal 
-            title="Digite aqui o seu estado:"
-          />
-        </label>
+      <label class="modal-box relative bg-transparent w-10/12 h-2/6 p-2" for="">
+        <Modal title="Digite aqui o seu estado:" />
+      </label>
     </label>
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
