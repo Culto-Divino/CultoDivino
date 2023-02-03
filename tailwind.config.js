@@ -16,8 +16,19 @@ module.exports = {
       },
       fontFamily: {
         'american-typewriter': ['American Typewriter','sans-serif']
+      },
+      aspectRatio: {
+        '4/3': '4 / 3'
       }
     },
   },
-  plugins: [],
+  plugins: [require('daisyui')],
+
+  daisyui: {
+    themes: [{
+      'theme': {
+        'primary': '#03353D'
+      }
+    }]
+  }
 }

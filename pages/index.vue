@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout name="default">
+  <NuxtLayout name="default" data-theme="theme">
     <NuxtLink to="/login"> back </NuxtLink>
     <button @click="signOut">sair</button>
   </NuxtLayout>
@@ -13,4 +13,6 @@
   const signOut = async () => {
     await signOutUser()
   }
+
+  navigateTo('/login')
 </script>

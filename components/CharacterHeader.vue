@@ -1,5 +1,5 @@
 <template>
-  <div id="container" class="w-screen h-16 flex flex-col select-none">
+  <div id="container" class="w-screen h-16 flex flex-col select-none text-black">
     <div class="flex justify-evenly items-center w-screen h-16 bg-white/75">
       <font-awesome-icon
         icon="fa-solid fa-bars"
@@ -19,50 +19,50 @@
     >
       <NuxtLink
         class="text-white h-20 flex items-center justify-start border-b border-slate-600 pl-3 text-xl hover:bg-slate-500"
-        to="/1/VisaoGeral"
+        :to="'/' + character.id + '/VisaoGeral'"
       >
-        <div><img src="https://i.pinimg.com/564x/cf/00/f2/cf00f2bcf97b0d1e7a6aa6107d35d635.jpg" alt="" class="w-10 h-10 rounded-full border-2"></div>
-        <div class="ml-4 text-2xl">Zeca Urubu</div>
+        <div><img :src="character.image" alt="" class="w-10 h-10 rounded-full border-2"></div>
+        <div class="ml-4 text-2xl">{{ character.name }}</div>
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        to="/1/combate"
+        :to="'/' + character.id + '/combate'"
       >
         Combate
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        to="/1/habilidades"
+        :to="'/' + character.id + '/habilidades'"
       >
         Habilidades
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        to="/1/magias-e-amuletos"
+        :to="'/' + character.id + '/magias-e-amuletos'"
       >
         Magias / Amuletos
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        to="/1/inventario"
+        :to="'/' + character.id + '/inventario'"
       >
         Inventario
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        to="/1/documentos"
+        :to="'/' + character.id + '/documentos'"
       >
         Documentos
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        to="/1/historia"
+        :to="'/' + character.id + '/historia'"
       >
         História
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        to="/1/anotacoes"
+        :to="'/' + character.id + '/anotacoes'"
       >
         Anotações
       </NuxtLink>
@@ -77,7 +77,12 @@
 </template>
 
 <script setup>
-  let isMenuShown = false
+import useCharacter from "@@/composables/useCharacter";
+
+const characterId = useRoute().params.characterId;
+const character = await useCharacter(characterId);
+
+let isMenuShown = false;
 
   function teste() {
     const menu = document.querySelector('#menu')

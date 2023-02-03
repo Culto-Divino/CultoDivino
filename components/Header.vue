@@ -15,7 +15,12 @@
 </template>
 
 <script setup>
-  defineProps({
-    creation: Boolean,
-  })
+    defineProps({
+        creation: Boolean,
+        logged: Boolean
+    })
+
+    function logOut() {
+        signOutUser();
+    }
 </script>

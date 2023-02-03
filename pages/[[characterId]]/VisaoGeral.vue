@@ -8,7 +8,7 @@
     >
       <img
         class="w-4/6 h-4/6 mt-1 pc:w-2/6 rounded-xl border border-slate-300 p-1 drop-shadow-lg"
-        src="https://static.wikia.nocookie.net/herois/images/7/76/Skipper03.png/revision/latest?cb=20210907161549&path-prefix=pt-br"
+        :src="character.image"
         alt=""
       />
       <div class="text-xl w-4/6">
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div
-      class="flex flex-col w-full items-center justify-center text-white text-3xl mt-8"
+      class="flex flex-col w-full items-center justify-center text-white text-3xl mt-8 mb-8"
     >
       <h1>Força de Vontade</h1>
       <div class="flex w-full items-center justify-center mt-2 h-12">
