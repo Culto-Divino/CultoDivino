@@ -7,8 +7,8 @@
         />
         <div id="default-carousel" class="w-10/12 h-4/6 bg-gray-200/25 flex flex-col items-center justify-center rounded-xl">
             <h1 class="text-xl">ESCOLHA DE PERSONAGEM</h1>
-            <div class="flex w-8/12 justify-evenly mt-2">
-                <input type="text" name="characterSearch" class="w-full px-2 bg-transparent bg-gradient-to-r from-cyan-900 to-sky-900 outline-none border-b rounded-full hover:rounded transition duration-2000 ease-in-out">
+            <div class="flex w-8/12 pc:w-10/12 cel:justify-evenly mt-2">
+                <input type="text" name="characterSearch" class="w-full pc:w-4/12 pc:ml-5 px-2 bg-transparent bg-gradient-to-r from-cyan-900 to-sky-900 outline-none border-b rounded-full hover:rounded transition duration-2000 ease-in-out">
                 <label for="characterSearch"><button @click="search()"> <font-awesome-icon class="ml-3" icon="fa-solid fa-magnifying-glass" /></button></label>
             </div>
             <div class="w-11/12 h-4/6 mt-3 flex items-center flex-wrap justify-evenly overflow-x-hidden scrollbar scrollbar-thin scrollbar-thumb-sky-700 scrollbar-track-gray-100/25 scrollbar-thumb-rounded scrollbar-track-rounded">
@@ -17,6 +17,7 @@
                 :key="character"
                 :data="{ name: character.name, element: character.element, image: character.image, level: character.level, id: character.id }"
                 :character-id="character.id"
+                class="ml-3 mr-3"
                 />
             </div>
         </div>

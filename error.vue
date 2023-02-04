@@ -12,6 +12,6 @@
   const route = useRoute()
 
   if (error.value.statusCode === 404) {
-    error.value.message = `O caminho "${route.path}" não foi encontrado!`
+    error.value.message = `O caminho "${route.fullPath}" não foi encontrado!`
   }
 </script>

@@ -12,7 +12,8 @@ module.exports = {
       },
       screens: {
         'cel': {'max': '640px'},
-        'pc': {'min': '641px'}
+        'pc': {'min': '641px'},
+        'ise': { 'raw': '(max-height: 800px)' },
       },
       fontFamily: {
         'american-typewriter': ['American Typewriter','sans-serif']

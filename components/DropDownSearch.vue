@@ -19,7 +19,7 @@
           <option v-if="!elements" disabled value="">
             {{ loadingText }}
           </option>
-          <option v-else disabled selected value="" class="bg-gray-400 text-white">{{ selectText }}</option>
+          <option v-else value="" class="bg-gray-400 text-white" disabled selected>{{ selectText }}</option>
           <option
             v-for="(element, index) in displayElements"
             :key="index"
