@@ -1,11 +1,14 @@
 <template>
     <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex flex-col justify-center items-center truncate text-white">
         <div class="w-11/12 h-5/6 bg-gray-200/25 rounded-md overflow-y-scroll flex flex-col items-center">
-            <div class="flex flex-col items-center justify-center w-full">
-                <img src="@@/images/no_item_image.jpg" alt="" class="w-7/12 h-80 mt-7 rounded-lg border p-1">
-                <label for="input" class="mt-6">Envie aqui o design do item!</label>
-                <input id="input" type="file" class="file-input file-input-sm file-input-bordered file-input-primary w-full max-w-xs bg-transparent bg-gray-400/75" accept="image/*">
-                <!-- IMAGEM -->
+            <div class="flex flex-col items-center justify-center w-full pc:flex-row pc:justify-evenly">
+                <img src="@@/images/no_item_image.jpg" alt="" class="w-7/12 pc:w-60 h-80 mt-7 rounded-lg border p-1">
+                <div class="flex flex-col">
+                    <DropZone class="cel:hidden w-full h-64 w-96" label="Envie aqui o design do item!" />
+                    <label for="input" class="mt-6 pc:hidden">Envie aqui o design do item!</label>
+                    <input id="input" type="file" class="pc:hidden file-input file-input-sm file-input-bordered file-input-primary w-full max-w-xs bg-transparent bg-gray-400/75" accept="image/*">
+                
+                </div>
             </div>
             <div class="flex flex-col justify-center w-10/12 mt-2">
                 <label for="itemName">Nome do item:</label>

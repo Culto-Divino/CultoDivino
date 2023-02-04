@@ -15,7 +15,7 @@
     </div>
     <div
       id="menu"
-      class="hidden w-screen h-full bg-slate-900 flex flex-col justify-start"
+      class="hidden w-screen h-screen bg-slate-900 flex flex-col justify-start"
     >
       <NuxtLink
         class="text-white h-20 flex items-center justify-start border-b border-slate-600 pl-3 text-xl bg-slate-800 hover:bg-slate-500"
