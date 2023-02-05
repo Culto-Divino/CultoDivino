@@ -75,6 +75,8 @@
         />
       </div>
     </div>
+
+    <NuxtLink to="/items/1">clica aqui vai</NuxtLink>
   </div>
 </template>
 <script async setup>

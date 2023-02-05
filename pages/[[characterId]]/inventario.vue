@@ -17,6 +17,7 @@
         :image="item.image"
         :name="item.name"
         :weight="item.weight"
+        :amount="item.amount"
         :itemid="item.id"
         />
         
@@ -37,16 +38,22 @@
 
   <input id="my-modal-3" type="checkbox" class="modal-toggle" />
     <label for="my-modal-3" class="modal cursor-pointer modal-center cel:modal-bottom">
-        <label class="modal-box relative bg-transparent w-10/12 h-2/6 max-h-4/6 p-2 pc:h-2/5" for="">
+        <label class="modal-box relative bg-transparent w-10/12 h-min max-h-4/6 p-2 pc:h-2/5" for="">
           <Modal 
             id="3"
             :text-inputs="[
               {
                 inputId: 'itemName',
-                labelText: 'Adicionar Item:',
+                labelText: 'Item:',
                 type: 'text',
                 placeholder: 'Nome...'
-              }
+              },
+              {
+                    inputId: 'itemAmount',
+                    labelText: 'Quantidade:',
+                    type: 'text',
+                    placeholder: 'Quantidade...'
+                }
             ]"
             :button-inputs="[
               {
@@ -75,12 +82,14 @@ const userInv = [
     image: 'https://a-static.mlcdn.com.br/800x560/caixa-de-som-jbl-charge-5-bluetooth-portatil-40w-com-tweeter/magazineluiza/228567500/9cccadaf1da66ac5328ff5be7666bb93.jpg',
     name: 'Caixa de Som',
     weight: '5',
+    amount: '2',
     id: '1'
   },
   {
     image: 'https://static.paodeacucar.com/img/uploads/1/761/11697761.jpg',
     name: 'Bolinho hmmm',
     weight: '3',
+    amount: '2',
     id: '2'
   }
 ]
