@@ -1,13 +1,17 @@
 <template>
     <div class="w-full min-h-16 h-16 bg-black/25 flex items-center justify-evenly mt-2">
-        <img :src="image" alt="" class="w-12 h-12 ml-3 rounded">
-        <span class="w-1/3 truncate">
+        <img :src="image" alt="" class="w-11 h-11 ml-2 rounded">
+        <span class="w-1/3 truncate ml-2">
             <p class="text-sm">Nome</p>
             <p class="text-2xl">{{ name }}</p>
         </span>
-        <span class="w-1/4 ml-3">
+        <span class="w-1/5 ml-5">
             <p class="text-sm">Peso</p>
             <p class="text-2xl ">{{ weight }}</p>
+        </span>
+        <span class="w-1/5">
+            <p class="text-xs pc:text-sm">Quantidade</p>
+            <p class="text-2xl ">{{ amount }}</p>
         </span>
         <label for="my-modal-1" class="text-2xl w-1/12" ><font-awesome-icon icon="fa-solid fa-ellipsis-vertical" /></label>
     </div>
@@ -28,9 +32,12 @@ const props = defineProps({
     image: String,
     name: String,
     weight: String,
+    amount: String,
     itemid: String
 })
 
-const itemURL = `/items/${props.itemid}`
+const route = useRoute()
+
+const itemURL = `/items/${props.itemid}?characterId=${route.params.characterId}&redirected=true`
 
 </script>

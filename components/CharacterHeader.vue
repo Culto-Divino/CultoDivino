@@ -26,27 +26,15 @@
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
+        :to="'/' + character.id + '/anotacoes'"
+      >
+        Anotações
+      </NuxtLink>
+      <NuxtLink
+        class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character.id + '/combate'"
       >
         Combate
-      </NuxtLink>
-      <NuxtLink
-        class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/habilidades'"
-      >
-        Habilidades
-      </NuxtLink>
-      <NuxtLink
-        class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/magias-e-amuletos'"
-      >
-        Magias / Amuletos
-      </NuxtLink>
-      <NuxtLink
-        class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/inventario'"
-      >
-        Inventario
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
@@ -56,15 +44,27 @@
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
+        :to="'/' + character.id + '/habilidades'"
+      >
+        Habilidades
+      </NuxtLink>
+      <NuxtLink
+        class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character.id + '/historia'"
       >
         História
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/anotacoes'"
+        :to="'/' + character.id + '/inventario'"
       >
-        Anotações
+        Inventario
+      </NuxtLink>
+      <NuxtLink
+        class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
+        :to="'/' + character.id + '/magias-e-amuletos'"
+      >
+        Magias / Amuletos
       </NuxtLink>
       <NuxtLink
         class="text-red-700 h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"

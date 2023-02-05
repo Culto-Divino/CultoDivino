@@ -46,4 +46,10 @@ export default defineNuxtConfig({
   },
 
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
+
+  app: {
+    head: {
+      title: 'O Culto Divino'
+    }
+  }
 })
