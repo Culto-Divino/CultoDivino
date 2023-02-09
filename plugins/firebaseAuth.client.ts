@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app'
+import { getApps, initializeApp } from 'firebase/app'
 import { getAuth, setPersistence, inMemoryPersistence } from 'firebase/auth'
 
 export default defineNuxtPlugin(async (nuxtApp) => {
@@ -9,8 +9,9 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   }
 
   // Inicializando firebase
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const app = initializeApp(firebaseConfig)
+  if (getApps().length === 0) {
+    initializeApp(firebaseConfig)
+  }
 
   const auth = getAuth()
   await setPersistence(auth, inMemoryPersistence)

@@ -49,5 +49,3 @@ function cancelCreation(){
 function confirmCreation(){
     console.log('*confirmou*')
 }
-
-</script>

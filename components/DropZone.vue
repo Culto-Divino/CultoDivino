@@ -84,7 +84,6 @@ export default {
         checkIcon.classList.remove('hidden')
 
         textArea.innerText = 'Imagem Enviada!'
-        this.onChange();
 
       }else{
 

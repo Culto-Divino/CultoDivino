@@ -1,7 +1,7 @@
 export default async function () {
   const archetypes = useArchetypes()
 
-  const nuxtApp = useNuxtApp()
+  // const nuxtApp = useNuxtApp()
 
   // Buscar arquétipos no servidor
   const { data: res, error } = await useLazyAsyncData(

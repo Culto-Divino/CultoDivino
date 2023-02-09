@@ -1,19 +1,14 @@
 <template>
-  <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex flex-col justify-center items-center truncate text-white">
-    <Header 
-    :creation="true" 
-    :logged="true" 
-    />
-    <div class="w-10/12 h-5/6 mt-10 bg-gray-200/25 rounded-xl flex flex-col pc:flex-row pc:flex-wrap pc:justify-center items-center overflow-y-scroll">
-
-      <div class="flex flex-col items-center justify-center w-full pc:flex-row pc:justify-evenly">
-          <img src="@@/images/no_item_image.jpg" alt="" class="w-7/12 pc:w-60 h-80 mt-7 rounded-lg border p-1">
-          <div class="flex flex-col">
-            <DropZone class="cel:hidden w-full h-64 w-96" label="Envie aqui a foto do seu personagem!" />
-            <label for="input" class="mt-6 pc:hidden">Envie aqui a foto do seu personagem!</label>
-            <input id="input" type="file" class="pc:hidden file-input file-input-sm file-input-bordered file-input-primary w-full max-w-xs bg-transparent bg-gray-400/75" accept="image/*">
-        
-          </div>
+  <div
+    class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex flex-col justify-center items-center truncate text-white"
+  >
+    <Header :creation="true" :logged="true"/>
+    <div
+      class="w-10/12 h-5/6 mt-10 bg-gray-200/25 rounded-xl flex flex-col items-center justify-center overflow-y-scroll"
+    >
+      <div class="flex w-10/12 h-12 items-center justify-evenly text-xl">
+        <p>Nome:</p>
+        <input type="text" class="bg-transparent border-b px-2 outline-none" />
       </div>
 
       <div class="w-10/12 h-16 flex flex-col mt-5">
@@ -104,6 +99,7 @@
     // eslint-disable-next-line no-console
     console.log(error)
   }
+  const nuxtApp = useNuxtApp()
 
   const updateSelected = (selected) => {
     selectedArchetype.value = archetypes.find((archetype) => {

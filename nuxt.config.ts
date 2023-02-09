@@ -4,6 +4,10 @@
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
 
+  nitro: {
+    preset: process.env.NITRO_PRESET,
+  },
+
   typescript: {
     strict: false,
   },

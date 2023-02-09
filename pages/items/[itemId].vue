@@ -2,7 +2,7 @@
     <div class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 overflow-y-scroll overflow-x-hidden z-0 flex flex-col justify-center items-center break-words">
         <Header class="truncate"/>
 
-        <div class="w-11/12 h-5/6 flex flex-col items-center mt-10 overflow-y-auto pc:items-start">
+        <div class="w-11/12 h-5/6 flex flex-col items-center mt-10 overflow-y-auto pc:items-start pc:scrollbar pc:scrollbar-thin scrollbar-thumb-sky-700 scrollbar-track-gray-100/25 scrollbar-thumb-rounded scrollbar-track-rounded">
 
             <div class="w-full flex flex-col items-center justify-center pc:flex-row">
                 <img class="aspect-square w-8/12 pc:w-3/12 rounded-lg border p-1" src="https://a-static.mlcdn.com.br/800x560/caixa-de-som-jbl-charge-5-bluetooth-portatil-40w-com-tweeter/magazineluiza/228567500/9cccadaf1da66ac5328ff5be7666bb93.jpg" alt="">
@@ -30,9 +30,9 @@
                 </div>
             </div>
 
-            <div class="w-full h-16 mt-5 flex items-center justify-evenly">
+            <div v-if="characterId && redirected" class="w-full h-16 mt-5 flex items-center justify-evenly">
                 <label for="my-modal-5" class="h-16 w-5/12"><div class="w-full h-full bg-green-600 rounded flex items-center justify-center text-xl cursor-pointer">ADICIONAR</div></label>
-                <NuxtLink v-if="redirected" :to="returnURL" class="h-16 w-5/12 bg-transparent border rounded flex items-center justify-center text-xl"><font-awesome-icon icon="fa-solid fa-arrow-left" /> <p class="ml-3">VOLTAR</p></NuxtLink>
+                <NuxtLink :to="returnURL" class="h-16 w-5/12 bg-transparent border rounded flex items-center justify-center text-xl"><font-awesome-icon icon="fa-solid fa-arrow-left" /> <p class="ml-3">VOLTAR</p></NuxtLink>
             </div>
 
         </div>
@@ -46,7 +46,7 @@
                 {
                     inputId: 'itemAmount',
                     labelText: 'Digite aqui a quantidade:',
-                    type: 'text',
+                    type: 'number',
                     placeholder: 'Quantidade...'
                 }
                 ]"
@@ -72,5 +72,9 @@ const characterId = route.query.characterId
 const redirected = route.query.redirected
 
 const returnURL = `/${characterId}/inventario`
+
+definePageMeta({
+    middleware: 'auth',
+})
 
 </script>
