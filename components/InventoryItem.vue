@@ -13,7 +13,7 @@
             <p class="text-xs pc:text-sm">Quantidade</p>
             <p class="text-2xl ">{{ amount }}</p>
         </span>
-        <label for="my-modal-1" class="text-2xl w-1/12" ><font-awesome-icon icon="fa-solid fa-ellipsis-vertical" /></label>
+        <label for="my-modal-1" class="text-2xl w-1/12 cursor-pointer" ><font-awesome-icon icon="fa-solid fa-ellipsis-vertical" /></label>
     </div>
 
     <input id="my-modal-1" type="checkbox" class="modal-toggle"/>

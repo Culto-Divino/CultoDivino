@@ -97,6 +97,3 @@
     </label>
   </div>
 </template>
-
-<script setup>
-</script>

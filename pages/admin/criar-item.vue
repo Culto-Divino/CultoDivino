@@ -33,43 +33,19 @@
                 <button class="h-10 w-5/12 bg-green-600 rounded" @click="confirmCreation()">Confirmar</button>
             </div>
         </div>
-        <div class="flex flex-col justify-center h-16 w-5/12">
-          <label for="itemSpace" class="pl-1">Espaço:</label>
-          <input
-            id="itemWeight"
-            type="text"
-            class="bg-transparent bg-gray-400/75 outline-none text-black h-10 mt-1 px-2 rounded-md focus:bg-slate-300 focus:rounded"
-          />
-        </div>
-        <div class="flex w-10/12 mt-6 justify-between mb-6">
-          <button
-            class="h-10 w-5/12 bg-red-600 rounded"
-            @click="cancelCreation()"
-          >
-            Cancelar
-          </button>
-          <button
-            class="h-10 w-5/12 bg-green-600 rounded"
-            @click="confirmCreation()"
-          >
-            Confirmar
-          </button>
-        </div>
-      </div>
+    </div>
 </template>
 
 <script setup>
-  definePageMeta({
+
+definePageMeta({
     middleware: 'auth',
-  })
+})
 
-  function cancelCreation() {
-    // eslint-disable-next-line no-console
+function cancelCreation(){
     console.log('*cancelou*')
-  }
+}
 
-  function confirmCreation() {
-    // eslint-disable-next-line no-console
+function confirmCreation(){
     console.log('*confirmou*')
-  }
-</script>
+}
