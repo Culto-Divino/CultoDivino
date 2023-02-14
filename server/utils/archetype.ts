@@ -1,15 +1,15 @@
-enum CharacterClass {
-  'investigador',
-  'guerreiro',
-  'acadêmico',
-  'ocultista',
+export const CharacterClass = {
+  Investigador: { name: 'Investigador' },
+  Guerreiro: { name: 'Guerreiro' },
+  Academico: { name: 'Acadêmico' },
+  Ocultista: { name: 'Ocultista' },
 }
 
 export default class Archetype {
   name: string
-  parentClass: CharacterClass
+  parentClass: object
 
-  constructor(name: string, parentClass: CharacterClass) {
+  constructor(name: string, parentClass: object) {
     this.name = name
     this.parentClass = parentClass
   }

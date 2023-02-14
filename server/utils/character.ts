@@ -1,10 +1,10 @@
+import { createHash } from 'node:crypto'
 import Archetype from './archetype'
 
 const config = useRuntimeConfig()
-const maxAtributeValue = 20
 enum Sex {
-  'masculino',
-  'feminino',
+  'Masculino',
+  'Feminino',
 }
 
 export default function createCharacterDataObject(
@@ -27,7 +27,7 @@ export default function createCharacterDataObject(
   data.age = age
   data.aliases = aliases
   data.element = element
-  data.notes = {}
+  data.notes = []
   data.documents = []
   data.archetype = archetype
   data.class = archetype.parentClass
@@ -43,6 +43,18 @@ export default function createCharacterDataObject(
       return true
     }
     return false
+  }
+  data.createNote = (name, content) => {
+    data.notes.push({
+      name,
+      content,
+      id: createHash('sha256').update(Date.now().toString()),
+    })
+  }
+  data.deleteNote = (id) => {
+    data.notes = data.notes.filter((note) => {
+      return note.id === id
+    })
   }
 
   return data
