@@ -1,3 +1,4 @@
+import { getApp, initializeApp } from 'firebase/app'
 import {
   getFirestore,
   getDocs,
@@ -10,7 +11,11 @@ import {
   setDoc,
 } from 'firebase/firestore'
 
-const db = getFirestore()
+import app from './firebase'
+
+// import { db } from '@@/plugins/firebase.server'
+
+const db = getFirestore(app)
 
 // Filtrar com where, orderby, passando o objeto de query
 export const getDocsFromCollectionQuery = async (collectionPath, query) => {
