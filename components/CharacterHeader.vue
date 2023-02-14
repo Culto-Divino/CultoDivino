@@ -1,5 +1,8 @@
 <template>
-  <div id="container" class="w-screen h-16 flex flex-col select-none text-black">
+  <div
+    id="container"
+    class="w-screen h-16 flex flex-col select-none text-black"
+  >
     <div class="flex justify-evenly items-center w-screen h-16 bg-white/75">
       <font-awesome-icon
         icon="fa-solid fa-bars"
@@ -21,7 +24,13 @@
         class="text-white h-20 flex items-center justify-start border-b border-slate-600 pl-3 text-xl bg-slate-800 hover:bg-slate-500"
         :to="'/' + character.id + '/VisaoGeral'"
       >
-        <div><img :src="character.image" alt="" class="w-10 h-10 rounded-full border-2"></div>
+        <div>
+          <img
+            :src="character.image"
+            alt=""
+            class="w-10 h-10 rounded-full border-2"
+          />
+        </div>
         <div class="ml-4 text-2xl">{{ character.name }}</div>
       </NuxtLink>
       <NuxtLink
@@ -77,12 +86,12 @@
 </template>
 
 <script setup>
-import useCharacter from "@@/composables/useCharacter";
+  import useCharacter from '@@/composables/useCharacter'
 
-const characterId = useRoute().params.characterId;
-const character = await useCharacter(characterId);
+  const characterId = useRoute().params.characterId
+  const character = await useCharacter(characterId)
 
-let isMenuShown = false;
+  let isMenuShown = false
 
   function teste() {
     const menu = document.querySelector('#menu')
