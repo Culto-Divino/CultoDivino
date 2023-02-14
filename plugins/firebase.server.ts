@@ -1,3 +1,4 @@
+import { getFirestore } from 'firebase/firestore'
 import { initializeApp, getApps } from 'firebase/app'
 // import { getAuth } from 'firebase-admin/auth'
 import admin from 'firebase-admin'
