@@ -4,6 +4,8 @@ import { getAuth, setPersistence, inMemoryPersistence } from 'firebase/auth'
 export default defineNuxtPlugin(async (nuxtApp) => {
   const config = useRuntimeConfig()
 
+  console.log('running')
+
   const firebaseConfig = {
     apiKey: config.FIREBASE_API_KEY,
   }

@@ -37,6 +37,9 @@ export default defineNuxtConfig({
       /\\n/gm,
       '\n'
     ),
+    MONGO_USER: process.env.MONGO_USER,
+    MONGO_PASSWORD: process.env.MONGO_PASSWORD,
+    TOKEN_VALIDITY_TIME_DAYS: process.env.TOKEN_VALIDITY_TIME_DAYS,
     FIREBASE_CLIENT_EMAIL: process.env.FIREBASE_CLIENT_EMAIL,
     FIREBASE_CLIENT_ID: process.env.FIREBASE_CLIENT_ID,
     FIREBASE_AUTH_URI: process.env.FIREBASE_AUTH_URI,
@@ -52,7 +55,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'O Culto Divino'
-    }
-  }
+      title: 'O Culto Divino',
+    },
+  },
 })

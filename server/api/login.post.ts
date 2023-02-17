@@ -1,35 +1,34 @@
-import { getAuth } from 'firebase-admin/auth'
-import createUserDataObject from '../utils/user'
+import userModel from '@@/mongo/models/userModel'
+import cookieOptions from '@@/cookie-options.json'
+import Authenticator from '@@/mongo/auth/authenticator'
 
 export default defineEventHandler(async (event) => {
-  const { idToken, uid } = await readBody(event)
-  const expirationTimeSeconds = 60 * 60 * 24 * 5
+  const { email, password } = await readBody(event)
 
-  const options = {
-    maxAge: expirationTimeSeconds,
-    httpOnly: true,
-    secure: true,
-    sameSite: 'none',
-    // domain:
+  const user = await userModel.findOne({ email }).exec()
+
+  if (!Authenticator.verifyPassword(password, user?.password)) {
+    event.node.res.statusCode = 401
+    event.node.res.end(JSON.stringify({ message: 'Failed to authenticate.' }))
+    return
   }
 
-  const userInfo = createUserDataObject(uid)
+  const token = Authenticator.generateUserAuthToken()
 
-  // set user cookie
-  // @ts-expect-error, objeto options sendo passado é considerado inválido, quando na verdade é.
-  setCookie(event, 'user', JSON.stringify(userInfo), options)
-
-  try {
-    const sessionCookie = await getAuth().createSessionCookie(idToken, {
-      expiresIn: expirationTimeSeconds * 1000,
-    })
-    // @ts-expect-error, objeto options sendo passado é considerado inválido, quando na verdade é.
-    setCookie(event, 'session', JSON.stringify(sessionCookie), options)
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error('Error: ', e)
-    return { statusCode: 401, error: 'UNATHORIZED REQUEST!' }
+  const sessionCookieValue = {
+    token: token.token,
+    id: user._id,
   }
 
-  return { statusCode: 200, body: JSON.stringify({ status: 'sucess' }) }
+  setCookie(
+    event,
+    'session',
+    JSON.stringify(sessionCookieValue),
+    // @ts-expect-error, o objeto sendo passado contém as propriedades necessárias para ser interpretado como CookieSerializeOptions
+    cookieOptions
+  )
+  user.update({ token: token.token, tokenExpiration: token.validityTime })
+
+  event.node.res.statusCode = 200
+  event.node.res.end(JSON.stringify({ message: 'Successfully logged in!' }))
 })

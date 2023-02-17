@@ -1,4 +1,3 @@
-import { getApp, initializeApp } from 'firebase/app'
 import {
   getFirestore,
   getDocs,
