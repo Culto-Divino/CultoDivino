@@ -1,5 +1,5 @@
 import { serverTimestamp } from 'firebase/firestore'
-import { setDocFromCollection } from '../utils/firestore'
+import { setDocFromCollection } from '../../mongo/utils/firestore'
 
 // OBSOLETE!
 export default defineEventHandler(async (event) => {

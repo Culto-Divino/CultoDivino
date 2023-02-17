@@ -1,4 +1,4 @@
-import { getDocFromCollection } from '../utils/firestore'
+import { getDocFromCollection } from '../../mongo/utils/firestore'
 
 export default defineEventHandler(async (event) => {
   const characterId = getHeader(event, 'Character-Id')

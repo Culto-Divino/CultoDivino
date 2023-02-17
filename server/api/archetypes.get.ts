@@ -1,4 +1,4 @@
-import { getDocsFromCollection } from './../utils/firestore'
+import { getDocsFromCollection } from '../../mongo/utils/firestore'
 
 export default defineEventHandler(async (event) => {
   let archetypes

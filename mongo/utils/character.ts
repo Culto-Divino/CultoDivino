@@ -1,7 +1,6 @@
 import { createHash } from 'node:crypto'
 import Archetype from './archetype'
 
-const config = useRuntimeConfig()
 enum Sex {
   'Masculino',
   'Feminino',
@@ -21,7 +20,7 @@ export default function createCharacterDataObject(
   let data
 
   // Propriedades
-  data.version = config.CHARACTER_SHEET_VERSION
+  // data.version = config.CHARACTER_SHEET_VERSION
   data.characterId = characterId
   data.name = name
   data.age = age
@@ -38,12 +37,12 @@ export default function createCharacterDataObject(
   // })
 
   // Métodos
-  data.verifyVersion = () => {
-    if (data.version === config.CHARACTER_SHEET_VERSION) {
-      return true
-    }
-    return false
-  }
+  // data.verifyVersion = () => {
+  //   if (data.version === config.CHARACTER_SHEET_VERSION) {
+  //     return true
+  //   }
+  //   return false
+  // }
   data.createNote = (name, content) => {
     data.notes.push({
       name,
