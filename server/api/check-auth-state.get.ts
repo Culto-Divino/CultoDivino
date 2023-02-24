@@ -1,20 +1,30 @@
-import { getAuth } from 'firebase-admin/auth'
+import Authenticator from '@@/mongo/auth/authenticator'
+import userModel from '@@/mongo/models/userModel'
 
 export default defineEventHandler(async (event) => {
-  const sessionCookie = event.context.sessionCookie
-  let error = false
+  const { id, token } = event.context.sessionCookie
 
-  const claim = await getAuth()
-    .verifySessionCookie(sessionCookie)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    .catch((e) => {
-      // console.log("Verification error! [server/api/check-auth-state.get]:\n",e)
-      event.node.res.end(
-        JSON.stringify({ statusCode: 401, error: 'UNATHORIZED REQUEST!' })
+  console.log(id, token)
+
+  const user = await userModel.findById(id)
+
+  console.log(user)
+  console.log(Date.now())
+  try {
+    if (
+      !Authenticator.verifyUserAuthToken(
+        token,
+        user.token,
+        user.tokenExpiration
       )
-      error = true
-    })
-  if (error) return
-
-  event.node.res.end(JSON.stringify({ statusCode: 200, claim }))
+    ) {
+      event.node.res.statusCode = 401
+      event.node.res.end(JSON.stringify({ message: 'Failed to authenticate' }))
+      return
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  event.node.res.statusCode = 200
+  event.node.res.end(JSON.stringify({ message: 'User authenticated' }))
 })

@@ -4,6 +4,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   // Conectar com o mongo
   const config = useRuntimeConfig()
 
+  console.log('Aqui!')
+
   mongoose.set('strictQuery', false)
 
   console.log('$ Connecting to mongo database...')

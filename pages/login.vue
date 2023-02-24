@@ -19,8 +19,6 @@
 </template>
 
 <script setup>
-  import { generateUserResponse } from '@@/composables/useAuthErrorHandler'
-
   const form = ref({ email: '', password: '' })
   const message = ref('')
 
@@ -32,6 +30,8 @@
   }
 
   const signin = async () => {
+    console.log(form.value.password, form.value.email)
+
     if (!form.value.password || !form.value.email) {
       message.value = 'Ainda há campos a serem preenchidos!'
       return
@@ -39,14 +39,11 @@
 
     const result = await signInUser(form.value.email, form.value.password)
 
-    if (result.error) {
-      const userResponse = generateUserResponse(result.error, form.value)
-      form.value = {
-        email: userResponse.email,
-        password: userResponse.password,
-      }
-
-      message.value = userResponse.message
+    if (!result) {
+      message.value = 'Verifique email e senha!'
+      return
     }
+
+    await navigateTo('escolha-de-personagem')
   }
 </script>

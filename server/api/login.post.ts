@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
     // @ts-expect-error, o objeto sendo passado contém as propriedades necessárias para ser interpretado como CookieSerializeOptions
     cookieOptions
   )
-  user.update({ token: token.token, tokenExpiration: token.validityTime })
+  await user.update({ token: token.token, tokenExpiration: token.validityTime })
 
   event.node.res.statusCode = 200
   event.node.res.end(JSON.stringify({ message: 'Successfully logged in!' }))
