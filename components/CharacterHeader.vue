@@ -22,7 +22,7 @@
     >
       <NuxtLink
         class="text-white h-20 flex items-center justify-start border-b border-slate-600 pl-3 text-xl bg-slate-800 hover:bg-slate-500"
-        :to="'/' + character.id + '/VisaoGeral'"
+        :to="'/' + character._id + '/visao-geral'"
       >
         <div>
           <img
@@ -35,43 +35,43 @@
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/anotacoes'"
+        :to="'/' + character._id + '/anotacoes'"
       >
         Anotações
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/combate'"
+        :to="'/' + character._id + '/combate'"
       >
         Combate
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/documentos'"
+        :to="'/' + character._id + '/documentos'"
       >
         Documentos
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/habilidades'"
+        :to="'/' + character._id + '/habilidades'"
       >
         Habilidades
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/historia'"
+        :to="'/' + character._id + '/historia'"
       >
         História
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/inventario'"
+        :to="'/' + character._id + '/inventario'"
       >
         Inventario
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
-        :to="'/' + character.id + '/magias-e-amuletos'"
+        :to="'/' + character._id + '/magias-e-amuletos'"
       >
         Magias / Amuletos
       </NuxtLink>
@@ -87,10 +87,10 @@
 
 <script setup>
   import useCharacter from '@@/composables/useCharacter'
+  console.log(useRoute().params)
 
   const characterId = useRoute().params.characterId
   const character = await useCharacter(characterId)
-
   let isMenuShown = false
 
   function teste() {

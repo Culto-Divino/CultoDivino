@@ -1,31 +1,30 @@
+export const useSelectedCharacter = () => useState<object>('selectedCharacter', () => { return {} })
+
+
 export default async function (id) {
-  const selectedCharacter = useSelectedCharacter()
-
-  // Salva uma chamada para o servidor!
-  if (selectedCharacter.value.id === id) {
-    return new Promise((resolve) => {
-      resolve(selectedCharacter)
-    })
-  }
-
   // Caso tenha mudado de personagem, faça o procedimento normal
-  const { data: res, error } = await useAsyncData(
-    'res',
-    () =>
-      $fetch('/api/character', {
-        method: 'GET',
-        headers: { 'Character-Id': `${id}` },
-      }),
-    { server: false }
-  )
+  const result = new Promise((resolve, reject) => {
+    const selectedCharacter = useSelectedCharacter()
 
-  return new Promise((resolve, reject) => {
-    if (error.value) {
-      reject(error.value)
+    // Salva uma chamada para o servidor!
+    // @ts-expect-error, _id existirá se houver um personagem selecionado
+    if (selectedCharacter.value._id === id) {
+      resolve(selectedCharacter)
     }
 
-    // @ts-expect-error , o resultado sempre terá um valor "doc"
-    selectedCharacter.value = { ...res.value.doc }
-    resolve(selectedCharacter)
+    $fetch('/api/character', {
+      method: 'GET',
+      headers: { 'Character-Id': `${id}` },
+    }).then((res) => {
+      // @ts-expect-error, res will always be object
+      selectedCharacter.value = { ...res }
+      resolve(selectedCharacter.value)
+    }).catch((e) => {
+      // eslint-disable-next-line no-console
+      console.error(e)
+      reject(e)
+    })
   })
+
+  return await Promise.resolve(result)
 }

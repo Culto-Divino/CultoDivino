@@ -1,12 +1,9 @@
 <template>
   <div class="mt-4 w-5/12 h-full flex flex-col pc:w-3/12">
-    <NuxtLink
-      :to="redirectLink"
-      class="mt-4 w-full h-full flex flex-col"
-    >
-      <img 
-        :src="data.image" 
-        class="static w-full h-4/6 max-h-4/6 min-h-4/6 rounded-t truncate object-fill aspect-[1/1]" 
+    <NuxtLink :to="redirectLink" class="mt-4 w-full h-full flex flex-col">
+      <img
+        :src="data.image"
+        class="static w-full h-4/6 max-h-4/6 min-h-4/6 rounded-t truncate object-fill aspect-[1/1]"
       />
       <div
         class="w-full h-2/6 bg-slate-900 flex flex-col items-center justify-center text-lg rounded-b"
@@ -29,10 +26,9 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  data: Object
-});
+  const props = defineProps({
+    data: Object,
+  })
 
-const redirectLink = `/${props.data.id}/VisaoGeral`
-
+  const redirectLink = `/${props.data.id}/visao-geral`
 </script>

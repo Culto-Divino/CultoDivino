@@ -1,5 +1,5 @@
-import Authenticator from '@@/mongo/auth/authenticator'
 import userModel from '@@/mongo/models/userModel'
+import { generatePasswordHash } from '@@/mongo/models/userModel'
 import cookieOptions from '@@/cookie-options.json'
 
 export default defineEventHandler(async (event) => {
@@ -24,17 +24,14 @@ export default defineEventHandler(async (event) => {
     return
   }
 
-  const token = Authenticator.generateUserAuthToken()
-
+  
   const user = await userModel.create({
     email,
-    password: Authenticator.generatePasswordHash(password),
-    token: token.token,
-    tokenExpiration: token.validityTime,
+    password: generatePasswordHash(password),
   })
 
   const sessionCookieValue = {
-    token: token.token,
+    token: user.token,
     id: user._id,
   }
 

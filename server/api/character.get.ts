@@ -1,21 +1,19 @@
-// import { getDocFromCollection } from '../../mongo/utils/firestore'
+import characterModel from "~~/mongo/models/characterModel"
 
-// export default defineEventHandler(async (event) => {
-//   const characterId = getHeader(event, 'Character-Id')
-//   const uid = event.context.userCookie.uid
-//   let character
+export default defineEventHandler(async (event) => {
+    const characterId = getHeader(event, 'Character-Id')
 
-//   try {
-//     character = await getDocFromCollection(
-//       characterId,
-//       `users/${uid}/characters`
-//     )
-//   } catch (e) {
-//     // eslint-disable-next-line no-console
-//     console.log('Error fetching character', e)
-//     return { statusCode: 500 }
-//   }
+    let character
 
-//   event.node.res.statusCode = 200
-//   event.node.res.end(JSON.stringify(character))
-// })
+    try {
+        character = await characterModel.findById(characterId)
+    } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log('Error fetching character: ', e)
+        event.node.res.statusCode = 500
+        event.node.res.end(JSON.stringify({ message: e }))
+    }
+
+    event.node.res.statusCode = 200
+    event.node.res.end(JSON.stringify(character))
+})

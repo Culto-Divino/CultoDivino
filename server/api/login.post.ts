@@ -1,19 +1,19 @@
 import userModel from '@@/mongo/models/userModel'
 import cookieOptions from '@@/cookie-options.json'
-import Authenticator from '@@/mongo/auth/authenticator'
 
 export default defineEventHandler(async (event) => {
   const { email, password } = await readBody(event)
 
-  const user = await userModel.findOne({ email }).exec()
+  const user = await userModel.findOne({ email })
 
-  if (!Authenticator.verifyPassword(password, user?.password)) {
+  // @ts-expect-error, método associado a user
+  if (!user.verifyPassword(password)) {
     event.node.res.statusCode = 401
     event.node.res.end(JSON.stringify({ message: 'Failed to authenticate.' }))
     return
   }
-
-  const token = Authenticator.generateUserAuthToken()
+  // @ts-expect-error, generateUserAuthToken é um método associado a user
+  const token = user.generateUserAuthToken()
 
   const sessionCookieValue = {
     token: token.token,
