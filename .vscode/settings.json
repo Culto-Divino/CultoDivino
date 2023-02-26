@@ -22,7 +22,18 @@
         "source.fixAll.eslint":true,
         "source.fixAll.stylelint":true,
     },
-    "eslint.validate": ["javascript", "typescript", "html", "mardown", "vue", "json", "jsonc"]
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "html",
+        "mardown",
+        "vue",
+        "json",
+        "jsonc"
+    ],
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
 
 
 }

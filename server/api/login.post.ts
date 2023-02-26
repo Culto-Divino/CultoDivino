@@ -1,35 +1,34 @@
-import { getAuth } from 'firebase-admin/auth'
-import createUserDataObject from '../utils/user'
+import userModel from '@@/mongo/models/userModel'
+import cookieOptions from '@@/cookie-options.json'
 
 export default defineEventHandler(async (event) => {
-  const { idToken, uid } = await readBody(event)
-  const body = await readBody(event)
-  const expirationTimeSeconds = 60 * 60 * 24 * 5
+  const { email, password } = await readBody(event)
 
-  const options = {
-    maxAge: expirationTimeSeconds,
-    httpOnly: true,
-    secure: true,
-    sameSite: 'none',
+  const user = await userModel.findOne({ email })
+
+  // @ts-expect-error, método associado a user
+  if (!user.verifyPassword(password)) {
+    event.node.res.statusCode = 401
+    event.node.res.end(JSON.stringify({ message: 'Failed to authenticate.' }))
+    return
   }
-  console.log('Login request body: ', body)
-  console.log('Id Token: \n', idToken, '\n Uid: \n', uid)
-  const userInfo = createUserDataObject(uid)
-  // set user cookie
-  // @ts-expect-error, objeto options sendo passado é considerado inválido, quando na verdade é.
-  setCookie(event, 'user', JSON.stringify(userInfo), options)
+  // @ts-expect-error, generateUserAuthToken é um método associado a user
+  const token = user.generateUserAuthToken()
 
-  try {
-    const sessionCookie = await getAuth().createSessionCookie(idToken, {
-      expiresIn: expirationTimeSeconds * 1000,
-    })
-    // @ts-expect-error, objeto options sendo passado é considerado inválido, quando na verdade é.
-    setCookie(event, 'session', JSON.stringify(sessionCookie), options)
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error('Error: ', e)
-    return { statusCode: 401, error: 'UNATHORIZED REQUEST!' }
+  const sessionCookieValue = {
+    token: token.token,
+    id: user._id,
   }
 
-  return { statusCode: 200, body: JSON.stringify({ status: 'sucess' }) }
+  setCookie(
+    event,
+    'session',
+    JSON.stringify(sessionCookieValue),
+    // @ts-expect-error, o objeto sendo passado contém as propriedades necessárias para ser interpretado como CookieSerializeOptions
+    cookieOptions
+  )
+  await user.update({ token: token.token, tokenExpiration: token.validityTime })
+
+  event.node.res.statusCode = 200
+  event.node.res.end(JSON.stringify({ message: 'Successfully logged in!' }))
 })

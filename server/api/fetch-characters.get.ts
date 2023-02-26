@@ -1,9 +1,20 @@
-import { getDocsFromCollection } from '../utils/firestore'
+import userModel from "~~/mongo/models/userModel"
 
 export default defineEventHandler(async (event) => {
-  const user = event.context.userCookie
 
-  const characters = await getDocsFromCollection(`users/${user.uid}/characters`)
+  let characters
+
+  try {
+    const { id } = event.context.sessionCookie
+    const user = await userModel.findById(id)
+    await user.populate('characters')
+    characters = user.characters
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error(e)
+    event.node.res.statusCode = 500
+    event.node.res.end(JSON.stringify({ message: 'Failed to fetch characters' }))
+  }
 
   event.node.res.statusCode = 200
   event.node.res.end(JSON.stringify(characters))

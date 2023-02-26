@@ -2,7 +2,7 @@
   <div>
     <Header />
     <div
-      class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex justify-center items-center truncated"
+      class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 flex justify-center items-center truncate"
     >
       <Auth
         title="Log in"
@@ -19,8 +19,6 @@
 </template>
 
 <script setup>
-  import { generateUserResponse } from '@@/composables/useAuthErrorHandler'
-
   const form = ref({ email: '', password: '' })
   const message = ref('')
 
@@ -39,14 +37,11 @@
 
     const result = await signInUser(form.value.email, form.value.password)
 
-    if (result.error) {
-      const userResponse = generateUserResponse(result.error, form.value)
-      form.value = {
-        email: userResponse.email,
-        password: userResponse.password,
-      }
-
-      message.value = userResponse.message
+    if (!result) {
+      message.value = 'Verifique email e senha!'
+      return
     }
+
+    await navigateTo('escolha-de-personagem')
   }
 </script>

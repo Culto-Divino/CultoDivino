@@ -37,13 +37,6 @@
 
     const result = await createUser(form.value.email, form.value.password)
 
-    if (result.errorCode) {
-      const userResponse = generateUserReponse(result.errorCode, form.value)
-      form.value = {
-        email: userResponse.email,
-        password: userResponse.password,
-      }
-      message.value = userResponse.message
-    }
+    await navigateTo('escolha-de-personagem')
   }
 </script>
