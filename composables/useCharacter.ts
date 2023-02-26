@@ -2,7 +2,6 @@ export const useSelectedCharacter = () => useState<object>('selectedCharacter', 
 
 
 export default async function (id) {
-  // Caso tenha mudado de personagem, faça o procedimento normal
   const result = new Promise((resolve, reject) => {
     const selectedCharacter = useSelectedCharacter()
 

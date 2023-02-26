@@ -36,5 +36,7 @@
     }
 
     const result = await createUser(form.value.email, form.value.password)
+
+    await navigateTo('escolha-de-personagem')
   }
 </script>

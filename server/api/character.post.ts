@@ -26,6 +26,7 @@ export default defineEventHandler(async (event) => {
     })
     // @ts-expect-error, addCharacter é um método associado a 'user'
     user.addCharacter(character._id)
+    console.log(user.characters)
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e)

@@ -30,8 +30,6 @@
   }
 
   const signin = async () => {
-    console.log(form.value.password, form.value.email)
-
     if (!form.value.password || !form.value.email) {
       message.value = 'Ainda há campos a serem preenchidos!'
       return

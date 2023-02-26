@@ -7,24 +7,19 @@ import {
 } from 'firebase/auth'
 
 export async function createUser(email, password) {
-  const auth = getAuth()
-
   try {
-    const user = await createUserWithEmailAndPassword(auth, email, password)
-    const idToken = await getIdToken(user.user)
-    await $fetch('/api/login', {
+    await $fetch('api/register', {
       method: 'POST',
-      body: JSON.stringify({ idToken, uid: auth.currentUser.uid }),
-      headers: {
-        'Content-Type': 'aplication/json',
+      body: {
+        email,
+        password,
       },
     })
   } catch (e) {
-    return { error: e.code }
+    console.log(e)
+    return false
   }
-
-  await navigateTo('/escolha-de-personagem')
-  return { sucess: true }
+  return true
 }
 
 export async function signInUser(email, password) {

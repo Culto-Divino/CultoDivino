@@ -78,7 +78,7 @@
           <input
             id="vontadeInput"
             type="text"
-            value="50 %"
+            :value="`${character.fdv}%`"
             class="ml-3 w-16 h-full bg-transparent outline-none"
             @input="teste()"
           />

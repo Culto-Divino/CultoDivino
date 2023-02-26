@@ -87,7 +87,6 @@
 
 <script setup>
   import useCharacter from '@@/composables/useCharacter'
-  console.log(useRoute().params)
 
   const characterId = useRoute().params.characterId
   const character = await useCharacter(characterId)

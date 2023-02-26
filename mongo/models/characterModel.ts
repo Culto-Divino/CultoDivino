@@ -1,4 +1,4 @@
-import mongoose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const noteSchema = new Schema({
@@ -20,7 +20,7 @@ const characterSchema = new Schema({
   sex: { type: String, required: true },
   fdv: { type: Number, required: true, min: 0 },
   element: { type: String, required: true },
-  archetype: { type: Object, required: true },
+  archetype: { type: mongoose.Types.ObjectId, ref: 'archetypes', required: true },
   notes: { type: [mongoose.Types.ObjectId], ref: 'notes' },
   documents: { type: [mongoose.Types.ObjectId], ref: 'docs' },
   devMode: Boolean

@@ -74,8 +74,6 @@
     () => $fetch('/api/fetch-characters', { method: 'GET' }),
     { server: false }
   )
-  console.log(characters)
-
   if (error.value) {
     // eslint-disable-next-line no-console
     console.log(error.value)

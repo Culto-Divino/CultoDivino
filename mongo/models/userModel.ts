@@ -1,6 +1,5 @@
 import crypto from 'crypto'
 import mongoose from 'mongoose'
-import { toHandlers } from 'nuxt/dist/app/compat/capi'
 
 const config = useRuntimeConfig()
 
@@ -66,6 +65,7 @@ userSchema.methods.verifyUserAuthToken = function (userClaim: string) {
 
 userSchema.methods.addCharacter = function (character: mongoose.Types.ObjectId) {
   this.characters.push(character)
+  this.save()
 }
 
 const userModel = mongoose.model('users', userSchema)
