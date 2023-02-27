@@ -7,7 +7,7 @@
       <font-awesome-icon
         icon="fa-solid fa-bars"
         class="text-3xl hover:cursor-pointer"
-        @click="teste()"
+        @click="toggle()"
       />
       <p class="text-3xl">O Culto Divino</p>
       <font-awesome-icon
@@ -17,8 +17,9 @@
       />
     </div>
     <div
+      v-if="isMenuShown"
       id="menu"
-      class="hidden w-screen h-screen bg-slate-900 flex flex-col justify-start"
+      class="w-screen h-screen bg-slate-900 flex flex-col justify-start"
     >
       <NuxtLink
         class="text-white h-20 flex items-center justify-start border-b border-slate-600 pl-3 text-xl bg-slate-800 hover:bg-slate-500"
@@ -90,34 +91,10 @@
 
   const characterId = useRoute().params.characterId
   const character = await useCharacter(characterId)
-  let isMenuShown = false
+  const isMenuShown = ref(false)
 
-  function teste() {
-    const menu = document.querySelector('#menu')
-    const container = document.querySelector('#container')
-    if (isMenuShown) {
-      menu.classList.add('hidden')
-
-      if (container.classList.contains('h-screen')) {
-        container.classList.remove('h-screen')
-        container.classList.add('h-16')
-        container.classList.add('truncate')
-      } else {
-        container.classList.add('h-16')
-      }
-    } else {
-      menu.classList.remove('hidden')
-
-      if (container.classList.contains('h-16')) {
-        container.classList.remove('h-16')
-        container.classList.add('h-screen')
-        container.classList.remove('truncate')
-      } else {
-        container.classList.add('h-screen')
-      }
-    }
-
-    isMenuShown = !isMenuShown
+  const toggle = () => {
+    isMenuShown.value = !isMenuShown.value
   }
 
   function logOut() {

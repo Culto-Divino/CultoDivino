@@ -195,19 +195,15 @@
 
   try {
     await useArchetypes().then((result) => {
-      console.log(result)
       for (const [key, value] of Object.entries(result)) {
         archetypeNames.value.push(value.name)
         archetypes.push(value)
       }
-      console.log(archetypes)
-      console.log(archetypeNames.value)
     })
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error)
   }
-  const nuxtApp = useNuxtApp()
 
   const updateSelected = (selected) => {
     selectedArchetype.value = archetypes.find((archetype) => {
@@ -225,6 +221,7 @@
       !element.value
     ) {
       console.error('Missing fields!')
+      return
     }
     console.log(
       fdv.value,
