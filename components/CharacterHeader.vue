@@ -26,10 +26,17 @@
       >
         <div>
           <img
+            v-if="character.image"
             :src="character.image"
             alt=""
             class="w-10 h-10 rounded-full border-2"
           />
+          <img 
+            v-else 
+            src="@@/images/Default-PP.jpg" 
+            alt=""
+            class="w-10 h-10 rounded-full border-2"
+          >
         </div>
         <div class="ml-4 text-2xl">{{ character.name }}</div>
       </NuxtLink>

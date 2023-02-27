@@ -6,6 +6,16 @@
     <div
       class="w-10/12 h-5/6 mt-10 bg-gray-200/25 rounded-xl flex flex-col items-center justify-center overflow-y-scroll"
     >
+    <div class="flex flex-col items-center justify-center w-full pc:flex-row pc:justify-evenly">
+          <img src="@@/images/no_item_image.jpg" alt="" class="w-7/12 pc:w-60 h-80 mt-7 rounded-lg border p-1">
+          <div class="flex flex-col">
+            <DropZone class="cel:hidden w-full h-64 w-96" label="Envie aqui a foto do seu personagem!" />
+            <label for="input" class="mt-6 pc:hidden">Envie aqui a foto do seu personagem!</label>
+            <input id="input" type="file" class="pc:hidden file-input file-input-sm file-input-bordered file-input-primary w-full max-w-xs bg-transparent bg-gray-400/75" accept="image/*">
+        
+          </div>
+      </div>
+
       <div class="w-10/12 h-16 flex flex-col mt-5">
         <label for="characterName" class="text-sm pl-2">Nome</label>
         <input
@@ -21,16 +31,20 @@
           >Força de vontade: {{ fdv ? fdv : 0 }}% (Nível:
           {{ fdv ? Math.trunc(fdv / 20) : 0 }})</label
         >
-        <input
-          id="fdv"
-          v-model="fdv"
-          type="range"
-          min="0"
-          max="100"
-          step="1"
-          class="h-10 bg-transparent bg-gray-400/75 text-black placeholder:text-gray-700 px-2 text-xl rounded focus:bg-slate-300 outline-none"
-          placeholder="50%"
-        />
+        <div class="flex justify-between">
+          <input
+            id="fdv"
+            v-model="fdv"
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            class="h-10 w-9/12 bg-transparent bg-gray-400/75 text-black placeholder:text-gray-700 px-2 text-xl rounded-lg focus:bg-slate-300 outline-none range range-primary"
+            placeholder="50%"
+          />
+          <input type="number" value="50" class="w-2/12 h-10 bg-transparent border-b-2 border-slate-500 focus:border-slate-200 px-2 text-xl rounded outline-none text-center focus:appearance-none">
+          <p class="h-10 flex items-center justify-center text-xl">%</p>
+        </div>
       </div>
 
       <div
@@ -91,11 +105,12 @@
                   ><font-awesome-icon icon="fa-solid fa-caret-down"
                 /></label>
               </div>
+
             </div>
           </div>
         </div>
         <div class="w-full flex items-center flex-col">
-          <div class="w-10/12 h-16 flex flex-col mt-5">
+          <div class="w-10/12 h-16 flex flex-col mt-5 relative">
             <label for="characterElement">Elemento</label>
             <select
               id="characterElement"
@@ -152,6 +167,13 @@
                 Inveja
               </option>
             </select>
+            <div>
+                <label
+                  for="characterGender"
+                  class="absolute right-0 mr-4 top-1/2  text-black"
+                  ><font-awesome-icon icon="fa-solid fa-caret-down"
+                /></label>
+              </div>
           </div>
 
           <div
@@ -166,12 +188,14 @@
             />
           </div>
 
-          <button
-            class="mt-16 pc:mt-10 ise:mt-32 ise:text-red mb-3 min-h-12 h-12 items-center w-8/12 bg-gradient-to-r from-gray-800 to-slate-900 text-3xl rounded border border border-gray-500 drop-shadow-sm"
-            @click="createCharacter()"
-          >
-            Confirmar
-          </button>
+          <div class="h-full w-full flex items-center justify-center">
+            <button
+              class="mt-16 pc:mt-10 ise:mt-32 ise:text-red mb-3 min-h-12 h-12 items-center w-8/12 bg-gradient-to-r from-gray-800 to-slate-900 text-3xl rounded border border border-gray-500 drop-shadow-sm"
+              @click="createCharacter()"
+            >
+              Confirmar
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -216,6 +240,43 @@
   }
 
   async function createCharacter() {
+    if (
+      !fdv.value ||
+      !sex.value ||
+      !selectedArchetype.value ||
+      !age.value ||
+      !name.value ||
+      !element.value
+    ) {
+      console.error('Missing fields!')
+    }
+    console.log(
+      fdv.value,
+      sex.value,
+      selectedArchetype.value,
+      age.value,
+      name.value,
+      element.value
+    )
+
+    await $fetch('/api/character', {
+      method: 'POST',
+      body: {
+        fdv: fdv.value,
+        sex: sex.value,
+        archetype: selectedArchetype.value,
+        age: age.value,
+        name: name.value,
+        element: element.value,
+      },
+    })
     await navigateTo('/escolha-de-personagem')
   }
 </script>
+
+<style>
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+</style>

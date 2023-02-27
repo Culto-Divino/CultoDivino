@@ -59,7 +59,23 @@
     middleware: 'auth',
   })
 
-const characters = await $fetch('/api/fetchCharacters', { method: 'get' })
-console.log(characters)
+  // TODO: implementar função que dê fetch nos characters sem zonear o código assim!
 
+  // É preciso desabilitar prefer const, porque os valores mudarão
+  let {
+    // eslint-disable-next-line prefer-const
+    data: characters,
+    // eslint-disable-next-line prefer-const
+    pending,
+    // eslint-disable-next-line prefer-const
+    error,
+  } = await useLazyAsyncData(
+    'characters',
+    () => $fetch('/api/fetch-characters', { method: 'GET' }),
+    { server: false }
+  )
+  if (error.value) {
+    // eslint-disable-next-line no-console
+    console.log(error.value)
+  }
 </script>

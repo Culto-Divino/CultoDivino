@@ -12,8 +12,15 @@
         class="w-11/12 h-full flex flex-col items-center justify-evenly pc:flex-row pc:justify-evenly z-0"
       >
         <img
+          v-if="character.image"
           class="w-4/6 h-4/6 mt-1 pc:w-2/6 rounded-xl border border-slate-300 p-1 drop-shadow-lg pc:ml-20"
           :src="character.image"
+          alt=""
+        />
+        <img
+          v-else
+          class="w-4/6 h-4/6 mt-1 pc:w-2/6 rounded-xl border border-slate-300 p-1 drop-shadow-lg pc:ml-20"
+          src="@@/images/Default-PP.jpg"
           alt=""
         />
         <div

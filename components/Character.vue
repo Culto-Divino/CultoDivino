@@ -5,9 +5,15 @@
       class="mt-4 w-full h-full flex flex-col"
     >
       <img 
+        v-if="data.image"
         :src="data.image" 
         class="static w-full h-4/6 max-h-4/6 min-h-4/6 rounded-t truncate object-fill aspect-[1/1]" 
       />
+      <img 
+        v-else
+        src="@@/images/Default-PP.jpg"
+        class="static w-full h-4/6 max-h-4/6 min-h-4/6 rounded-t truncate object-fill aspect-[1/1]" 
+      >
       <div
         class="w-full h-2/6 bg-slate-900 flex flex-col items-center justify-center text-lg rounded-b"
       >
@@ -34,4 +40,8 @@
   })
 
   const redirectLink = `/${props.data.id}/visao-geral`
+
+  function morredaibo() {
+    console.log('morri')
+  }
 </script>
