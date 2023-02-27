@@ -10,43 +10,43 @@
       >
         + Adicionar Nota
       </button>
-      <div
-        class="w-11/12 h-5/6 pt-2 rounded-md overflow-y-auto overflow-x-hidden bg-gray-400/50 flex flex-col items-center scrollbar scrollbar-thin scrollbar-thumb-sky-700 scrollbar-track-gray-100/25 scrollbar-thumb-rounded scrollbar-track-rounded"
-      >
-        <Note
-          id="1"
-          title="Título"
-          note="Anotaçãojksadnsakjdjskadnjkasdjksanksakjdshbakjdhsajdjasahjsdbsahjdbsahj"
-        />
-        <Note
-          id="2"
-          title="Título"
-          note="Anotaçãojksadnsakjdjskadnjkasdjksanksakjdshbakjdhsajdjasahjsdbsahjdbsahj"
-        />
-        <Note
-          id="3"
-          title="Título"
-          note="Anotaçãojksadnsakjdjskadnjkasdjksanksakjdshbakjdhsajdjasahjsdbsahjdbsahj"
-        />
-        <Note
-          id="4"
-          title="Título"
-          note="Anotaçãojksadnsakjdjskadnjkasdjksanksakjdshbakjdhsajdjasahjsdbsahjdbsahj"
-        />
-        <Note
-          id="5"
-          title="Título"
-          note="Anotaçãojksadnsakjdjskadnjkasdjksanksakjdshbakjdhsajdjasahjsdbsahjdbsahj"
-        />
-      </div>
+      <ClientOnly>
+        <div
+          v-if="!pending"
+          class="w-11/12 h-5/6 pt-2 rounded-md overflow-y-auto overflow-x-hidden bg-gray-400/50 flex flex-col items-center scrollbar scrollbar-thin scrollbar-thumb-sky-700 scrollbar-track-gray-100/25 scrollbar-thumb-rounded scrollbar-track-rounded"
+        >
+          <Note
+            v-for="note in notes"
+            :id="note._id"
+            :key="note.id"
+            :title="note.title"
+            :note="String(note.content).length >= 50 ? '...' : note.content"
+          />
+        </div>
+      </ClientOnly>
     </div>
   </div>
 </template>
 
 <script setup>
   const route = useRoute()
+  const characterId = route.params.characterId
 
-  function createNote() {
-    navigateTo(`/${route.params.characterId}/anotacoes/1/`)
+  let notes
+
+  if (process.client) {
+    notes = Object.values(await useNotes(characterId)).map((object) => {
+      return object
+    })
+  }
+
+  async function createNote() {
+    const res = await $fetch('/api/note', {
+      method: 'POST',
+      headers: { 'Character-Id': characterId },
+      body: { title: 'Título', content: 'Escreva sua nota aqui!' },
+    })
+
+    await navigateTo(`/${route.params.characterId}/anotacoes/${res.id}/`)
   }
 </script>

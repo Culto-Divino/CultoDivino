@@ -21,13 +21,24 @@ const characterSchema = new Schema({
   fdv: { type: Number, required: true, min: 0 },
   element: { type: String, required: true },
   archetype: { type: mongoose.Types.ObjectId, ref: 'archetypes', required: true },
-  notes: { type: [mongoose.Types.ObjectId], ref: 'notes' },
-  documents: { type: [mongoose.Types.ObjectId], ref: 'docs' },
-  devMode: Boolean
+  notes: { type: [mongoose.Types.ObjectId], ref: 'notes', default: [] },
+  documents: { type: [mongoose.Types.ObjectId], ref: 'docs', default: [] },
+  devMode: { type: Boolean, default: false }
 })
 
 characterSchema.virtual('level').get(function () {
   return Math.trunc(this.fdv / 20)
+})
+
+characterSchema.method('addNote', async function (title: string, content: string) {
+  const note = await noteModel.create({
+    title,
+    content
+  })
+  this.notes.push(note._id)
+  await this.save()
+
+  return note._id
 })
 
 

@@ -87,7 +87,6 @@
         displayElements.value.push(element)
       }
     })
-    console.log(displayElements.value)
   }
   defineEmits(['update:selected'])
 </script>

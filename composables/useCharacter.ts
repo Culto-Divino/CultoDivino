@@ -8,7 +8,7 @@ export default async function (id) {
     // Salva uma chamada para o servidor!
     // @ts-expect-error, _id existirá se houver um personagem selecionado
     if (selectedCharacter.value._id === id) {
-      resolve(selectedCharacter)
+      resolve(selectedCharacter.value)
     }
 
     $fetch('/api/character', {
