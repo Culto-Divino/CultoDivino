@@ -9,6 +9,11 @@ export default defineNuxtPlugin(async () => {
 
   console.log('$ Connecting to mongo database...')
 
+  await mongoose
+    .connect(config.MONGO_URI)
+    .then(() => console.log('$ Connected!'))
+    .catch((e) => console.log('$ Failed to connect to mongo. ', e))
+
   if (!config.MONGO_URI) {
     await mongoose
       .connect(
@@ -16,13 +21,5 @@ export default defineNuxtPlugin(async () => {
       )
       .then(() => console.log('$ Connected!'))
       .catch((e) => console.log('$ Failed to connect to mongo. ', e))
-
-    return
   }
-
-  await mongoose
-    .connect(config.MONGO_URI)
-    .then(() => console.log('$ Connected!'))
-    .catch((e) => console.log('$ Failed to connect to mongo. ', e))
-
 })
