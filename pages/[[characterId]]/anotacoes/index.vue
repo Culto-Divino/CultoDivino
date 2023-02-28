@@ -20,7 +20,8 @@
             :id="note._id"
             :key="note.id"
             :title="note.title"
-            :note="String(note.content).length >= 50 ? '...' : note.content"
+            :note="note.content"
+            :is-full-note="String(note.content).length < 50"
           />
         </div>
       </ClientOnly>
@@ -36,9 +37,11 @@
 
   if (process.client) {
     notes = Object.values(await useNotes(characterId)).map((object) => {
+      console.log(object.content.length >= 50)
       return object
     })
   }
+
 
   async function createNote() {
     const res = await $fetch('/api/note', {

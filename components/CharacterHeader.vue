@@ -17,9 +17,8 @@
       />
     </div>
     <div
-      v-if="isMenuShown"
       id="menu"
-      class="w-screen h-screen bg-slate-900 flex flex-col justify-start"
+      class="hidden w-screen h-screen bg-slate-900 flex flex-col justify-start"
     >
       <NuxtLink
         class="text-white h-20 flex items-center justify-start border-b border-slate-600 pl-3 text-xl bg-slate-800 hover:bg-slate-500"
@@ -98,10 +97,32 @@
 
   const characterId = useRoute().params.characterId
   const character = await useCharacter(characterId)
-  const isMenuShown = ref(false)
+  let isMenuShown = false
 
   const toggle = () => {
-    isMenuShown.value = !isMenuShown.value
+
+    const menu = document.querySelector('#menu')
+    const container = document.querySelector('#container')
+    if (isMenuShown) {
+      menu.classList.add('hidden')
+      if (container.classList.contains('h-screen')) {
+        container.classList.remove('h-screen')
+        container.classList.add('h-16')
+        container.classList.add('truncate')
+      } else {
+        container.classList.add('h-16')
+      }
+    } else {
+      menu.classList.remove('hidden')
+      if (container.classList.contains('h-16')) {
+        container.classList.remove('h-16')
+        container.classList.add('h-screen')
+        container.classList.remove('truncate')
+      } else {
+        container.classList.add('h-screen')
+      }
+    }
+    isMenuShown = !isMenuShown
   }
 
   function logOut() {

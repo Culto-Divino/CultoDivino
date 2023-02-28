@@ -91,8 +91,6 @@
           />
         </div>
       </div>
-
-      <NuxtLink to="/items/1">clica aqui vai</NuxtLink>
     </div>
   </ClientOnly>
 </template>
@@ -101,6 +99,8 @@
 
   const characterId = useRoute().params.characterId
   const character = await useCharacter(characterId)
+
+  console.log(character)
 
   function teste() {
     const el = document.querySelector('#vontadeInput')

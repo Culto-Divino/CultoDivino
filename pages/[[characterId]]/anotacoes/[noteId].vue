@@ -17,7 +17,7 @@
         @click="logOut()"
       />
     </div>
-    <div id="note">
+    <div id="note" class="w-full h-full">
       <ClientOnly>
         <input
           class="w-full text-center h-12 flex items-center justify-center text-white text-3xl mt-2 bg-transparent outline-none"
