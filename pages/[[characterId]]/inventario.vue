@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/no-multiple-template-root -->
 <template>
   <div
-    class="w-screen h-screen bg-gradient-to-r overflow-y-auto overflow-x-hidden from-bgColor1 to-bgColor2 z-0 scrollbar scrollbar-thin scrollbar-thumb-sky-700 scrollbar-track-gray-100/25 scrollbar-thumb-rounded scrollbar-track-rounded"
+    class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 z-0 scrollbar scrollbar-thin scrollbar-thumb-sky-700 scrollbar-track-gray-100/25 scrollbar-thumb-rounded scrollbar-track-rounded"
   >
     <CharacterHeader class="sticky top-0 z-10" />
     <div class="w-full h-full flex items-center flex-col justify-evenly">
@@ -27,14 +27,11 @@
             :name="item.name"
             :weight="item.weight"
             :amount="item.amount"
-            :itemid="item.id"
+            :itemid="item._id"
           />
         </ClientOnly>
-        <!-- eslint-disable-next-line vue/valid-v-for -->
       </div>
       <div class="w-11/12 h-1/6 flex items-center justify-between">
-        <!-- <label for="my-modal-1" class="w-5/12 h-3/6"><button class="w-full h-full border rounded-lg text-xl">ADICIONAR</button></label> -->
-
         <label for="my-modal-3" class="w-5/12 h-3/6">
           <div
             class="w-full h-full border rounded-lg text-xl flex items-center justify-center cursor-pointer"
@@ -91,6 +88,7 @@
 <script setup>
   const route = useRoute()
   const characterId = route.params.characterId
+  const maxWeight = 9
 
   const libraryPath = `/${characterId}/biblioteca`
 
@@ -100,15 +98,11 @@
   if (process.client) {
     const items = await useCharacterItems(characterId)
 
-    console.log(items)
-
     const existingIds = []
     items.inventory.forEach((key) => {
-      console.log(key)
       actualWeight += key.weight
 
       if (key.isUnique) {
-        console.log('aqui!')
         inventory.push(key)
         return
       }
@@ -123,26 +117,5 @@
       existingIds.push(key._id)
       inventory.push({ ...key, amount: 1 })
     })
-    console.log(inventory, existingIds)
   }
-
-  const maxWeight = 9
-
-  const userInv = [
-    {
-      image:
-        'https://a-static.mlcdn.com.br/800x560/caixa-de-som-jbl-charge-5-bluetooth-portatil-40w-com-tweeter/magazineluiza/228567500/9cccadaf1da66ac5328ff5be7666bb93.jpg',
-      name: 'Caixa de Som',
-      weight: '5',
-      amount: '2',
-      id: '1',
-    },
-    {
-      image: 'https://static.paodeacucar.com/img/uploads/1/761/11697761.jpg',
-      name: 'Bolinho hmmm',
-      weight: '3',
-      amount: '2',
-      id: '2',
-    },
-  ]
 </script>

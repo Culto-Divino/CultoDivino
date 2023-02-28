@@ -35,7 +35,8 @@ const characterSchema = new Schema({
   documents: { type: [mongoose.Types.ObjectId], ref: 'docs', default: [] },
   inventory: { type: [mongoose.Types.ObjectId], ref: 'items' },
   locker: { type: [mongoose.Types.ObjectId], ref: 'items' },
-  devMode: { type: Boolean, default: false }
+  devMode: { type: Boolean, default: false },
+  canTrade: { type: Boolean, default: true }
 })
 
 characterSchema.virtual('level').get(function () {
