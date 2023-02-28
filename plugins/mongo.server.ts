@@ -9,9 +9,16 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   console.log('$ Connecting to mongo database...')
 
   await mongoose
-    .connect(
-      `mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@sao-paulo-1.kqrbq5v.mongodb.net/?retryWrites=true&w=majority`
-    )
+    .connect(config.MONGO_URI)
     .then(() => console.log('$ Connected!'))
     .catch((e) => console.log('$ Failed to connect to mongo. ', e))
+
+  if (!config.MONGO_URI) {
+    await mongoose
+      .connect(
+        `mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@sao-paulo-1.kqrbq5v.mongodb.net/?retryWrites=true&w=majority`
+      )
+      .then(() => console.log('$ Connected!'))
+      .catch((e) => console.log('$ Failed to connect to mongo. ', e))
+  }
 })
