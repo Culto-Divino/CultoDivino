@@ -31,54 +31,61 @@
             alt=""
             class="w-10 h-10 rounded-full border-2"
           />
-          <img 
-            v-else 
-            src="@@/images/Default-PP.jpg" 
+          <img
+            v-else
+            src="@@/images/Default-PP.jpg"
             alt=""
             class="w-10 h-10 rounded-full border-2"
-          >
+          />
         </div>
         <div class="ml-4 text-2xl">{{ character.name }}</div>
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/anotacoes'"
+        @click="toggle()"
       >
         Anotações
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/combate'"
+        @click="toggle()"
       >
         Combate
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/documentos'"
+        @click="toggle()"
       >
         Documentos
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/habilidades'"
+        @click="toggle()"
       >
         Habilidades
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/historia'"
+        @click="toggle()"
       >
         História
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/inventario'"
+        @click="toggle()"
       >
         Inventario
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/magias-e-amuletos'"
+        @click="toggle()"
       >
         Magias / Amuletos
       </NuxtLink>
@@ -100,7 +107,6 @@
   let isMenuShown = false
 
   const toggle = () => {
-
     const menu = document.querySelector('#menu')
     const container = document.querySelector('#container')
     if (isMenuShown) {
