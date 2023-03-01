@@ -4,7 +4,7 @@
       class="w-full h-full bg-bgInput flex flex-col items-center justify-center text-white rounded-lg border-4 border-gray-600 z-0 text-2xl"
     >
       <div
-        class="w-full h-1/4 flex items-center border-b modal-action mt-0 cursor-pointer"
+        class="w-full h-1/3 flex items-center border-b modal-action mt-0 cursor-pointer"
       >
         <label for="my-modal-1" class="w-full h-full flex items-center"
           ><font-awesome-icon icon="fa-solid fa-box-archive" class="ml-3" />
@@ -12,7 +12,7 @@
         >
       </div>
       <div
-        class="w-full h-1/4 flex items-center border-b modal-action mt-0 cursor-pointer"
+        class="w-full h-1/3 flex items-center border-b modal-action mt-0 cursor-pointer"
       >
         <label for="my-modal-2" class="w-full h-full flex items-center"
           ><font-awesome-icon icon="fa-solid fa-right-left" class="ml-3" />
@@ -20,7 +20,7 @@
         >
       </div>
       <div
-        class="w-full h-1/4 flex items-center text-red-700 modal-action mt-0 cursor-pointer"
+        class="w-full h-1/3 flex items-center text-red-700 modal-action mt-0 cursor-pointer"
       >
         <label for="my-modal-6" class="w-full h-full flex items-center"
           ><font-awesome-icon icon="fa-regular fa-trash-can" class="ml-3" />

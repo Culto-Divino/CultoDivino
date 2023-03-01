@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full min-h-16 h-16 bg-black/25 flex items-center justify-evenly mt-2"
+    class="w-full min-h-16 h-16 bg-black/25 flex items-center justify-evenely mt-2"
   >
     <img
       :src="image"
@@ -16,9 +16,9 @@
       <p class="text-sm">Peso</p>
       <p class="text-2xl">{{ weight }}</p>
     </span>
-    <span v-if="amount" class="w-1/5" @click="redirect()">
-      <p class="text-xs pc:text-sm">Quantidade</p>
-      <p class="text-2xl">{{ amount }}</p>
+    <span class="w-1/5" @click="redirect()">
+      <p v-if="amount" class="text-xs pc:text-sm">Quantidade</p>
+      <p v-if="amount" class="text-2xl">{{ amount }}</p>
     </span>
     <label for="my-modal-1" class="text-2xl w-1/12 cursor-pointer"
       ><font-awesome-icon icon="fa-solid fa-ellipsis-vertical"
@@ -31,7 +31,7 @@
     class="modal cursor-pointer modal-middle cel:modal-bottom"
   >
     <label
-      class="modal-box relative bg-transparent w-10/12 h-3/6 p-2 cel:h-4/6"
+      class="modal-box relative bg-transparent w-10/12 h-2/6 p-2 cel:h-4/6"
       for=""
     >
       <ItemModal />
