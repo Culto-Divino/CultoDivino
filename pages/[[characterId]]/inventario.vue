@@ -68,21 +68,19 @@
 </template>
 
 <script setup>
+import { toNumber } from '@vue/shared';
 
 const route = useRoute()
 const characterId = route.params.characterId
 
 const libraryPath = `/${characterId}/biblioteca`
 
-const actualWeight = 9
-const maxWeight = 9
-
 const userInv = [
   {
     image: 'https://a-static.mlcdn.com.br/800x560/caixa-de-som-jbl-charge-5-bluetooth-portatil-40w-com-tweeter/magazineluiza/228567500/9cccadaf1da66ac5328ff5be7666bb93.jpg',
     name: 'Caixa de Som',
     weight: '5',
-    amount: '2',
+    amount: '1',
     id: '1'
   },
   {
@@ -92,6 +90,16 @@ const userInv = [
     amount: '2',
     id: '2'
   }
+  
 ]
+
+let actualWeight = 0
+
+for(const i of Object.values(userInv)){
+  const itemTotalWeight = toNumber(i.weight) * toNumber(i.amount)
+  actualWeight += itemTotalWeight
+}
+
+const maxWeight = 20
 
 </script>
