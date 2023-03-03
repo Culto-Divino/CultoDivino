@@ -5,10 +5,12 @@
     <h2>{{ title }}</h2>
     <p>
       <input
-        type="text"
+        type="number"
         :value="value"
+        max="99"
         class="bg-transparent w-10 outline-none text-right"
-      />/{{ maxValue }}
+      />
+      / {{ maxValue }}
     </p>
   </div>
 </template>

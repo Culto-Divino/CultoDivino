@@ -1,0 +1,1 @@
+export const useCharacterState = () => useState('characterState', () => ['morto'])

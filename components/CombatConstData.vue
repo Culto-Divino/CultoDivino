@@ -7,6 +7,7 @@
       type="text"
       class="bg-transparent w-10 outline-none text-center"
       :value="value"
+      disabled
     />
   </div>
 </template>
