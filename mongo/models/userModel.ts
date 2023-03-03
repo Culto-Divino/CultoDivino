@@ -53,6 +53,8 @@ userSchema.methods.generateUserAuthToken = function () {
     Date.now() + Number(config.TOKEN_VALIDITY_TIME_DAYS) * 24 * 60 * 60 * 1000
   this.token = token
   this.tokenExpiration = tokenExpiration
+  this.save()
+
   return { token, tokenExpiration }
 }
 

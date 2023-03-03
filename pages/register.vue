@@ -19,6 +19,10 @@
 </template>
 
 <script setup>
+  definePageMeta({
+    middleware: 'auto-login',
+  })
+
   const form = ref({ email: '', password: '' })
   const message = ref('')
 
