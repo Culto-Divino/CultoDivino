@@ -28,7 +28,7 @@
   <input id="my-modal-1" type="checkbox" class="modal-toggle" />
   <label
     for="my-modal-1"
-    class="modal cursor-pointer modal-middle cel:modal-bottom"
+    class="modal cursor-pointer modal-middle cel:modal-bottom "
   >
     <label
       class="modal-box relative bg-transparent w-10/12 h-2/6 p-2 cel:h-4/6"

@@ -28,24 +28,46 @@
           <div
             class="mt-2 h-16 min-h-16 flex flex-wrap items-center justify-center"
           >
-            <button
+            <!-- <button
               v-if="buttonInput.class == 'success'"
               id="button"
               class="w-28 h-12 rounded-xl bg-green-600"
               @click="$emit('button-pressed', returnValue)"
             >
               {{ buttonInput.text }}
+            </button> -->
+
+            <button 
+              v-if="buttonInput.class == 'success'" 
+              :id="buttonInput.id" 
+              class="w-28 h-12 rounded-xl bg-green-600" 
+              @click="$emit('button-pressed', returnValue); clearInput()"
+            >
+              <label 
+                :for="modalName" 
+                class="w-full h-full"
+              >
+              
+                {{ buttonInput.text }}
+              </label>
             </button>
+
             <button
-              v-else-if="data.class == 'error'"
+              v-else-if="buttonInput.class == 'error'"
               id="button"
               class="w-28 h-12 rounded-xl bg-red-600"
-              @click="$emit('button-pressed', returnValue)"
+              @click="$emit('button-pressed', returnValue); clearInput()"
             >
-              {{ buttonInput.text }}
+              <label 
+              :for="modalName" 
+              class="w-full h-full"
+              >
+                {{ buttonInput.text }}
+              </label>
             </button>
+
             <div v-else class="modal-action">
-              <label for="button"
+              <label :for="modalName"
                 ><div
                   id="label"
                   class="w-28 h-12 rounded-xl border border-white flex items-center justify-center"
@@ -68,12 +90,16 @@
     buttonInput: Object,
   })
 
-  const returnValue = ref('bcs')
+  const returnValue = ref('')
 
   defineEmits('button-pressed')
 
   function updateValue(value) {
     returnValue.value = value
+  }
+
+  function clearInput(){
+    returnValue.value = ""
   }
 
   const modalName = `my-modal-${props.id}`

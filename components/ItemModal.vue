@@ -66,7 +66,7 @@
     class="modal cursor-pointer modal-middle cel:modal-bottom"
   >
     <label
-      class="modal-box relative bg-transparent w-10/12 h-3/6 p-2 cel:h-4/6"
+      class="modal-box relative bg-transparent w-10/12 h-5/6 p-2 cel:h-4/6"
       for=""
     >
       <Modal

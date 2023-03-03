@@ -1,1 +1,1 @@
-export const useCharacterState = () => useState('characterState', () => ['morto'])
+export const useCharacterState = () => useState('characterState', () => [])
