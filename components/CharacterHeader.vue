@@ -1,13 +1,15 @@
 <template>
   <div
     id="container"
-    class="w-screen h-16 flex flex-col select-none text-black"
+    class="w-screen h-16 flex flex-col select-none text-black justify-start"
   >
-    <div class="flex justify-evenly items-center w-screen h-16 bg-white/75">
+    <div
+      class="flex justify-evenly items-center w-screen x-overflow-hidden z-16 bg-white/75 h-fit absolute"
+    >
       <font-awesome-icon
         icon="fa-solid fa-bars"
         class="text-3xl hover:cursor-pointer"
-        @click="toggle()"
+        @click="menu = !menu"
       />
       <p class="text-3xl">O Culto Divino</p>
       <font-awesome-icon
@@ -17,8 +19,9 @@
       />
     </div>
     <div
+      v-if="menu"
       id="menu"
-      class="hidden w-screen h-screen bg-slate-900 flex flex-col justify-start"
+      class="w-screen h-fit bg-slate-900 flex flex-col"
     >
       <NuxtLink
         class="text-white h-20 flex items-center justify-start border-b border-slate-600 pl-3 text-xl bg-slate-800 hover:bg-slate-500"
@@ -43,49 +46,42 @@
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/anotacoes'"
-        @click="toggle()"
       >
         Anotações
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/combate'"
-        @click="toggle()"
       >
         Combate
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/documentos'"
-        @click="toggle()"
       >
         Documentos
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/habilidades'"
-        @click="toggle()"
       >
         Habilidades
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/historia'"
-        @click="toggle()"
       >
         História
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/inventario'"
-        @click="toggle()"
       >
         Inventario
       </NuxtLink>
       <NuxtLink
         class="text-white h-16 flex items-center border-b border-slate-600 pl-2 text-xl hover:bg-slate-500"
         :to="'/' + character._id + '/magias-e-amuletos'"
-        @click="toggle()"
       >
         Magias / Amuletos
       </NuxtLink>
@@ -104,32 +100,7 @@
 
   const characterId = useRoute().params.characterId
   const character = await useCharacter(characterId)
-  let isMenuShown = false
-
-  const toggle = () => {
-    const menu = document.querySelector('#menu')
-    const container = document.querySelector('#container')
-    if (isMenuShown) {
-      menu.classList.add('hidden')
-      if (container.classList.contains('h-screen')) {
-        container.classList.remove('h-screen')
-        container.classList.add('h-16')
-        container.classList.add('truncate')
-      } else {
-        container.classList.add('h-16')
-      }
-    } else {
-      menu.classList.remove('hidden')
-      if (container.classList.contains('h-16')) {
-        container.classList.remove('h-16')
-        container.classList.add('h-screen')
-        container.classList.remove('truncate')
-      } else {
-        container.classList.add('h-screen')
-      }
-    }
-    isMenuShown = !isMenuShown
-  }
+  const menu = ref(false)
 
   function logOut() {
     signOutUser()

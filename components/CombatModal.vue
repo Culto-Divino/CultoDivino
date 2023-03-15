@@ -8,7 +8,7 @@
       >
         <div class="flex w-full flex-wrap items-center justify-evenly mt-3">
           <div
-            class="flex flex-col items-center items-center justify-center h-20 w-11/12 min-h-16"
+            class="flex flex-col items-center justify-center h-20 w-11/12 min-h-16"
           >
             <label for="textBox" class="text-sm w-full pl-2">{{
               textInput.labelText
@@ -18,7 +18,7 @@
               :type="textInput.type"
               :placeholder="textInput.placeholder"
               :value="returnValue"
-              class="mt-2 w-full px-2 h-8 bg-transparent bg-gray-200/25 outline-none rounded"
+              class="mt-2 w-full px-2 h-8 bg-gray-200/25 outline-none rounded"
               @input="updateValue($event.target.value)"
             />
           </div>
@@ -37,17 +37,16 @@
               {{ buttonInput.text }}
             </button> -->
 
-            <button 
-              v-if="buttonInput.class == 'success'" 
-              :id="buttonInput.id" 
-              class="w-28 h-12 rounded-xl bg-green-600" 
-              @click="$emit('button-pressed', returnValue); clearInput()"
+            <button
+              v-if="buttonInput.class == 'success'"
+              :id="buttonInput.id"
+              class="w-28 h-12 rounded-xl bg-green-600"
+              @click="
+                $emit('button-pressed', returnValue)
+                clearInput()
+              "
             >
-              <label 
-                :for="modalName" 
-                class="w-full h-full"
-              >
-              
+              <label :for="modalName" class="w-full h-full">
                 {{ buttonInput.text }}
               </label>
             </button>
@@ -56,12 +55,12 @@
               v-else-if="buttonInput.class == 'error'"
               id="button"
               class="w-28 h-12 rounded-xl bg-red-600"
-              @click="$emit('button-pressed', returnValue); clearInput()"
+              @click="
+                $emit('button-pressed', returnValue)
+                clearInput()
+              "
             >
-              <label 
-              :for="modalName" 
-              class="w-full h-full"
-              >
+              <label :for="modalName" class="w-full h-full">
                 {{ buttonInput.text }}
               </label>
             </button>
@@ -98,8 +97,8 @@
     returnValue.value = value
   }
 
-  function clearInput(){
-    returnValue.value = ""
+  function clearInput() {
+    returnValue.value = ''
   }
 
   const modalName = `my-modal-${props.id}`

@@ -8,121 +8,111 @@
     <div class="h-2/4 pc:flex w-full justify-evenly items-center">
       <div class="h-full pc:w-5/12 flex flex-col text-white items-center mt-10">
         <div
-          class="flex pc:w-11/12 w-9/12 h-4/6 flex items-center justify-center text-2xl"
+          class="pc:w-11/12 w-9/12 h-4/6 flex items-center justify-center text-2xl"
         >
           <CombatData title="Vida" value="99" max-value="99" />
           <CombatData title="Mana" value="99" max-value="99" />
         </div>
         <div
-          class="flex pc:w-11/12 w-9/12 h-4/6 flex items-center justify-center text-2xl"
+          class="pc:w-11/12 w-9/12 h-4/6 flex items-center justify-center text-2xl"
         >
           <CombatData title="Vigor" value="99" max-value="99" />
           <CombatData title="Sanidade" value="99" max-value="99" />
         </div>
-      </div>
 
-      <div
-        class="cel:hidden h-full w-5/12 flex flex-col text-white items-center mt-10"
-      >
         <div
-          class="flex w-11/12 h-4/6 flex items-center justify-center text-2xl"
+          class="cel:hidden h-full w-5/12 flex flex-col text-white items-center mt-10"
         >
-          <CombatConstData title="Movimento" value="99" />
-          <CombatConstData title="Investigação" value="99" />
-        </div>
-        <div
-          class="flex w-11/12 h-4/6 flex items-center justify-center text-2xl"
-        >
-          <CombatConstData title="Bloqueio" value="99" />
-          <CombatConstData title="Esquiva" value="99" />
-        </div>
-      </div>
-    </div>
-
-    <div class="w-full h-32 flex flex-col justify-center items-center">
-      <h1 class="text-3xl text-white">Estados</h1>
-      <div
-        class="w-10/12 h-16 mt-2 bg-gradient-to-r from-gray-200/25 to-gray-500/50 rounded-md flex justify-between items-center"
-      >
-        <div
-          class="h-5/6 w-10/12 ml-2 truncate text-white flex items-center text-2xl"
-        >
-          <div
-            v-for="state in characterState"
-            :key="state"
-            @click="removeState(state)"
-          >
-            <p>{{ state }};</p>
+          <div class="flex w-11/12 h-4/6 items-center justify-center text-2xl">
+            <CombatConstData title="Movimento" value="99" />
+            <CombatConstData title="Investigação" value="99" />
+          </div>
+          <div class="flex w-11/12 h-4/6 items-center justify-center text-2xl">
+            <CombatConstData title="Bloqueio" value="99" />
+            <CombatConstData title="Esquiva" value="99" />
           </div>
         </div>
-        <label for="my-modal-4" class="w-12 h-12 mr-2">
-          <p
-            class="flex items-center justify-center text-6xl rounded-full bg-white h-full text-black cursor-pointer"
-          >
-            +
-          </p>
-        </label>
       </div>
     </div>
-    <div class="h-2/4 flex flex-col text-white items-center mt-10 pc:hidden">
-      <div class="flex w-10/12 h-4/6 flex items-center justify-center text-2xl">
+    <div class="wrapper-states">
+      <div class="w-full h-32 flex flex-col justify-center items-center">
+        <h1 class="text-3xl text-white">Estados</h1>
+        <div
+          class="w-10/12 h-16 mt-2 bg-gradient-to-r from-gray-200/25 to-gray-500/50 rounded-md flex justify-between items-center"
+        >
+          <div
+            class="h-5/6 w-10/12 ml-2 truncate text-white flex items-center text-2xl"
+          >
+            <div
+              v-for="state in characterState"
+              :key="state"
+              @click="removeState(state)"
+            >
+              <p>{{ state }};</p>
+            </div>
+          </div>
+          <div class="flex justify-items-start m-8 flex-shrink-3">
+            <font-awesome-icon
+              icon="fa-solid fa-plus"
+              class="text-3xl hover:cursor-pointer"
+              @click="renderStateModal = !renderStateModal"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="h-2/4 flex flex-col text-white items-center justify-space-arrmt-10 pc:hidden"
+    >
+      <div class="flex w-10/12 h-4/6 items-center justify-center text-2xl">
         <CombatConstData title="Movimento" value="99" />
         <CombatConstData title="Investigação" value="99" />
       </div>
-      <div class="flex w-10/12 h-4/6 flex items-center justify-center text-2xl">
+      <div class="flex w-10/12 h-4/6 items-center justify-center text-2xl">
         <CombatConstData title="Bloqueio" value="99" />
         <CombatConstData title="Esquiva" value="99" />
       </div>
     </div>
-    <div
-      class="w-full h-24 mb-2 flex items-center justify-between pc:justify-center"
-    >
-      <button
-        class="h-16 w-5/12 ml-5 rounded-md border text-white bg-gradient-to-r from-cyan-700 to-sky-800 text-2xl hover:from-cyan-700/50 hover:to-sky-800/50"
+    <div class="wrapper-misc">
+      <div
+        class="w-full h-24 mb-2 flex items-center justify-between pc:justify-center"
       >
-        Consumíveis
-      </button>
-      <button class="w-5/12 h-16 flex items-center justify-center">
-        <img
-          src="../../images/dice.png"
-          class="w-5/12 pc:w-16 h-16 mr-5"
-          alt=""
-        />
-      </button>
+        <button
+          class="h-16 w-5/12 ml-5 rounded-md border text-white bg-gradient-to-r from-cyan-700 to-sky-800 text-2xl hover:from-cyan-700/50 hover:to-sky-800/50"
+        >
+          Consumíveis
+        </button>
+        <button class="w-5/12 h-16 flex items-center justify-center">
+          <img
+            src="../../images/dice.png"
+            class="w-5/12 pc:w-16 h-16 mr-5"
+            alt=""
+          />
+        </button>
+      </div>
     </div>
-
-    <input id="my-modal-4" type="checkbox" class="modal-toggle" />
-    <label
-      for="my-modal-4"
-      class="modal cursor-pointer modal-center cel:modal-bottom"
+    <Modal
+      :render="renderStateModal"
+      @clicked-out="renderStateModal = !renderStateModal"
     >
-      <label
-        class="modal-box relative bg-transparent w-10/12 h-2/6 max-h-4/6 p-2"
-        for=""
-      >
-        <CombatModal
-          id="4"
-          :text-input="{
-            inputId: stateValue,
-            labelText: 'Digite aqui o seu novo estado:',
-            type: 'text',
-            placeholder: 'Novo estado...',
-          }"
-          :button-input="{
-            id: 'addState',
-            text: 'ADICIONAR',
-            class: 'success',
-          }"
-          @button-pressed="($event) => addState($event)"
+      <div>
+        <input
+          id="textBox"
+          v-model="state"
+          type="text"
+          placeholder="Digite o estado aqui..."
+          class="mt-2 w-full px-2 h-8 bg-gray-200/25 outline-none rounded"
+          @input="addState(state)"
         />
-      </label>
-    </label>
+        <button class="">Adicionar</button>
+      </div>
+    </Modal>
   </div>
 </template>
 
 <script setup>
   const characterState = useCharacterState()
-  let stateValue
+  const renderStateModal = ref(true)
 
   function addState(returnValue) {
     characterState.value.push(capitalizeFirstLetter(returnValue.toLowerCase()))
@@ -135,6 +125,7 @@
       }
     })
   }
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
