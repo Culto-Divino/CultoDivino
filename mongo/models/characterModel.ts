@@ -1,4 +1,5 @@
-import mongoose from 'mongoose'
+import mongoose, { mongo } from 'mongoose'
+import itemModel from '@@/mongo/models/itemModel'
 const Schema = mongoose.Schema
 
 const noteSchema = new Schema({
@@ -13,14 +14,6 @@ const docSchema = new Schema({
   file: { type: String, required: true },
 })
 
-const itemsSchema = new Schema({
-  id: mongoose.Types.ObjectId,
-  name: { type: String, required: true },
-  description: { type: String, default: 'Esse item não possui uma descrição!' },
-  weight: { type: Number, required: true },
-  types: { type: [String], default: [] },
-  isUnique: { type: Boolean, default: false }
-})
 
 const characterSchema = new Schema({
   id: mongoose.Types.ObjectId,
@@ -36,7 +29,14 @@ const characterSchema = new Schema({
   inventory: { type: [mongoose.Types.ObjectId], ref: 'items' },
   locker: { type: [mongoose.Types.ObjectId], ref: 'items' },
   devMode: { type: Boolean, default: false },
-  canTrade: { type: Boolean, default: true }
+  canTrade: { type: Boolean, default: true },
+  sheet: {
+    hp: {
+      maxValue: { type: Number, },
+      value: { type: Number },
+    },
+  }
+
 })
 
 characterSchema.virtual('level').get(function () {
@@ -86,7 +86,6 @@ characterSchema.method('transferToInventory', function (itemId: string) {
 const noteModel = mongoose.model('notes', noteSchema)
 const docModel = mongoose.model('docs', docSchema)
 const characterModel = mongoose.model('characters', characterSchema)
-const itemModel = mongoose.model('items', itemsSchema)
 
 export default characterModel
 export { noteModel, docModel, itemModel }

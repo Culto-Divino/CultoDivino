@@ -9,8 +9,9 @@
         :value="value"
         max="99"
         class="bg-transparent w-10 outline-none text-right"
-      />
-      / {{ maxValue }}
+        @change="$emit('value-modified', $event.target.value)"
+      /><a class="felx text-zinc-700">/</a><a> {{ maxValue }}</a
+      ><a v-if="modValue" class="text-blue-700"> + {{ modValue }}</a>
     </p>
   </div>
 </template>
@@ -18,7 +19,10 @@
 <script setup>
   defineProps({
     title: String,
-    value: String,
-    maxValue: String,
+    value: Number,
+    maxValue: Number,
+    modValue: Number,
   })
+
+  defineEmits(['value-modified'])
 </script>

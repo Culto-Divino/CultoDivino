@@ -32,13 +32,11 @@
         </ClientOnly>
       </div>
       <div class="w-11/12 h-1/6 flex items-center justify-between">
-        <label for="my-modal-3" class="w-5/12 h-3/6">
-          <div
-            class="w-full h-full border rounded-lg text-xl flex items-center justify-center cursor-pointer"
-          >
-            ADICIONAR
-          </div>
-        </label>
+        <div
+          class="w-full h-full border rounded-lg text-xl flex items-center justify-center cursor-pointer"
+        >
+          ADICIONAR
+        </div>
         <NuxtLink
           :to="libraryPath"
           class="w-5/12 h-3/6 border rounded-lg text-xl flex items-center justify-center"
@@ -48,41 +46,8 @@
     </div>
   </div>
 
-  <input id="my-modal-3" type="checkbox" class="modal-toggle" />
-  <label
-    for="my-modal-3"
-    class="modal cursor-pointer modal-center cel:modal-bottom"
-  >
-    <label
-      class="modal-box relative bg-transparent w-10/12 h-min max-h-4/6 p-2 pc:h-2/5"
-      for=""
-    >
-      <Modal
-        id="3"
-        :text-inputs="[
-          {
-            inputId: 'itemName',
-            labelText: 'Item:',
-            type: 'text',
-            placeholder: 'Nome...',
-          },
-          {
-            inputId: 'itemAmount',
-            labelText: 'Quantidade:',
-            type: 'text',
-            placeholder: 'Quantidade...',
-          },
-        ]"
-        :button-inputs="[
-          {
-            id: 'addItem',
-            text: 'ADICIONAR',
-            class: 'success',
-          },
-        ]"
-      />
-    </label>
-  </label>
+  <Modal :render="optionsModal" @clicked-out="optionsModal = !optionsModal">
+  </Modal>
 </template>
 
 <script setup>

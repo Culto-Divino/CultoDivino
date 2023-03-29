@@ -4,32 +4,45 @@
     class="w-screen h-screen bg-gradient-to-r from-bgColor1 to-bgColor2 overflow-y-auto overflow-x-hidden z-0"
   >
     <CharacterHeader class="sticky top-0 z-10" />
-
-    <div class="h-2/4 pc:flex w-full justify-evenly items-center">
-      <div class="h-full pc:w-5/12 flex flex-col text-white items-center mt-10">
+    <div v-if="!pending">
+      <div class="h-2/4 pc:flex w-full justify-evenly items-center">
         <div
-          class="pc:w-11/12 w-9/12 h-4/6 flex items-center justify-center text-2xl"
+          class="h-full pc:w-5/12 flex flex-col text-white items-center mt-10"
         >
-          <CombatData title="Vida" value="99" max-value="99" />
-          <CombatData title="Mana" value="99" max-value="99" />
-        </div>
-        <div
-          class="pc:w-11/12 w-9/12 h-4/6 flex items-center justify-center text-2xl"
-        >
-          <CombatData title="Vigor" value="99" max-value="99" />
-          <CombatData title="Sanidade" value="99" max-value="99" />
-        </div>
-
-        <div
-          class="cel:hidden h-full w-5/12 flex flex-col text-white items-center mt-10"
-        >
-          <div class="flex w-11/12 h-4/6 items-center justify-center text-2xl">
-            <CombatConstData title="Movimento" value="99" />
-            <CombatConstData title="Investigação" value="99" />
+          <div
+            class="pc:w-11/12 w-9/12 h-4/6 flex items-center justify-center text-2xl"
+          >
+            <CombatData
+              title="Vida"
+              :value="stats.hp.value"
+              :max-value="stats.hp.maxValue"
+              :mod-value="overHp.value"
+              @value-modified="recalcHP"
+            />
+            <CombatData title="Mana" value="99" max-value="99" />
           </div>
-          <div class="flex w-11/12 h-4/6 items-center justify-center text-2xl">
-            <CombatConstData title="Bloqueio" value="99" />
-            <CombatConstData title="Esquiva" value="99" />
+          <div
+            class="pc:w-11/12 w-9/12 h-4/6 flex items-center justify-center text-2xl"
+          >
+            <CombatData title="Vigor" value="99" max-value="99" />
+            <CombatData title="Sanidade" value="99" max-value="99" />
+          </div>
+
+          <div
+            class="cel:hidden h-full w-5/12 flex flex-col text-white items-center mt-10"
+          >
+            <div
+              class="flex w-11/12 h-4/6 items-center justify-center text-2xl"
+            >
+              <CombatConstData title="Movimento" value="99" />
+              <CombatConstData title="Investigação" value="99" />
+            </div>
+            <div
+              class="flex w-11/12 h-4/6 items-center justify-center text-2xl"
+            >
+              <CombatConstData title="Bloqueio" value="99" />
+              <CombatConstData title="Esquiva" value="99" />
+            </div>
           </div>
         </div>
       </div>
@@ -46,6 +59,7 @@
             <div
               v-for="state in characterState"
               :key="state"
+              class="hover:cursor-pointer"
               @click="removeState(state)"
             >
               <p>{{ state }};</p>
@@ -95,24 +109,58 @@
       :render="renderStateModal"
       @clicked-out="renderStateModal = !renderStateModal"
     >
-      <div>
+      <div class="flex flex-col align-center justify-around">
         <input
           id="textBox"
           v-model="state"
           type="text"
           placeholder="Digite o estado aqui..."
           class="mt-2 w-full px-2 h-8 bg-gray-200/25 outline-none rounded"
-          @input="addState(state)"
         />
-        <button class="">Adicionar</button>
+        <button
+          class="hover:cursor-pointer active:translate-y-px"
+          @click="
+            () => {
+              addState(state)
+              renderStateModal = !renderStateModal
+            }
+          "
+        >
+          Adicionar
+        </button>
       </div>
     </Modal>
   </div>
 </template>
 
 <script setup>
+  const route = useRoute()
   const characterState = useCharacterState()
-  const renderStateModal = ref(true)
+  const renderStateModal = ref(false)
+  const overHp = ref()
+
+  // eslint-disable-next-line prefer-const
+  let { data: stats, pending } = await useLazyAsyncData(
+    'characters',
+    () =>
+      $fetch('/api/stats', {
+        method: 'GET',
+        headers: { 'Character-Id': route.params.characterId },
+      }),
+    { server: false }
+  )
+
+  watch(pending, () => {
+    console.log(stats)
+    overHp.value =
+      stats.value.hp.value - stats.value.hp.maxValue <= 0
+        ? 0
+        : stats.value.hp.value - stats.value.hp.maxValue
+  })
+
+  const recalcHP = (newHp) => {
+    // TODO: Calcular overhp
+  }
 
   function addState(returnValue) {
     characterState.value.push(capitalizeFirstLetter(returnValue.toLowerCase()))
